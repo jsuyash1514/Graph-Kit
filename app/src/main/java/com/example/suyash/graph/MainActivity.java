@@ -30,10 +30,11 @@ public class MainActivity extends AppCompatActivity {
         lineGraph.setBackgroundColor(Color.WHITE);
         lineGraph.setGraphColor(Color.BLACK);
 
-        lineGraph.addDataPoint(100,100);
-        lineGraph.addDataPoint(200,200);
-        lineGraph.addDataPoint(200,300);
-        lineGraph.addDataPoint(400,300);
+        lineGraph.addDataPoint(1,1);
+        lineGraph.addDataPoint(2,7);
+        lineGraph.addDataPoint(4,3);
+        lineGraph.addDataPoint(5,3);
+        lineGraph.addDataPoint(7,9);
         Bitmap bitmap = lineGraph.plot();
         imageView.setImageBitmap(bitmap);
 
