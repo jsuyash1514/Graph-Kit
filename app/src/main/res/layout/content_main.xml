@@ -4,15 +4,47 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.suyash.graph.MainActivity"
     tools:showIn="@layout/activity_main">
 
 
-    <ImageView
+    <Button
+        android:id="@+id/button_lineGraph"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imageView"
-        android:layout_margin="10dp"/>
+        android:text="line graph"
+        android:textSize="25sp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="90dp"
+        android:padding="20dp"/>
+
+
+    <Button
+        android:id="@+id/button_pieChart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="pie chart"
+        android:textSize="25sp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="50dp"
+        android:padding="20dp"/>
+
+
+    <Button
+        android:id="@+id/button_barGraph"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="bar graph"
+        android:textSize="25sp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="50dp"
+        android:padding="20dp"/>
+
+
 
 </LinearLayout>

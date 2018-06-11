@@ -4,8 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.util.Log;
-import android.view.View;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,8 +53,7 @@ public class LineGraph {
         canvas.drawLine(canvas.getWidth()/2,0,canvas.getWidth()/2,canvas.getHeight(),paint);
         canvas.drawLine(0,canvas.getHeight()/2,canvas.getWidth(),canvas.getHeight()/2,paint);
         canvas.translate(canvas.getHeight()/2, canvas.getWidth()/2);
-//        canvas.drawText("0",0-marginX,0-marginY,paint);
-//        canvas.drawText("0",0+marginX,0+marginY,paint);
+
         float max_x, max_y;
         max_x = -Integer.MAX_VALUE;
         max_y = -Integer.MAX_VALUE;
@@ -69,13 +67,9 @@ public class LineGraph {
         }
         paint.setStrokeWidth(5);
 
-        Log.d("Library: ", "max_X= " + max_x);
-        Log.d("Library: ", "max_y= " + max_y);
         scaleX = String.valueOf(max_x).length()-2;
-        Log.d("Library: ", "scaleX= " + scaleX);
         scaleY = String.valueOf(max_y).length()-2;
-        Log.d("Library: ", "scaleY= " + scaleY);
-        for (int i=0;i<10;i++){
+        for (int i=-9;i<10;i++){
             canvas.drawLine(i*100, -marginY,i*100,0,paint);
             if (i%2==0){
                 canvas.drawText(Integer.toString((int)(i*Math.pow(10,scaleX))/10),(i*100)-(15*scaleX),marginY,paint);
@@ -85,12 +79,10 @@ public class LineGraph {
 
             }
             canvas.drawLine(0,-i*100,marginX,-i*100,paint);
-            canvas.drawText(Integer.toString((int)(i*Math.pow(10,scaleY))/10),-marginX*scaleY, -i*100,paint);
+            canvas.drawText(Integer.toString((int)(i*Math.pow(10,scaleY))/10),-marginX*scaleY, (-i*100)+(15*scaleY),paint);
         }
         scaleX = (int)Math.pow(10,(3-scaleX));
-        Log.d("Library: ", "scaleX= " + scaleX);
         scaleY = (int)Math.pow(10,(3-scaleY));
-        Log.d("Library: ", "scaleY= " + scaleY);
 
     }
 
@@ -98,17 +90,12 @@ public class LineGraph {
         setAxes();
         canvas.scale(1,-1);
         if (dataPoints.size() != 0){
-            Log.d("Library: ", "size: " + dataPoints.size());
             for (int i=0; i<dataPoints.size(); i++){
                 canvas.drawPoint((dataPoints.get(i).getX())*scaleX, (dataPoints.get(i).getY())*scaleY, paint);
-                Log.d("Library: ", "x: " + (dataPoints.get(i).getX()) + "  y: " + (dataPoints.get(i).getY()));
                 if (i>0){
                     canvas.drawLine((dataPoints.get(i-1).getX())*scaleX,(dataPoints.get(i-1).getY())*scaleY,(dataPoints.get(i).getX())*scaleX, (dataPoints.get(i).getY())*scaleY,paint );
                 }
             }
-        }
-        else {
-            Log.d("Library: ", "dataPoints.size(): " + dataPoints.size());
         }
         return bitmap;
     }
