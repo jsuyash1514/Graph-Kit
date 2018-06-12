@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.example.suyash.graphlibrary.BarGraph;
 import com.example.suyash.graphlibrary.LineGraph;
 import com.example.suyash.graphlibrary.PieChart;
 
@@ -80,7 +81,20 @@ public class MainActivity extends AppCompatActivity {
         barGraph.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                BarGraph barGraph = new BarGraph();
+                barGraph.addDataPoints("2014",5,Color.parseColor("#34495E"));
+                barGraph.addDataPoints("2015",9,Color.parseColor("#EC7063"));
+                barGraph.addDataPoints("2016",2,Color.parseColor("#2ECC71"));
+                barGraph.addDataPoints("2017",4,Color.parseColor("#F5B041"));
+                Bitmap bitmap = barGraph.plot();
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                byte[] byteArray = stream.toByteArray();
 
+                Intent intent = new Intent(getApplicationContext(),Graph.class);
+                intent.putExtra("image", byteArray);
+                startActivity(intent);
+                finish();
             }
         });
 
