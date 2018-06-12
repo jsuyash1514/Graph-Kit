@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.GridLayout;
 import android.widget.GridView;
 
 
@@ -17,9 +18,9 @@ public class LineGraph extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_line_graph);
 
-        GridView gridView = (GridView)findViewById(R.id.grid);
+        GridLayout gridLayout = (GridLayout) findViewById(R.id.grid);
 
-        com.example.suyash.graphlibrary.LineGraph lineGraph = new com.example.suyash.graphlibrary.LineGraph(this);
+        com.example.suyash.graphlibrary.LineGraph lineGraph = new com.example.suyash.graphlibrary.LineGraph(getApplicationContext(),1000,1000);
         lineGraph.addDataPoint(1,1);
         lineGraph.addDataPoint(2,7);
         lineGraph.addDataPoint(4,3);
@@ -28,7 +29,7 @@ public class LineGraph extends AppCompatActivity {
         lineGraph.setGraphColor(Color.BLACK);
         lineGraph.setBackgroundColor(Color.WHITE);
 
-        gridView.addView(lineGraph);
+        gridLayout.addView(lineGraph);
     }
 }
 
