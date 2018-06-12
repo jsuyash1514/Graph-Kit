@@ -20,7 +20,7 @@ public class BarGraph {
     Paint paint;
     int thickness, scaleY;
     public BarGraph(){
-        bitmap = Bitmap.createBitmap(2000,2400, Bitmap.Config.ARGB_8888);
+        bitmap = Bitmap.createBitmap(2000,2000, Bitmap.Config.ARGB_8888);
         canvas = new Canvas(bitmap);
         paint = new Paint();
 
