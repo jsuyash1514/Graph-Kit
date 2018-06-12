@@ -4,19 +4,14 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.Button;
-import android.widget.ImageView;
+
 
 import com.example.suyash.graphlibrary.BarGraph;
-import com.example.suyash.graphlibrary.LineGraph;
+
 import com.example.suyash.graphlibrary.PieChart;
 
 import java.io.ByteArrayOutputStream;
@@ -38,21 +33,20 @@ public class MainActivity extends AppCompatActivity {
         lineGraph.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LineGraph lineGraph = new LineGraph();
-                lineGraph.addDataPoint(1,1);
-                lineGraph.addDataPoint(2,7);
-                lineGraph.addDataPoint(4,3);
-                lineGraph.addDataPoint(5,3);
-                lineGraph.addDataPoint(7,9);
-                lineGraph.setGraphColor(Color.BLACK);
-                lineGraph.setBackgroundColor(Color.WHITE);
-                Bitmap bitmap = lineGraph.plot();
-                ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
-                byte[] byteArray = stream.toByteArray();
+//                LineGraph lineGraph = new LineGraph();
+//                lineGraph.addDataPoint(1,1);
+//                lineGraph.addDataPoint(2,7);
+//                lineGraph.addDataPoint(4,3);
+//                lineGraph.addDataPoint(5,3);
+//                lineGraph.addDataPoint(7,9);
+//                lineGraph.setGraphColor(Color.BLACK);
+//                lineGraph.setBackgroundColor(Color.WHITE);
+//                Bitmap bitmap = lineGraph.plot();
+//                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+//                bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+//                byte[] byteArray = stream.toByteArray();
 
-                Intent intent = new Intent(getApplicationContext(),Graph.class);
-                intent.putExtra("image", byteArray);
+                Intent intent = new Intent(getApplicationContext(), com.example.suyash.graph.LineGraph.class);
                 startActivity(intent);
                 finish();
             }

@@ -1,39 +1,34 @@
 package com.example.suyash.graphlibrary;
 
-import android.graphics.Bitmap;
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-
-
+import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
+
 
 /**
  * Created by suyash on 6/11/18.
  */
 
-public class LineGraph {
+public class LineGraph extends View{
     List<DataPoint> dataPoints = new ArrayList<>();
-    Bitmap bitmap;
     Paint paint;
-    Canvas canvas;
+
     int scaleX, scaleY;
     int marginX = 50;
     int marginY = 50;
 
-    public LineGraph(){
-        bitmap = Bitmap.createBitmap(2000,2000,Bitmap.Config.ARGB_8888);
-        paint = new Paint();
-        canvas = new Canvas(bitmap);
+    int backGroundColor = Color.WHITE;
+    int graphColor = Color.BLACK;
 
-        paint.setColor(Color.BLACK);
-        paint.setAntiAlias(true);
-        paint.setStrokeWidth(10);
-        paint.setTextSize(60);
-
-        canvas.drawColor(Color.WHITE);
+    public LineGraph(Context context) {
+        super(context);
     }
+
+
 
     public void addDataPoint(float x, float y){
         DataPoint dataPoint = new DataPoint();
@@ -42,17 +37,31 @@ public class LineGraph {
     }
 
     public void setBackgroundColor(int color){
-        canvas.drawColor(color);
+        backGroundColor = color;
     }
 
     public void setGraphColor(int color){
-        paint.setColor(color);
+        graphColor = color;
     }
 
-    private void setAxes(){
+
+    @Override
+    public void onDraw(Canvas canvas) {
+        paint = new Paint();
+        canvas = new Canvas();
+
+        paint.setColor(graphColor);
+        paint.setAntiAlias(true);
+        paint.setStrokeWidth(10);
+        paint.setTextSize(60);
+
+        canvas.drawColor(backGroundColor);
+
         canvas.drawLine(canvas.getWidth()/2,0,canvas.getWidth()/2,canvas.getHeight(),paint);
         canvas.drawLine(0,canvas.getHeight()/2,canvas.getWidth(),canvas.getHeight()/2,paint);
         canvas.translate(canvas.getHeight()/2, canvas.getWidth()/2);
+
+        
 
         float max_x, max_y;
         max_x = -Integer.MAX_VALUE;
@@ -84,10 +93,6 @@ public class LineGraph {
         scaleX = (int)Math.pow(10,(3-scaleX));
         scaleY = (int)Math.pow(10,(3-scaleY));
 
-    }
-
-    public Bitmap plot(){
-        setAxes();
         canvas.scale(1,-1);
         if (dataPoints.size() != 0){
             for (int i=0; i<dataPoints.size(); i++){
@@ -97,6 +102,6 @@ public class LineGraph {
                 }
             }
         }
-        return bitmap;
     }
+
 }
