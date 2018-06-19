@@ -10,6 +10,11 @@ public class DataPoint {
     float percentage;
     int color;
 
+    public DataPoint(float x, float y){
+        this.x = x;
+        this.y = y;
+    }
+    public DataPoint(){}
 
     public void set(float x, float y){
         this.x = x;
