@@ -148,7 +148,15 @@ public class LineGraph extends View {
             pointListScaled.add(new DataPoint(pointList.get(i).x / scaleX, pointList.get(i).y / scaleY));
         }
 
-        for (int i = 100; i < vH; i += 100) {
+        int nD = getNumberOfDigits(maxY);
+        float v;
+        if (nD > 1) {
+            v = (float) Math.pow(10, nD - 2);
+        } else {
+            v = (float) Math.pow(10, 0);
+        }
+
+        for (float i = v / scaleY; i < vH; i += (v / scaleY)) {
             mPaint.setColor(Color.LTGRAY);
             mPaint.setStrokeWidth(thickness / 2);
             mCanvas.drawLine(0, -i, sW, -i, mPaint);
@@ -161,7 +169,15 @@ public class LineGraph extends View {
             mCanvas.drawText(mark, -bounds.width() - 15, -(i + mPaint.ascent() / 2), mPaint);
 
         }
-        for (int i = 100; i < sW; i += 100) {
+
+        nD = getNumberOfDigits(maxX);
+        if (nD > 1) {
+            v = (float) Math.pow(10, nD - 2);
+        } else {
+            v = (float) Math.pow(10, 0);
+        }
+
+        for (float i = v / scaleX; i < sW; i += (v / scaleX)) {
             mPaint.setColor(Color.LTGRAY);
             mPaint.setStrokeWidth(thickness / 2);
             mCanvas.drawLine(i, 0, i, -vH, mPaint);
