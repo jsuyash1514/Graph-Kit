@@ -1,5 +1,6 @@
 package com.example.suyash.graph;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -33,8 +34,13 @@ public class LineGraph extends AppCompatActivity {
         lineGraph.setPoints(points);
         lineGraph.setGraphColor(Color.BLACK);
         lineGraph.setScrollable(true);
-
         gridLayout.addView(lineGraph);
+    }
+
+    @Override
+    public void onBackPressed(){
+        startActivity(new Intent(this, MainActivity.class));
+        finish();
     }
 }
 
