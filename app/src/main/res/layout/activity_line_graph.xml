@@ -7,6 +7,10 @@
     android:orientation="vertical"
     tools:context="com.example.suyash.graph.LineGraph">
 
+    <!--<ScrollView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content">-->
+
     <GridLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -14,6 +18,8 @@
         android:id="@+id/grid">
 
     </GridLayout>
+
+
 
 
 </LinearLayout>

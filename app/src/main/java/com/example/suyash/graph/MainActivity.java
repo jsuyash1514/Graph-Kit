@@ -33,19 +33,6 @@ public class MainActivity extends AppCompatActivity {
         lineGraph.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                LineGraph lineGraph = new LineGraph();
-//                lineGraph.addDataPoint(1,1);
-//                lineGraph.addDataPoint(2,7);
-//                lineGraph.addDataPoint(4,3);
-//                lineGraph.addDataPoint(5,3);
-//                lineGraph.addDataPoint(7,9);
-//                lineGraph.setGraphColor(Color.BLACK);
-//                lineGraph.setBackgroundColor(Color.WHITE);
-//                Bitmap bitmap = lineGraph.plot();
-//                ByteArrayOutputStream stream = new ByteArrayOutputStream();
-//                bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
-//                byte[] byteArray = stream.toByteArray();
-
                 Intent intent = new Intent(getApplicationContext(), com.example.suyash.graph.LineGraph.class);
                 startActivity(intent);
                 finish();
