@@ -26,13 +26,13 @@ public class LineGraph extends AppCompatActivity {
 
         com.example.suyash.graphlibrary.LineGraph lineGraph = new com.example.suyash.graphlibrary.LineGraph(getApplicationContext(),700,700);
         ArrayList<DataPoint> points = new ArrayList<>();
-        points.add(new DataPoint(1,1));
-        points.add(new DataPoint(2,7));
-        points.add(new DataPoint(4,3));
-        points.add(new DataPoint(5,3));
-        points.add(new DataPoint(7,9));
+        points.add(new DataPoint(10,10));
+        points.add(new DataPoint(100,50));
+        points.add(new DataPoint(100,100));
+        points.add(new DataPoint(150,200));
         lineGraph.setPoints(points);
         lineGraph.setGraphColor(Color.BLACK);
+        lineGraph.setScrollable(true);
 
         gridLayout.addView(lineGraph);
     }
