@@ -123,7 +123,8 @@ public class LineGraph extends View {
 
     public void setPoints(ArrayList<DataPoint> pointList) {
         flg = 0;
-        this.pointList = sortPoints(pointList);
+//        this.pointList = sortPoints(pointList);
+        this.pointList = pointList;
     }
 
     private void drawLine() {
