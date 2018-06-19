@@ -5,126 +5,145 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.view.View;
-import java.util.ArrayList;
-import java.util.List;
 
+import java.util.ArrayList;
 
 /**
- * Created by suyash on 6/11/18.
+ * Created by karthik on 18/6/18.
  */
 
-public class LineGraph extends View{
-    List<DataPoint> dataPoints = new ArrayList<>();
-    Paint paint;
-    Canvas mCanvas;
-    Bitmap mBitmap;
+public class LineGraph extends View {
 
-    int scaleX, scaleY;
-    int marginX = 50;
-    int marginY = 50;
-    float vH,vW;
+    private Bitmap mBitmap;
+    private Paint mPaint,mBitmapPaint;
+    private Canvas mCanvas;
+    private float thickness = 8.0f;
+    private int GRAPH_COLOR = Color.BLACK;
 
-    int backGroundColor = Color.WHITE;
-    int graphColor = Color.BLACK;
+    private ArrayList<DataPoint> pointList,pointListScaled;
 
-    public LineGraph(Context context, float vW, float vH) {
+    float vW,vH;
+    public LineGraph(Context context, float vW, float vH){
         super(context);
 
         this.vH = vH;
         this.vW = vW;
 
-        paint = new Paint();
-        paint.setColor(graphColor);
-        paint.setDither(true);
-        paint.setAntiAlias(true);
-        paint.setStrokeWidth(10);
-        paint.setTextSize(60);
+        mPaint = new Paint();
+        mPaint.setDither(true);
+        mPaint.setAntiAlias(true);
+        mPaint.setColor(GRAPH_COLOR);
+        mPaint.setStrokeWidth(thickness);
+        mPaint.setStrokeJoin(Paint.Join.ROUND);
+        mPaint.setStrokeCap(Paint.Cap.ROUND);
+        mPaint.setTextSize(thickness*2);
+
+        mBitmapPaint = new Paint(Paint.DITHER_FLAG);
+
+        pointList = new ArrayList<>();
+        pointListScaled = new ArrayList<>();
+
     }
 
-    @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh){
         super.onSizeChanged((int)vW,(int)vH,oldw,oldh);
         mBitmap = Bitmap.createBitmap((int)vW,(int)vH, Bitmap.Config.ARGB_8888);
         mCanvas = new Canvas(mBitmap);
+        mCanvas.translate(0,vH);
+        mCanvas.translate(50,-50);
+
     }
 
-
-    public void addDataPoint(float x, float y){
-        DataPoint dataPoint = new DataPoint();
-        dataPoint.set(x,y);
-        dataPoints.add(dataPoint);
+    protected void onDraw(Canvas canvas){
+        super.onDraw(canvas);
+        canvas.drawBitmap(mBitmap,0,0,mBitmapPaint);
+        drawGraph();
     }
 
-    public void setBackgroundColor(int color){
-        backGroundColor = color;
+    public void drawGraph(){
+
+        mCanvas.drawColor(Color.WHITE);
+
+        drawAxes();
+        drawMarkings();
+        mCanvas.scale(1,-1);
+        drawLine();
+
+    }
+
+    private void drawAxes(){
+
+        mCanvas.drawLine(0,0,0,-(vH-50),mPaint);
+        mCanvas.drawLine(0,0,vW-50,0,mPaint);
+
+    }
+
+    public void setPoints(ArrayList<DataPoint> pointList){
+        this.pointList = pointList;
+    }
+
+    private void drawLine(){
+
+        if(pointListScaled.size() > 1) {
+            for (int i = 0; i < pointListScaled.size() - 1; i++) {
+                mCanvas.drawLine(pointListScaled.get(i).x, pointListScaled.get(i).y, pointListScaled.get(i + 1).x, pointListScaled.get(i + 1).y, mPaint);
+            }
+        }
+
+    }
+
+    private void drawMarkings(){
+
+        float maxX = getMaxX();
+        float maxY = getMaxY();
+
+        float scaleX = maxX/(vW-50);
+        float scaleY = maxY/(vH-50);
+
+        for(int i = 0;i<pointList.size();i++){
+            pointListScaled.add(new DataPoint(pointList.get(i).x/scaleX,pointList.get(i).y/scaleY));
+        }
+
+        for (int i = 100;i<vH-50;i+=100){
+
+            mCanvas.drawLine(-5,-i,5,-i,mPaint);
+            String mark = Math.round(scaleY*i)+"";
+            Rect bounds = new Rect();
+            mPaint.getTextBounds(mark,0,mark.length(),bounds);
+            mCanvas.drawText(mark,-bounds.width()-15,-(i+mPaint.ascent()/2),mPaint);
+
+        }
+        for (int i = 100;i<vW-50;i+=100){
+            mCanvas.drawLine(i,-5,i,5,mPaint);
+            String mark = Math.round(scaleX*i)+"";
+            Rect bounds = new Rect();
+            mPaint.getTextBounds(mark,0,mark.length(),bounds);
+            mCanvas.drawText(mark,i-bounds.width()/2,-2*(mPaint.ascent()),mPaint);
+        }
+
+
+    }
+
+    private float getMaxX(){
+        float maxX = pointList.get(0).x;
+        for(int i = 0; i < pointList.size();i++){
+            if(pointList.get(i).x > maxX){maxX = pointList.get(i).x;}
+        }
+        return maxX;
+    }
+
+    private float getMaxY(){
+        float maxY = pointList.get(0).y;
+        for(int i = 0; i < pointList.size();i++){
+            if(pointList.get(i).y > maxY){maxY = pointList.get(i).y;}
+        }
+        return maxY;
     }
 
     public void setGraphColor(int color){
-        graphColor = color;
-    }
-
-
-    @Override
-    public void onDraw(Canvas canvas) {
-
-        draw();
-
-        canvas.drawBitmap(mBitmap,0,0,new Paint());
-        super.onDraw(canvas);
-
-    }
-
-    public void draw(){
-
-        mCanvas.drawColor(backGroundColor);
-
-        mCanvas.drawLine(mCanvas.getWidth()/2,0,mCanvas.getWidth()/2,mCanvas.getHeight(),paint);
-        mCanvas.drawLine(0,mCanvas.getHeight()/2,mCanvas.getWidth(),mCanvas.getHeight()/2,paint);
-        mCanvas.translate(mCanvas.getHeight()/2, mCanvas.getWidth()/2);
-
-
-
-        float max_x, max_y;
-        max_x = -Integer.MAX_VALUE;
-        max_y = -Integer.MAX_VALUE;
-        for (int i=0; i<dataPoints.size(); i++){
-            if (Math.abs(dataPoints.get(i).getX()) >= max_x){
-                max_x = dataPoints.get(i).getX();
-            }
-            if (Math.abs(dataPoints.get(i).getY()) >= max_y){
-                max_y = dataPoints.get(i).getY();
-            }
-        }
-        paint.setStrokeWidth(5);
-
-        scaleX = String.valueOf(max_x).length()-2;
-        scaleY = String.valueOf(max_y).length()-2;
-        for (int i=-9;i<10;i++){
-            mCanvas.drawLine(i*100, -marginY,i*100,0,paint);
-            if (i%2==0){
-                mCanvas.drawText(Integer.toString((int)(i*Math.pow(10,scaleX))/10),(i*100)-(15*scaleX),marginY,paint);
-            }
-            else {
-                mCanvas.drawText(Integer.toString((int)(i*Math.pow(10,scaleX))/10),(i*100)-(15*scaleX),marginY*2,paint);
-
-            }
-            mCanvas.drawLine(0,-i*100,marginX,-i*100,paint);
-            mCanvas.drawText(Integer.toString((int)(i*Math.pow(10,scaleY))/10),-marginX*scaleY, (-i*100)+(15*scaleY),paint);
-        }
-        scaleX = (int)Math.pow(10,(3-scaleX));
-        scaleY = (int)Math.pow(10,(3-scaleY));
-
-        mCanvas.scale(1,-1);
-        if (dataPoints.size() != 0){
-            for (int i=0; i<dataPoints.size(); i++){
-                mCanvas.drawPoint((dataPoints.get(i).getX())*scaleX, (dataPoints.get(i).getY())*scaleY, paint);
-                if (i>0){
-                    mCanvas.drawLine((dataPoints.get(i-1).getX())*scaleX,(dataPoints.get(i-1).getY())*scaleY,(dataPoints.get(i).getX())*scaleX, (dataPoints.get(i).getY())*scaleY,paint );
-                }
-            }
-        }
-
+        GRAPH_COLOR = color;
     }
 
 }

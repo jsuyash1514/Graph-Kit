@@ -9,6 +9,10 @@ import android.widget.BaseAdapter;
 import android.widget.GridLayout;
 import android.widget.GridView;
 
+import com.example.suyash.graphlibrary.DataPoint;
+
+import java.util.ArrayList;
+
 
 public class LineGraph extends AppCompatActivity {
 
@@ -20,14 +24,15 @@ public class LineGraph extends AppCompatActivity {
 
         GridLayout gridLayout = (GridLayout) findViewById(R.id.grid);
 
-        com.example.suyash.graphlibrary.LineGraph lineGraph = new com.example.suyash.graphlibrary.LineGraph(getApplicationContext(),1000,1000);
-        lineGraph.addDataPoint(1,1);
-        lineGraph.addDataPoint(2,7);
-        lineGraph.addDataPoint(4,3);
-        lineGraph.addDataPoint(5,3);
-        lineGraph.addDataPoint(7,9);
+        com.example.suyash.graphlibrary.LineGraph lineGraph = new com.example.suyash.graphlibrary.LineGraph(getApplicationContext(),700,700);
+        ArrayList<DataPoint> points = new ArrayList<>();
+        points.add(new DataPoint(1,1));
+        points.add(new DataPoint(2,7));
+        points.add(new DataPoint(4,3));
+        points.add(new DataPoint(5,3));
+        points.add(new DataPoint(7,9));
+        lineGraph.setPoints(points);
         lineGraph.setGraphColor(Color.BLACK);
-        lineGraph.setBackgroundColor(Color.WHITE);
 
         gridLayout.addView(lineGraph);
     }
