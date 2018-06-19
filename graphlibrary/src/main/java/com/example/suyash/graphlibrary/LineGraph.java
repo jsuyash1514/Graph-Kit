@@ -10,6 +10,8 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
  * Created by karthik on 18/6/18.
@@ -121,7 +123,7 @@ public class LineGraph extends View {
 
     public void setPoints(ArrayList<DataPoint> pointList) {
         flg = 0;
-        this.pointList = pointList;
+        this.pointList = sortPoints(pointList);
     }
 
     private void drawLine() {
@@ -224,4 +226,13 @@ public class LineGraph extends View {
         this.color = color;
     }
 
+    private ArrayList<DataPoint> sortPoints(ArrayList<DataPoint> points) {
+        Collections.sort(points, new Comparator<DataPoint>() {
+            @Override
+            public int compare(DataPoint dataPoint, DataPoint t1) {
+                return Float.toString(dataPoint.x).compareTo(Float.toString(t1.x));
+            }
+        });
+        return points;
+    }
 }
