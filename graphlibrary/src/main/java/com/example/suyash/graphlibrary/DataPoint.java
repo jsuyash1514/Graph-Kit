@@ -14,8 +14,6 @@ public class DataPoint {
         this.x = x;
         this.y = y;
     }
-    public DataPoint(){}
-
 
     public DataPoint(String category, float percentage, int color){
         this.color = color;
