@@ -19,8 +19,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Graph" />
-        <activity android:name=".LineGraph"></activity>
+        <activity android:name=".LineGraph" />
+        <activity android:name=".PieChart" />
+        <activity android:name=".BarGraph"></activity>
     </application>
 
 </manifest>

@@ -1,10 +1,11 @@
 package com.example.suyash.graphlibrary;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Rect;
+import android.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,15 +14,17 @@ import java.util.List;
  * Created by suyash on 6/12/18.
  */
 
-public class BarGraph {
+public class BarGraph extends View{
     List<DataPoint> dataPoints = new ArrayList<>();
-    Bitmap bitmap;
+    Bitmap mBitmap;
     Canvas canvas;
-    Paint paint;
+    Paint paint, mBitmapPaint;
     int thickness, scaleY;
-    public BarGraph(){
-        bitmap = Bitmap.createBitmap(2000,2400, Bitmap.Config.ARGB_8888);
-        canvas = new Canvas(bitmap);
+    int flg =0;
+    public BarGraph(Context context, float vW, float vH){
+        super(context);
+        mBitmap = Bitmap.createBitmap((int)vW,(int)vH, Bitmap.Config.ARGB_8888);
+        canvas = new Canvas(mBitmap);
         paint = new Paint();
 
         paint.setColor(Color.BLACK);
@@ -29,13 +32,24 @@ public class BarGraph {
         paint.setStrokeWidth(10);
         paint.setTextSize(80);
 
+        mBitmapPaint = new Paint(Paint.DITHER_FLAG);
+
         canvas.drawColor(Color.WHITE);
     }
 
-    public void addDataPoints(String string, float value, int color){
-        DataPoint dataPoint = new DataPoint();
-        dataPoint.set(string,value,color);
-        dataPoints.add(dataPoint);
+    @Override
+    public void onDraw(Canvas canvas){
+        super.onDraw(canvas);
+        if (flg == 0) {
+            drawGraph();
+            flg = 1;
+        }
+        canvas.drawBitmap(mBitmap, 0, 0, mBitmapPaint);
+    }
+
+    public void setPoints(ArrayList<DataPoint> pointList) {
+        flg = 0;
+        this.dataPoints = pointList;
     }
 
     private void setAxes(){
@@ -46,8 +60,8 @@ public class BarGraph {
         float max_y;
         max_y = -Integer.MAX_VALUE;
         for (int i=0; i<dataPoints.size(); i++){
-            if (Math.abs(dataPoints.get(i).getPercentage()) >= max_y){
-                max_y = dataPoints.get(i).getPercentage();
+            if (Math.abs(dataPoints.get(i).percentage) >= max_y){
+                max_y = dataPoints.get(i).percentage;
             }
         }
         paint.setStrokeWidth(5);
@@ -58,10 +72,10 @@ public class BarGraph {
         for (int i =0; i<dataPoints.size(); i++){
             canvas.drawLine((i*thickness + thickness/2), -40,(i*thickness + thickness/2),0,paint);
             if (i%2==0){
-                canvas.drawText(dataPoints.get(i).getCatagory(),(i*thickness)+thickness/4,70,paint);
+                canvas.drawText(dataPoints.get(i).category,(i*thickness)+thickness/4,70,paint);
             }
             else {
-                canvas.drawText(dataPoints.get(i).getCatagory(),(i*thickness)+thickness/4,140,paint);
+                canvas.drawText(dataPoints.get(i).category,(i*thickness)+thickness/4,140,paint);
 
             }
         }
@@ -73,17 +87,16 @@ public class BarGraph {
 
     }
 
-    public Bitmap plot(){
+    public void drawGraph(){
         setAxes();
         int start = 0;
         for (int i=0;i<dataPoints.size();i++){
-            paint.setColor(dataPoints.get(i).getColor());
+            paint.setColor(dataPoints.get(i).color);
             paint.setStyle(Paint.Style.FILL_AND_STROKE);
-            canvas.drawRect(start,-(dataPoints.get(i).getPercentage()*scaleY*2),start+thickness,0,paint);
+            canvas.drawRect(start,-(dataPoints.get(i).percentage*scaleY*2),start+thickness,0,paint);
             paint.setColor(Color.BLACK);
-            canvas.drawText(dataPoints.get(i).getPercentage()+"",start+(thickness/4),-(dataPoints.get(i).getPercentage()*scaleY*2)-50,paint);
+            canvas.drawText(dataPoints.get(i).percentage+"",start+(thickness/4),-(dataPoints.get(i).percentage*scaleY*2)-50,paint);
             start+=thickness;
         }
-        return bitmap;
     }
 }

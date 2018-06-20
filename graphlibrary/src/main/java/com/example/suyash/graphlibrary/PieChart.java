@@ -1,10 +1,12 @@
 package com.example.suyash.graphlibrary;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,76 +15,90 @@ import java.util.List;
  * Created by suyash on 6/12/18.
  */
 
-public class PieChart {
-    List<DataPoint> dataPoints = new ArrayList<>();
-    Bitmap bitmap;
-    Canvas canvas,index;
-    Paint paint;
+public class PieChart extends View{
+    Paint mPaint, mBitmapPaint;
 
-    public PieChart(){
-        bitmap = Bitmap.createBitmap(1000,2000,Bitmap.Config.ARGB_8888);
-        paint = new Paint();
+    ArrayList<DataPoint> dataPoints;
 
+
+    float width,height;
+
+    public PieChart(Context context, float width) {
+        super(context);
+
+        this.width = width;
+        height = width*2;
+
+        mPaint = new Paint();
+        mPaint.setColor(Color.BLACK);
+        mPaint.setDither(true);
+        mPaint.setAntiAlias(true);
+        mPaint.setStyle(Paint.Style.FILL);
+        mPaint.setStrokeWidth(10);
+        mPaint.setTextSize(60);
+
+
+        mBitmapPaint = new Paint(Paint.DITHER_FLAG);
+
+        dataPoints = new ArrayList<>();
     }
-    public void addDataPoint(String catgory, float percentage, int color){
-        DataPoint dataPoint = new DataPoint();
-        dataPoint.set(catgory,percentage,color);
-        dataPoints.add(dataPoint);
+
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged((int) width, (int) height, oldw, oldh);
+        invalidate();
+    }
+
+    @Override
+    public void onDraw(Canvas canvas ){
+        super.onDraw(canvas);
+        Bitmap bitmap1 = drawPieChart();
+        Bitmap bitmap2 = drawIndex();
+        canvas.drawBitmap(bitmap1,0,0,mBitmapPaint);
+        canvas.drawBitmap(bitmap2,0,height/2,mBitmapPaint);
+    }
+
+
+    public void setPoints(ArrayList<DataPoint> pointList) {
+        this.dataPoints = pointList;
     }
 
     private Bitmap drawPieChart(){
-        Bitmap bitmap = Bitmap.createBitmap(1000,1000, Bitmap.Config.ARGB_8888);
-        canvas = new Canvas(bitmap);
-        paint.setColor(Color.BLACK);
-        paint.setAntiAlias(true);
-        paint.setStyle(Paint.Style.FILL);
-        paint.setStrokeWidth(10);
-        paint.setTextSize(60);
+        Bitmap bitmap = Bitmap.createBitmap((int)width,(int)height/2, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
         canvas.translate(canvas.getWidth()/2,canvas.getHeight()/2);
         RectF oval = new RectF();
         oval.set(-canvas.getWidth()/3,-canvas.getHeight()/3,canvas.getWidth()/3,canvas.getHeight()/3);
         float startAngle = 0;
         for (int i=0;i<dataPoints.size();i++){
-            paint.setColor(dataPoints.get(i).getColor());
-            float sweepAngle = (dataPoints.get(i).getPercentage()*360)/100;
-            canvas.drawArc(oval,startAngle,sweepAngle,true,paint);
+            mPaint.setColor(dataPoints.get(i).color);
+            float sweepAngle = (dataPoints.get(i).percentage*360)/100;
+            canvas.drawArc(oval,startAngle,sweepAngle,true,mPaint);
             startAngle += sweepAngle;
         }
 
         if (startAngle<360){
-            DataPoint dataPoint = new DataPoint();
-            dataPoint.set("Other",((360-startAngle)*100)/360,Color.parseColor("#99A3A4"));
-            dataPoints.add(dataPoint);
-            paint.setColor(Color.parseColor("#99A3A4"));
-            canvas.drawArc(oval,startAngle,360-startAngle,true,paint);
+            dataPoints.add(new DataPoint("Other",((360-startAngle)*100)/360,Color.parseColor("#99A3A4")));
+            mPaint.setColor(Color.parseColor("#99A3A4"));
+            canvas.drawArc(oval,startAngle,360-startAngle,true,mPaint);
         }
         return bitmap;
     }
     private Bitmap drawIndex(){
-        Bitmap bitmap = Bitmap.createBitmap(1000,1000, Bitmap.Config.ARGB_8888);
-        index = new Canvas(bitmap);
-        paint.setAntiAlias(true);
-        paint.setStyle(Paint.Style.FILL);
-        paint.setStrokeWidth(10);
-        paint.setTextSize(60);
+        Bitmap bitmap = Bitmap.createBitmap((int)width,(int)height/2, Bitmap.Config.ARGB_8888);
+        Canvas index = new Canvas(bitmap);
+        mPaint.setAntiAlias(true);
+        mPaint.setStyle(Paint.Style.FILL);
+        mPaint.setStrokeWidth(width/100);
+        mPaint.setTextSize(width/20);
 
         for (int i=0;i<dataPoints.size();i++){
-            paint.setColor(dataPoints.get(i).getColor());
-            index.drawCircle(40,100+(i*100),40,paint);
-            paint.setColor(Color.BLACK);
-            index.drawText(dataPoints.get(i).getCatagory() + " : " + dataPoints.get(i).getPercentage() + "% ",100,120+(i*100),paint);
+            mPaint.setColor(dataPoints.get(i).color);
+            index.drawCircle(width/25,(width/10)+(i*(width/10)),width/25,mPaint);
+            mPaint.setColor(Color.BLACK);
+            index.drawText(dataPoints.get(i).category + " : " + dataPoints.get(i).percentage + "% ",width/10,(width/8)+(i*(width/10)),mPaint);
         }
         return bitmap;
 
     }
 
-    public Bitmap plot(){
-       Bitmap bitmap1 = drawPieChart();
-       Bitmap bitmap2 = drawIndex();
-       Canvas combine = new Canvas(bitmap);
-       combine.drawBitmap(bitmap1,0,0,paint);
-       combine.drawBitmap(bitmap2,0,canvas.getHeight(),paint);
-       return  bitmap;
-
-    }
 }
