@@ -33,8 +33,8 @@ public class LineGraph extends AppCompatActivity {
         points.add(new DataPoint(100,100));
         points.add(new DataPoint(150,200));
         lineGraph.setPoints(points);
-        lineGraph.setGraphColor(Color.BLACK);
-        lineGraph.setScrollable(true);
+//        lineGraph.setGraphColor(Color.BLACK);
+//        lineGraph.setScrollable(true);
 //        gridLayout.addView(lineGraph);
     }
 

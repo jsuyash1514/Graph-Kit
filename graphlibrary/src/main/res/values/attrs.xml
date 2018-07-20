@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="LineGraph">
+        <attr name="scrollable" format="boolean"/>
+        <attr name="graph_color" format="color"/>
+        <attr name="line_thickness" format="float"/>
+    </declare-styleable>
+</resources>

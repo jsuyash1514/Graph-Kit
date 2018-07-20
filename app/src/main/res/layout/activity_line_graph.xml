@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -18,6 +19,9 @@
     <com.example.suyash.graphlibrary.LineGraph
         android:layout_width="400dp"
         android:layout_height="500dp"
+        custom:scrollable="true"
+        custom:graph_color="#ff0000"
+        custom:line_thickness="8.0"
         android:id="@+id/lineGraph"
         >
 

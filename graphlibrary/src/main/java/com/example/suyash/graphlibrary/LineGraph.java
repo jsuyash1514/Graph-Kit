@@ -1,6 +1,7 @@
 package com.example.suyash.graphlibrary;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -57,6 +58,13 @@ public class LineGraph extends View {
         pointList = new ArrayList<>();
         pointListScaled = new ArrayList<>();
 
+        TypedArray typedArray = context.getTheme().obtainStyledAttributes(attrs,R.styleable.LineGraph,0,0);
+
+        SCROLLABLE = typedArray.getBoolean(R.styleable.LineGraph_scrollable,false);
+        color = typedArray.getColor(R.styleable.LineGraph_graph_color,Color.BLACK);
+        Log.d("color", color+"");
+        thickness = typedArray.getFloat(R.styleable.LineGraph_line_thickness,8.0f);
+
     }
 
     public LineGraph(Context context, float vW, float vH) {
@@ -91,6 +99,10 @@ public class LineGraph extends View {
         if(vH == 0 && vW == 0){
             vW = this.getMeasuredWidth();
             vH = this.getMeasuredHeight();
+            setScrollable(SCROLLABLE);
+            if(!SCROLLABLE){
+                sW = vW;
+            }
             Log.d("vH = ",vH+"");
             Log.d("vW = ",vW+"");
         }
@@ -138,8 +150,8 @@ public class LineGraph extends View {
                     if (xDraw > 0) {
                         xDraw = 0;
                     }
-                    if (xDraw < -(sW - vW)) {
-                        xDraw = -(sW - vW);
+                    if (xDraw < -(sW - vW )) {
+                        xDraw = -(sW - vW );
                     }
                     invalidate();
                     break;
@@ -150,6 +162,7 @@ public class LineGraph extends View {
 
     private void drawAxes() {
 
+        mPaint.setColor(Color.BLACK);
         mCanvas.drawLine(0, 0, 0, -(vH - originShift), mPaint);
         mCanvas.drawLine(0, 0, sW - originShift, 0, mPaint);
 
@@ -161,7 +174,7 @@ public class LineGraph extends View {
     }
 
     private void drawLine() {
-
+        mPaint.setColor(color);
         if (pointListScaled.size() > 1) {
             for (int i = 0; i < pointListScaled.size() - 1; i++) {
                 mCanvas.drawLine(pointListScaled.get(i).x, pointListScaled.get(i).y, pointListScaled.get(i + 1).x, pointListScaled.get(i + 1).y, mPaint);
@@ -195,7 +208,7 @@ public class LineGraph extends View {
             mPaint.setStrokeWidth(thickness / 2);
             mCanvas.drawLine(0, -i, sW, -i, mPaint);
             mPaint.setStrokeWidth(thickness);
-            mPaint.setColor(color);
+            mPaint.setColor(Color.BLACK);
             mCanvas.drawLine(-5, -i, 5, -i, mPaint);
             String mark = Math.round(scaleY * i) + "";
             Rect bounds = new Rect();
@@ -216,7 +229,7 @@ public class LineGraph extends View {
             mPaint.setStrokeWidth(thickness / 2);
             mCanvas.drawLine(i, 0, i, -vH, mPaint);
             mPaint.setStrokeWidth(thickness);
-            mPaint.setColor(color);
+            mPaint.setColor(Color.BLACK);
             mCanvas.drawLine(i, -5, i, 5, mPaint);
             String mark = Math.round(scaleX * i) + "";
             Rect bounds = new Rect();
@@ -276,13 +289,4 @@ public class LineGraph extends View {
         this.color = color;
     }
 
-    private ArrayList<DataPoint> sortPoints(ArrayList<DataPoint> points) {
-        Collections.sort(points, new Comparator<DataPoint>() {
-            @Override
-            public int compare(DataPoint dataPoint, DataPoint t1) {
-                return Float.toString(dataPoint.x).compareTo(Float.toString(t1.x));
-            }
-        });
-        return points;
-    }
 }
