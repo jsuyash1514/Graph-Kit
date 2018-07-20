@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         barGraph.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),com.example.suyash.graph.BarGraph.class);
+                Intent intent = new Intent(getApplicationContext(),BarGraphActivity.class);
                 startActivity(intent);
                 finish();
             }
