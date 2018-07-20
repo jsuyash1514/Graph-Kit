@@ -23,9 +23,10 @@ public class LineGraph extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_line_graph);
 
-        GridLayout gridLayout = (GridLayout) findViewById(R.id.grid);
+//        GridLayout gridLayout = (GridLayout) findViewById(R.id.grid);
 
-        com.example.suyash.graphlibrary.LineGraph lineGraph = new com.example.suyash.graphlibrary.LineGraph(getApplicationContext(),700,700);
+//        com.example.suyash.graphlibrary.LineGraph lineGraph = new com.example.suyash.graphlibrary.LineGraph(getApplicationContext(),700,700);
+        com.example.suyash.graphlibrary.LineGraph lineGraph = findViewById(R.id.lineGraph);
         ArrayList<DataPoint> points = new ArrayList<>();
         points.add(new DataPoint(10,10));
         points.add(new DataPoint(100,50));
@@ -34,7 +35,7 @@ public class LineGraph extends AppCompatActivity {
         lineGraph.setPoints(points);
         lineGraph.setGraphColor(Color.BLACK);
         lineGraph.setScrollable(true);
-        gridLayout.addView(lineGraph);
+//        gridLayout.addView(lineGraph);
     }
 
     @Override

@@ -6,6 +6,8 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -25,8 +27,37 @@ public class LineGraph extends View {
     private float thickness = 8.0f;
     private boolean SCROLLABLE = false;
     private ArrayList<DataPoint> pointList, pointListScaled;
-    private float vW, vH, sW, xDraw = 0, xStart = 0, xDrawStart = 0, delta;
-    private int flg = 0, color;
+    private float vW = 0 , vH = 0 , sW, xDraw = 0, xStart = 0, xDrawStart = 0, delta;
+    private int color;
+    private int originShift = 50;
+    private int topScaleMargin = 10;
+    private int rightScaleMargin = 20;
+    boolean pointSetflg = false, initflg = false;
+
+    public LineGraph(Context context, AttributeSet attrs){
+
+        super(context,attrs);
+
+        color = Color.BLACK;
+
+        if (!SCROLLABLE) {
+            sW = vW;
+        }
+        mPaint = new Paint();
+        mPaint.setDither(true);
+        mPaint.setAntiAlias(true);
+        mPaint.setColor(Color.BLACK);
+        mPaint.setStrokeWidth(thickness);
+        mPaint.setStrokeJoin(Paint.Join.ROUND);
+        mPaint.setStrokeCap(Paint.Cap.ROUND);
+        mPaint.setTextSize(thickness * 2);
+
+        mBitmapPaint = new Paint(Paint.DITHER_FLAG);
+
+        pointList = new ArrayList<>();
+        pointListScaled = new ArrayList<>();
+
+    }
 
     public LineGraph(Context context, float vW, float vH) {
         super(context);
@@ -54,21 +85,24 @@ public class LineGraph extends View {
 
     }
 
-    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-        super.onSizeChanged((int) vW, (int) vH, oldw, oldh);
-        mBitmap = Bitmap.createBitmap((int) sW, (int) vH, Bitmap.Config.ARGB_8888);
-        mCanvas = new Canvas(mBitmap);
-        mCanvas.translate(0, vH);
-        mCanvas.translate(50, -50);
-        flg = 0;
-        invalidate();
-    }
-
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        if (flg == 0) {
+
+        if(vH == 0 && vW == 0){
+            vW = this.getMeasuredWidth();
+            vH = this.getMeasuredHeight();
+            Log.d("vH = ",vH+"");
+            Log.d("vW = ",vW+"");
+        }
+
+        if(pointSetflg)
+        if (!initflg) {
+            mBitmap = Bitmap.createBitmap((int) sW, (int) vH, Bitmap.Config.ARGB_8888);
+            mCanvas = new Canvas(mBitmap);
+            mCanvas.translate(0, vH);
+            mCanvas.translate(originShift, -originShift);
             drawGraph();
-            flg = 1;
+            initflg = true;
         }
         canvas.drawBitmap(mBitmap, xDraw, 0, mBitmapPaint);
     }
@@ -89,7 +123,7 @@ public class LineGraph extends View {
     public boolean onTouchEvent(MotionEvent event) {
         if (SCROLLABLE) {
             float x = event.getX();
-            x -= 50;
+            x -= originShift;
 
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN:
@@ -116,13 +150,13 @@ public class LineGraph extends View {
 
     private void drawAxes() {
 
-        mCanvas.drawLine(0, 0, 0, -(vH - 50), mPaint);
-        mCanvas.drawLine(0, 0, sW - 50, 0, mPaint);
+        mCanvas.drawLine(0, 0, 0, -(vH - originShift), mPaint);
+        mCanvas.drawLine(0, 0, sW - originShift, 0, mPaint);
 
     }
 
     public void setPoints(ArrayList<DataPoint> pointList) {
-        flg = 0;
+        pointSetflg = true;
         this.pointList = pointList;
     }
 
@@ -141,8 +175,8 @@ public class LineGraph extends View {
         float maxX = getMaxX();
         float maxY = getMaxY();
 
-        float scaleX = maxX / (sW - 50);
-        float scaleY = maxY / (vH - 50);
+        float scaleX = maxX / (sW - originShift - rightScaleMargin);
+        float scaleY = maxY / (vH - originShift - topScaleMargin);
 
         for (int i = 0; i < pointList.size(); i++) {
             pointListScaled.add(new DataPoint(pointList.get(i).x / scaleX, pointList.get(i).y / scaleY));
