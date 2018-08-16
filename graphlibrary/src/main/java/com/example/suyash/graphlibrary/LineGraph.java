@@ -34,6 +34,7 @@ public class LineGraph extends View {
     private int topScaleMargin = 10;
     private int rightScaleMargin = 20;
     boolean pointSetflg = false, initflg = false;
+    private int LABEL_SIZE = 20;
 
     public LineGraph(Context context, AttributeSet attrs){
 
@@ -185,6 +186,8 @@ public class LineGraph extends View {
 
     private void drawMarkings() {
 
+        mPaint.setTextSize(LABEL_SIZE);
+
         float maxX = getMaxX();
         float maxY = getMaxY();
 
@@ -287,6 +290,12 @@ public class LineGraph extends View {
 
     public void setGraphColor(int color) {
         this.color = color;
+    }
+
+    public void setLabelTextSize(int size){
+
+        LABEL_SIZE = size;
+
     }
 
 }
