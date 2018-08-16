@@ -65,6 +65,7 @@ public class LineGraph extends View {
         color = typedArray.getColor(R.styleable.LineGraph_graph_color,Color.BLACK);
         Log.d("color", color+"");
         thickness = typedArray.getFloat(R.styleable.LineGraph_line_thickness,8.0f);
+        LABEL_SIZE = typedArray.getInteger(R.styleable.LineGraph_label_text_size,20);
 
     }
 

@@ -22,6 +22,7 @@
         custom:scrollable="true"
         custom:graph_color="#ff0000"
         custom:line_thickness="8.0"
+        custom:label_text_size="25"
         android:id="@+id/lineGraph"
         >
 

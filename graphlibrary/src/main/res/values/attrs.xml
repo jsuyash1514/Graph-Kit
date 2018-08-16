@@ -4,5 +4,6 @@
         <attr name="scrollable" format="boolean"/>
         <attr name="graph_color" format="color"/>
         <attr name="line_thickness" format="float"/>
+        <attr name="label_text_size" format="integer"/>
     </declare-styleable>
 </resources>
