@@ -32,6 +32,7 @@ public class BarGraph extends View {
     private int originShift = 50;
     private float scaleY = 1;
     private int topScaleMargin = 10;
+    private int space = 10;
 
     public BarGraph(Context context, AttributeSet attrs){
         super(context,attrs);
@@ -130,7 +131,7 @@ public class BarGraph extends View {
             String mark = Math.round(scaleY * i) + "";
             Rect bounds = new Rect();
             mPaint.getTextBounds(mark, 0, mark.length(), bounds);
-            mCanvas.drawText(mark, -bounds.width() - 15, -(i + mPaint.ascent() / 2), mPaint);
+            mCanvas.drawText(mark, -bounds.width() - 15 , -(i + mPaint.ascent() / 2), mPaint);
 
         }
 
@@ -141,7 +142,7 @@ public class BarGraph extends View {
         scaleY = maxY / (vH - originShift - topScaleMargin);
 
         for(int i = 0,j=0;i<=vW-barWidth;i+=barWidth,j++){
-            Rect rect = new Rect(i,(int)(pointList.get(j).getY()/scaleY),i+barWidth,0);
+            Rect rect = new Rect(i+space,(int)(pointList.get(j).getY()/scaleY),i+barWidth-space,0);
             Paint rPaint = new Paint();
             rPaint.setColor(pointList.get(j).getColor());
             rPaint.setStyle(Paint.Style.FILL);
