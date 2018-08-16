@@ -91,7 +91,7 @@ public class BarGraph extends View {
     public void drawGraph() {
 
         mCanvas.drawColor(Color.WHITE);
-        barWidth = (vW-originShift)/numberOfFields;
+        barWidth = (int)Math.round((float)(vW-originShift)/(float) numberOfFields);
 
         mCanvas.scale(1, -1);
         drawBars();
@@ -115,7 +115,7 @@ public class BarGraph extends View {
 
         mPaint.setTextSize(LABEL_SIZE);
 
-        for(int i = barWidth,j = 0;i<=vW;i+=barWidth,j++){
+        for(int i = barWidth,j = 0;j<numberOfFields;i+=barWidth,j++){
             Rect bounds = new Rect();
             mPaint.getTextBounds(pointList.get(j).getX(), 0, pointList.get(j).getX().length(), bounds);
             mCanvas.drawText(pointList.get(j).getX(),i - bounds.width()/2 - barWidth/2,-2*(mPaint.ascent()),mPaint);
@@ -147,7 +147,9 @@ public class BarGraph extends View {
 
         scaleY = maxY / (vH - originShift - topScaleMargin);
 
-        for(int i = 0,j=0;i<=vW-barWidth;i+=barWidth,j++){
+        for(int i = 0,j=0;j<numberOfFields;i+=barWidth,j++){
+            Log.d("TAG--",j+"");
+            Log.d("TAG",i+"");
             Rect rect = new Rect(i+space,(int)(pointList.get(j).getY()/scaleY),i+barWidth-space,0);
             Paint rPaint = new Paint();
             rPaint.setColor(pointList.get(j).getColor());
