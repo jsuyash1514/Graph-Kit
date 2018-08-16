@@ -123,7 +123,8 @@ public class LineGraph extends View {
             drawGraph();
             initflg = true;
         }
-        canvas.drawBitmap(mBitmap, xDraw, 0, mBitmapPaint);
+        Bitmap croppedBitmap = Bitmap.createBitmap(mBitmap,-(int)xDraw,0,(int)vW,(int)vH);
+        canvas.drawBitmap(croppedBitmap, 0, 0, mBitmapPaint);
     }
 
     public void drawGraph() {
@@ -140,8 +141,14 @@ public class LineGraph extends View {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        if (SCROLLABLE) {
-            float x = event.getX();
+        float x = event.getX();
+        float y = event.getY();
+        int c[] = new int[2];
+        getLocationInWindow(c);
+        boolean b = (x<c[0]+vW) && (y<c[1]+vH);
+
+        if (SCROLLABLE && b) {
+
             x -= originShift;
 
             switch (event.getAction()) {
