@@ -33,6 +33,7 @@ public class BarGraph extends View {
     private float scaleY = 1;
     private int topScaleMargin = 10;
     private int space = 10;
+    private int LABEL_SIZE = 20;
 
     public BarGraph(Context context, AttributeSet attrs){
         super(context,attrs);
@@ -109,6 +110,8 @@ public class BarGraph extends View {
 
     private  void drawMarkings(){
 
+        mPaint.setTextSize(LABEL_SIZE);
+
         for(int i = barWidth,j = 0;i<=vW;i+=barWidth,j++){
             Rect bounds = new Rect();
             mPaint.getTextBounds(pointList.get(j).getX(), 0, pointList.get(j).getX().length(), bounds);
@@ -169,6 +172,12 @@ public class BarGraph extends View {
             count++;
         }
         return count;
+    }
+
+    public void setLabelTextSize(int size){
+
+        LABEL_SIZE = size;
+
     }
 
 }
