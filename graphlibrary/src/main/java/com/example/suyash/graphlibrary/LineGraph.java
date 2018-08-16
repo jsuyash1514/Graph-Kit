@@ -11,6 +11,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -101,6 +102,10 @@ public class LineGraph extends View {
         if(vH == 0 && vW == 0){
             vW = this.getMeasuredWidth();
             vH = this.getMeasuredHeight();
+            boolean widthMatchParent = (ViewGroup.LayoutParams.MATCH_PARENT==getLayoutParams().width || ViewGroup.LayoutParams.WRAP_CONTENT==getLayoutParams().width);
+            if(!widthMatchParent){vW = vW/2;}
+            boolean heightMatchParent = (ViewGroup.LayoutParams.MATCH_PARENT==getLayoutParams().height || ViewGroup.LayoutParams.WRAP_CONTENT==getLayoutParams().height);
+            if(!heightMatchParent){vH = vH/2;}
             setScrollable(SCROLLABLE);
             if(!SCROLLABLE){
                 sW = vW;

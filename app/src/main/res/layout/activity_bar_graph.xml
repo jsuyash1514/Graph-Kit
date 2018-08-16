@@ -8,8 +8,8 @@
     tools:context="com.example.suyash.graph.BarGraphActivity">
 
     <com.example.suyash.graphlibrary.BarGraph
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="700dp"
+        android:layout_height="700dp"
         android:id="@+id/barGraph"
         custom:label_text_size="25"
         >

@@ -10,6 +10,7 @@ import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
@@ -69,6 +70,10 @@ public class BarGraph extends View {
             vH = this.getMeasuredHeight();
             Log.d("vH = ",vH+"");
             Log.d("vW = ",vW+"");
+            boolean widthMatchParent = (ViewGroup.LayoutParams.MATCH_PARENT==getLayoutParams().width || ViewGroup.LayoutParams.WRAP_CONTENT==getLayoutParams().width);
+            if(!widthMatchParent){vW = vW/2;}
+            boolean heightMatchParent = (ViewGroup.LayoutParams.MATCH_PARENT==getLayoutParams().height || ViewGroup.LayoutParams.WRAP_CONTENT==getLayoutParams().height);
+            if(!heightMatchParent){vH = vH/2;}
         }
         if(pointSetflg)
         if(!initflg) {
