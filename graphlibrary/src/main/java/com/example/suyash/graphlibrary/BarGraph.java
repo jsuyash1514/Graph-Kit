@@ -1,6 +1,7 @@
 package com.example.suyash.graphlibrary;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -38,6 +39,8 @@ public class BarGraph extends View {
     public BarGraph(Context context, AttributeSet attrs){
         super(context,attrs);
         if(!pointSetflg){pointList = new ArrayList<>();}
+        TypedArray typedArray = context.getTheme().obtainStyledAttributes(attrs,R.styleable.BarGraph,0,0);
+        LABEL_SIZE = typedArray.getInteger(R.styleable.BarGraph_label_text_size,20);
 
     }
 
