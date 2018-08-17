@@ -19,9 +19,11 @@ public class PieChart extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pie_chart);
 
-        GridLayout gridLayout = (GridLayout) findViewById(R.id.grid_pie);
+//        GridLayout gridLayout = (GridLayout) findViewById(R.id.grid_pie);
 
-        com.example.suyash.graphlibrary.PieChart pieChart= new com.example.suyash.graphlibrary.PieChart(getApplicationContext(),1000);
+
+
+        com.example.suyash.graphlibrary.PieChart pieChart = findViewById(R.id.grid_pie);
         ArrayList<DataPoint> points = new ArrayList<>();
         points.add(new DataPoint("Football",(float)40.1,Color.parseColor("#34495E")));
         points.add(new DataPoint("Cricket", (float)30.9, Color.parseColor("#EC7063")));
@@ -29,7 +31,7 @@ public class PieChart extends AppCompatActivity {
         points.add(new DataPoint("Voleyball",(float)12.4,Color.parseColor("#F5B041")));
 
         pieChart.setPoints(points);
-        gridLayout.addView(pieChart);
+//        gridLayout.addView(pieChart);
     }
 
     @Override

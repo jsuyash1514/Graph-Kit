@@ -1,5 +1,6 @@
 package com.example.suyash.graph;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -24,6 +25,12 @@ public class BarGraphActivity extends AppCompatActivity {
         points.add(new BarGraphDataPoint("2016",2, Color.parseColor("#2ECC71")));
         points.add(new BarGraphDataPoint("2017",4, Color.parseColor("#F5B041")));
         bG.setPoints(points);
+    }
+
+    @Override
+    public void onBackPressed(){
+        startActivity(new Intent(this, MainActivity.class));
+        finish();
     }
 
 }
