@@ -6,39 +6,18 @@ package com.example.suyash.graphlibrary;
 
 public class DataPoint {
     float x,y;
-    String catagory;
+    String category;
     float percentage;
     int color;
 
-
-    public void set(float x, float y){
+    public DataPoint(float x, float y){
         this.x = x;
         this.y = y;
     }
 
-    public float getX() {
-        return x;
-    }
-
-    public float getY() {
-        return y;
-    }
-
-    public void set(String catagory, float percentage, int color){
-        this.catagory = catagory;
-        this.percentage = percentage;
+    public DataPoint(String category, float percentage, int color){
         this.color = color;
-    }
-
-    public String getCatagory() {
-        return catagory;
-    }
-
-    public float getPercentage() {
-        return percentage;
-    }
-
-    public int getColor() {
-        return color;
+        this.percentage = percentage;
+        this.category = category;
     }
 }

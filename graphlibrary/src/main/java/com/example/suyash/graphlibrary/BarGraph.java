@@ -1,89 +1,193 @@
 package com.example.suyash.graphlibrary;
 
+import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-
+import android.graphics.Rect;
+import android.util.AttributeSet;
+import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
- * Created by suyash on 6/12/18.
+ * Created by karthik on 20/7/18.
  */
 
-public class BarGraph {
-    List<DataPoint> dataPoints = new ArrayList<>();
-    Bitmap bitmap;
-    Canvas canvas;
-    Paint paint;
-    int thickness, scaleY;
-    public BarGraph(){
-        bitmap = Bitmap.createBitmap(2000,2000, Bitmap.Config.ARGB_8888);
-        canvas = new Canvas(bitmap);
-        paint = new Paint();
+public class BarGraph extends View {
 
-        paint.setColor(Color.BLACK);
-        paint.setAntiAlias(true);
-        paint.setStrokeWidth(10);
-        paint.setTextSize(80);
+    ArrayList<BarGraphDataPoint> pointList;
+    boolean pointSetflg = false, initflg = false;
+    int numberOfFields = 0;
+    int vH = 0, vW = 0;
+    Bitmap mBitmap;
+    Paint mPaint;
+    Canvas mCanvas;
+    public int MARKING_COLOR = Color.BLACK;
+    public int thickness = 6;
+    float maxY;
+    private int barWidth = 0;
+    private int originShift = 50;
+    private float scaleY = 1;
+    private int topScaleMargin = 10;
+    private int space = 10;
+    private int LABEL_SIZE = 20;
 
-        canvas.drawColor(Color.WHITE);
+    public BarGraph(Context context, AttributeSet attrs){
+        super(context,attrs);
+        if(!pointSetflg){pointList = new ArrayList<>();}
+        TypedArray typedArray = context.getTheme().obtainStyledAttributes(attrs,R.styleable.BarGraph,0,0);
+        LABEL_SIZE = typedArray.getInteger(R.styleable.BarGraph_label_text_size,20);
+
     }
 
-    public void addDataPoints(String string, float value, int color){
-        DataPoint dataPoint = new DataPoint();
-        dataPoint.set(string,value,color);
-        dataPoints.add(dataPoint);
+    public BarGraph(Context context, int vW, int vH){
+        super(context);
+        if(!pointSetflg){pointList = new ArrayList<>();}
+        this.vH = vH;
+        this.vW = vW;
     }
 
-    private void setAxes(){
-        canvas.drawLine(canvas.getWidth()/10,canvas.getHeight(),canvas.getWidth()/10,0,paint);
-        canvas.drawLine(0,canvas.getHeight()*9/10, canvas.getWidth(), canvas.getHeight()*9/10,paint);
-        canvas.translate(canvas.getWidth()/10,canvas.getHeight()*9/10);
+    public void setPoints(ArrayList<BarGraphDataPoint> pointList){
+        this.pointList = pointList;
+        pointSetflg = true;
+        numberOfFields = pointList.size();
+        maxY = getMaxY();
+        invalidate();
+    }
 
-        float max_y;
-        max_y = -Integer.MAX_VALUE;
-        for (int i=0; i<dataPoints.size(); i++){
-            if (Math.abs(dataPoints.get(i).getPercentage()) >= max_y){
-                max_y = dataPoints.get(i).getPercentage();
+    @Override
+    protected void onDraw(Canvas canvas){
+
+        super.onDraw(canvas);
+
+        if(vH == 0 && vW == 0){
+            vW = this.getMeasuredWidth();
+            vH = this.getMeasuredHeight();
+            Log.d("vH = ",vH+"");
+            Log.d("vW = ",vW+"");
+            boolean widthMatchParent = (ViewGroup.LayoutParams.MATCH_PARENT==getLayoutParams().width || ViewGroup.LayoutParams.WRAP_CONTENT==getLayoutParams().width);
+            if(!widthMatchParent){vW = vW/2;}
+            boolean heightMatchParent = (ViewGroup.LayoutParams.MATCH_PARENT==getLayoutParams().height || ViewGroup.LayoutParams.WRAP_CONTENT==getLayoutParams().height);
+            if(!heightMatchParent){vH = vH/2;}
+        }
+        if(pointSetflg)
+        if(!initflg) {
+            mPaint = new Paint();
+            mPaint.setAntiAlias(true);
+            mPaint.setDither(true);
+            mPaint.setColor(MARKING_COLOR);
+            mBitmap = Bitmap.createBitmap(vW, vH, Bitmap.Config.ARGB_8888);
+            mCanvas = new Canvas(mBitmap);
+            mCanvas.translate(0, vH);
+            mCanvas.translate(originShift, -originShift);
+            drawGraph();
+            initflg = true;
+        }
+
+        canvas.drawBitmap(mBitmap,0,0,new Paint(Paint.DITHER_FLAG));
+
+    }
+
+    public void drawGraph() {
+
+        mCanvas.drawColor(Color.WHITE);
+        barWidth = (int)Math.round((float)(vW-originShift)/(float) numberOfFields);
+
+        mCanvas.scale(1, -1);
+        drawBars();
+        mCanvas.scale(1, -1);
+
+        drawMarkings();
+        drawAxes();
+
+    }
+
+    private void drawAxes() {
+
+        mPaint.setStrokeWidth(thickness);
+        mPaint.setStrokeCap(Paint.Cap.ROUND);
+        mCanvas.drawLine(0, 0, 0, -(vH - originShift), mPaint);
+        mCanvas.drawLine(0, 0, vW - originShift, 0, mPaint);
+
+    }
+
+    private  void drawMarkings(){
+
+        mPaint.setTextSize(LABEL_SIZE);
+
+        for(int i = barWidth,j = 0;j<numberOfFields;i+=barWidth,j++){
+            Rect bounds = new Rect();
+            mPaint.getTextBounds(pointList.get(j).getX(), 0, pointList.get(j).getX().length(), bounds);
+            mCanvas.drawText(pointList.get(j).getX(),i - bounds.width()/2 - barWidth/2,-2*(mPaint.ascent()),mPaint);
+        }
+
+        int nD = getNumberOfDigits(maxY);
+        float v;
+        if (nD > 1) {
+            v = (float) Math.pow(10, nD - 2);
+        } else {
+            v = (float) Math.pow(10, 0);
+        }
+
+        for (float i = v / scaleY; i < vH; i += (v / scaleY)) {
+
+            mPaint.setStrokeWidth(thickness/2);
+            mPaint.setColor(MARKING_COLOR);
+            mCanvas.drawLine(-5, -i, 5, -i, mPaint);
+            String mark = Math.round(scaleY * i) + "";
+            Rect bounds = new Rect();
+            mPaint.getTextBounds(mark, 0, mark.length(), bounds);
+            mCanvas.drawText(mark, -bounds.width() - 15 , -(i + mPaint.ascent() / 2), mPaint);
+
+        }
+
+    }
+
+    public void drawBars(){
+
+        scaleY = maxY / (vH - originShift - topScaleMargin);
+
+        for(int i = 0,j=0;j<numberOfFields;i+=barWidth,j++){
+            Log.d("TAG--",j+"");
+            Log.d("TAG",i+"");
+            Rect rect = new Rect(i+space,(int)(pointList.get(j).getY()/scaleY),i+barWidth-space,0);
+            Paint rPaint = new Paint();
+            rPaint.setColor(pointList.get(j).getColor());
+            rPaint.setStyle(Paint.Style.FILL);
+            mCanvas.drawRect(rect,rPaint);
+        }
+
+    }
+
+    private float getMaxY() {
+        float maxY = pointList.get(0).y;
+        for (int i = 0; i < pointList.size(); i++) {
+            if (pointList.get(i).y > maxY) {
+                maxY = pointList.get(i).y;
             }
         }
-        paint.setStrokeWidth(5);
+        return maxY;
+    }
 
-
-        scaleY = String.valueOf(max_y).length()-2;
-        thickness = (canvas.getWidth()*9/10)/dataPoints.size();
-        for (int i =0; i<dataPoints.size(); i++){
-            canvas.drawLine((i*thickness + thickness/2), -40,(i*thickness + thickness/2),0,paint);
-            if (i%2==0){
-                canvas.drawText(dataPoints.get(i).getCatagory(),(i*thickness)+thickness/4,70,paint);
-            }
-            else {
-                canvas.drawText(dataPoints.get(i).getCatagory(),(i*thickness)+thickness/4,140,paint);
-
-            }
+    private int getNumberOfDigits(float n) {
+        int x = (int) n;
+        int count = 0;
+        while (x != 0) {
+            x /= 10;
+            count++;
         }
-        for (int i=0;i<10;i++){
-            canvas.drawLine(0,-i*200,40,-i*200,paint);
-            canvas.drawText(Integer.toString((int)(i*Math.pow(10,scaleY))/10),-80*scaleY, (-i*200)+(15*scaleY),paint);
-        }
-        scaleY = (int)Math.pow(10,(3-scaleY));
+        return count;
+    }
+
+    public void setLabelTextSize(int size){
+
+        LABEL_SIZE = size;
 
     }
 
-    public Bitmap plot(){
-        setAxes();
-        int start = 0;
-        for (int i=0;i<dataPoints.size();i++){
-            paint.setColor(dataPoints.get(i).getColor());
-            paint.setStyle(Paint.Style.FILL_AND_STROKE);
-            canvas.drawRect(start,-(dataPoints.get(i).getPercentage()*scaleY*2),start+thickness,0,paint);
-            paint.setColor(Color.BLACK);
-            canvas.drawText(dataPoints.get(i).getPercentage()+"",start+(thickness/4),-(dataPoints.get(i).getPercentage()*scaleY*2)-50,paint);
-            start+=thickness;
-        }
-        return bitmap;
-    }
 }

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="label_text_size" format="integer"/>
+    <declare-styleable name="LineGraph">
+        <attr name="scrollable" format="boolean"/>
+        <attr name="graph_color" format="color"/>
+        <attr name="line_thickness" format="float"/>
+        <attr name="label_text_size"/>
+    </declare-styleable>
+    <declare-styleable name="BarGraph">
+        <attr name="label_text_size"/>
+    </declare-styleable>
+    <declare-styleable name="PieChart">
+        <attr name="label_text_size"/>
+    </declare-styleable>
+
+</resources>
