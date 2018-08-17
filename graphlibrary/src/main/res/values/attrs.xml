@@ -10,4 +10,8 @@
     <declare-styleable name="BarGraph">
         <attr name="label_text_size"/>
     </declare-styleable>
+    <declare-styleable name="PieChart">
+        <attr name="label_text_size"/>
+    </declare-styleable>
+
 </resources>
