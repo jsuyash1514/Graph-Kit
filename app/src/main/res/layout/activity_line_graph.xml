@@ -8,14 +8,6 @@
     android:orientation="vertical"
     tools:context="com.example.suyash.graph.LineGraph">
 
-    <!--<GridLayout-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_margin="10dp"-->
-        <!--android:id="@+id/grid">-->
-
-    <!--</GridLayout>-->
-
     <com.example.suyash.graphlibrary.LineGraph
         android:id="@+id/lineGraph"
         android:layout_width="700dp"
@@ -23,7 +15,7 @@
         custom:graph_color="#ff0000"
         custom:label_text_size="25"
         custom:line_thickness="8.0"
-        custom:scrollable="true"
+        custom:scrollablex="true"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp">
 

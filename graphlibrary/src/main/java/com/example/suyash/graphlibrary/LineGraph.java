@@ -14,8 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 
 /**
  * Created by karthik on 18/6/18.
@@ -23,28 +21,31 @@ import java.util.Comparator;
 
 public class LineGraph extends View {
 
+    boolean pointSetflg = false, initflg = false;
     private Bitmap mBitmap;
     private Paint mPaint, mBitmapPaint;
     private Canvas mCanvas;
     private float thickness = 8.0f;
-    private boolean SCROLLABLE = false;
+    private boolean SCROLLABLE_X = false, SCROLLABLE_Y = false;
     private ArrayList<DataPoint> pointList, pointListScaled;
-    private float vW = 0 , vH = 0 , sW, xDraw = 0, xStart = 0, xDrawStart = 0, delta;
+    private float vW = 0, vH = 0, sW, sH, xDraw = 0, xStart = 0, xDrawStart = 0, yStart = 0, yDrawStart = 0, yDraw = 0, delta;
     private int color;
     private int originShift = 50;
     private int topScaleMargin = 10;
     private int rightScaleMargin = 20;
-    boolean pointSetflg = false, initflg = false;
     private int LABEL_SIZE = 20;
 
-    public LineGraph(Context context, AttributeSet attrs){
+    public LineGraph(Context context, AttributeSet attrs) {
 
-        super(context,attrs);
+        super(context, attrs);
 
         color = Color.BLACK;
 
-        if (!SCROLLABLE) {
+        if (!SCROLLABLE_X) {
             sW = vW;
+        }
+        if (!SCROLLABLE_Y) {
+            sH = vH;
         }
         mPaint = new Paint();
         mPaint.setDither(true);
@@ -60,13 +61,14 @@ public class LineGraph extends View {
         pointList = new ArrayList<>();
         pointListScaled = new ArrayList<>();
 
-        TypedArray typedArray = context.getTheme().obtainStyledAttributes(attrs,R.styleable.LineGraph,0,0);
+        TypedArray typedArray = context.getTheme().obtainStyledAttributes(attrs, R.styleable.LineGraph, 0, 0);
 
-        SCROLLABLE = typedArray.getBoolean(R.styleable.LineGraph_scrollable,false);
-        color = typedArray.getColor(R.styleable.LineGraph_graph_color,Color.BLACK);
-        Log.d("color", color+"");
-        thickness = typedArray.getFloat(R.styleable.LineGraph_line_thickness,8.0f);
-        LABEL_SIZE = typedArray.getInteger(R.styleable.LineGraph_label_text_size,20);
+        SCROLLABLE_X = typedArray.getBoolean(R.styleable.LineGraph_scrollablex, false);
+        SCROLLABLE_Y = typedArray.getBoolean(R.styleable.LineGraph_scrollabley, false);
+        color = typedArray.getColor(R.styleable.LineGraph_graph_color, Color.BLACK);
+        Log.d("color", color + "");
+        thickness = typedArray.getFloat(R.styleable.LineGraph_line_thickness, 8.0f);
+        LABEL_SIZE = typedArray.getInteger(R.styleable.LineGraph_label_text_size, 20);
 
     }
 
@@ -77,8 +79,11 @@ public class LineGraph extends View {
 
         this.vH = vH;
         this.vW = vW;
-        if (!SCROLLABLE) {
+        if (!SCROLLABLE_X) {
             sW = vW;
+        }
+        if (!SCROLLABLE_Y) {
+            sH = vH;
         }
         mPaint = new Paint();
         mPaint.setDither(true);
@@ -99,31 +104,40 @@ public class LineGraph extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        if(vH == 0 && vW == 0){
+        if (vH == 0 && vW == 0) {
             vW = this.getMeasuredWidth();
             vH = this.getMeasuredHeight();
-            boolean widthMatchParent = (ViewGroup.LayoutParams.MATCH_PARENT==getLayoutParams().width || ViewGroup.LayoutParams.WRAP_CONTENT==getLayoutParams().width);
-            if(!widthMatchParent){vW = vW/2;}
-            boolean heightMatchParent = (ViewGroup.LayoutParams.MATCH_PARENT==getLayoutParams().height || ViewGroup.LayoutParams.WRAP_CONTENT==getLayoutParams().height);
-            if(!heightMatchParent){vH = vH/2;}
-            setScrollable(SCROLLABLE);
-            if(!SCROLLABLE){
+            boolean widthMatchParent = (ViewGroup.LayoutParams.MATCH_PARENT == getLayoutParams().width || ViewGroup.LayoutParams.WRAP_CONTENT == getLayoutParams().width);
+            if (!widthMatchParent) {
+                vW = vW / 2;
+            }
+            boolean heightMatchParent = (ViewGroup.LayoutParams.MATCH_PARENT == getLayoutParams().height || ViewGroup.LayoutParams.WRAP_CONTENT == getLayoutParams().height);
+            if (!heightMatchParent) {
+                vH = vH / 2;
+            }
+            setScrollableX(SCROLLABLE_X);
+            setScrollableY(SCROLLABLE_Y);
+            if (!SCROLLABLE_X) {
                 sW = vW;
             }
-            Log.d("vH = ",vH+"");
-            Log.d("vW = ",vW+"");
+            if (!SCROLLABLE_Y) {
+                sH = vH;
+            }
+            Log.d("vH = ", vH + "");
+            Log.d("vW = ", vW + "");
         }
 
-        if(pointSetflg)
-        if (!initflg) {
-            mBitmap = Bitmap.createBitmap((int) sW, (int) vH, Bitmap.Config.ARGB_8888);
-            mCanvas = new Canvas(mBitmap);
-            mCanvas.translate(0, vH);
-            mCanvas.translate(originShift, -originShift);
-            drawGraph();
-            initflg = true;
-        }
-        Bitmap croppedBitmap = Bitmap.createBitmap(mBitmap,-(int)xDraw,0,(int)vW,(int)vH);
+        if (pointSetflg)
+            if (!initflg) {
+                mBitmap = Bitmap.createBitmap((int) sW, (int) sH, Bitmap.Config.ARGB_8888);
+                mCanvas = new Canvas(mBitmap);
+                mCanvas.translate(0, sH);
+                mCanvas.translate(originShift, -originShift);
+                drawGraph();
+                yDraw = vH - sH;
+                initflg = true;
+            }
+        Bitmap croppedBitmap = Bitmap.createBitmap(mBitmap, -(int) xDraw, -(int) yDraw, (int) vW, (int) vH);
         canvas.drawBitmap(croppedBitmap, 0, 0, mBitmapPaint);
     }
 
@@ -145,9 +159,9 @@ public class LineGraph extends View {
         float y = event.getY();
         int c[] = new int[2];
         getLocationInWindow(c);
-        boolean b = (x<c[0]+vW) && (y<c[1]+vH);
+        boolean b = (x < c[0] + vW) && (y < c[1] + vH);
 
-        if (SCROLLABLE && b) {
+        if (SCROLLABLE_X && b) {
 
             x -= originShift;
 
@@ -155,7 +169,7 @@ public class LineGraph extends View {
                 case MotionEvent.ACTION_DOWN:
                     xStart = x;
                     xDrawStart = xDraw;
-                    invalidate();
+//                    invalidate();
                     break;
                 case MotionEvent.ACTION_MOVE:
 
@@ -164,20 +178,47 @@ public class LineGraph extends View {
                     if (xDraw > 0) {
                         xDraw = 0;
                     }
-                    if (xDraw < -(sW - vW )) {
-                        xDraw = -(sW - vW );
+                    if (xDraw < -(sW - vW)) {
+                        xDraw = -(sW - vW);
                     }
-                    invalidate();
+//                    invalidate();
                     break;
             }
         }
+        if (SCROLLABLE_Y && b) {
+
+            y -= originShift;
+
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    yStart = y;
+                    yDrawStart = yDraw;
+//                    invalidate();
+                    break;
+                case MotionEvent.ACTION_MOVE:
+
+                    delta = yStart - y;
+                    yDraw = yDrawStart - delta;
+                    if (yDraw > 0) {
+                        yDraw = 0;
+                    }
+                    if (yDraw < -(sH - vH)) {
+                        yDraw = -(sH - vH);
+                    }
+//                    invalidate();
+                    break;
+
+            }
+
+        }
+        invalidate();
         return true;
     }
 
     private void drawAxes() {
 
         mPaint.setColor(Color.BLACK);
-        mCanvas.drawLine(0, 0, 0, -(vH - originShift), mPaint);
+        mCanvas.drawLine(0, 0, 0, -(sH - originShift), mPaint);
         mCanvas.drawLine(0, 0, sW - originShift, 0, mPaint);
 
     }
@@ -205,7 +246,7 @@ public class LineGraph extends View {
         float maxY = getMaxY();
 
         float scaleX = maxX / (sW - originShift - rightScaleMargin);
-        float scaleY = maxY / (vH - originShift - topScaleMargin);
+        float scaleY = maxY / (sH - originShift - topScaleMargin);
 
         for (int i = 0; i < pointList.size(); i++) {
             pointListScaled.add(new DataPoint(pointList.get(i).x / scaleX, pointList.get(i).y / scaleY));
@@ -219,7 +260,7 @@ public class LineGraph extends View {
             v = (float) Math.pow(10, 0);
         }
 
-        for (float i = v / scaleY; i < vH; i += (v / scaleY)) {
+        for (float i = v / scaleY; i < sH; i += (v / scaleY)) {
             mPaint.setColor(Color.LTGRAY);
             mPaint.setStrokeWidth(thickness / 2);
             mCanvas.drawLine(0, -i, sW, -i, mPaint);
@@ -243,7 +284,7 @@ public class LineGraph extends View {
         for (float i = v / scaleX; i < sW; i += (v / scaleX)) {
             mPaint.setColor(Color.LTGRAY);
             mPaint.setStrokeWidth(thickness / 2);
-            mCanvas.drawLine(i, 0, i, -vH, mPaint);
+            mCanvas.drawLine(i, 0, i, -sH, mPaint);
             mPaint.setStrokeWidth(thickness);
             mPaint.setColor(Color.BLACK);
             mCanvas.drawLine(i, -5, i, 5, mPaint);
@@ -276,17 +317,32 @@ public class LineGraph extends View {
         return maxY;
     }
 
-    public void setScrollable(boolean scrollable) {
-        SCROLLABLE = scrollable;
+    public void setScrollableX(boolean scrollable) {
+        SCROLLABLE_X = scrollable;
 
-        if (SCROLLABLE) {
+        if (SCROLLABLE_X) {
             float x = getMaxX();
             int n = getNumberOfDigits(x);
             if (n <= 1) {
-                SCROLLABLE = !SCROLLABLE;
+                SCROLLABLE_X = !SCROLLABLE_X;
             } else {
                 x = Float.parseFloat(Float.toString(x).substring(0, 2));
                 sW = x * 100;
+            }
+        }
+    }
+
+    public void setScrollableY(boolean scrollable) {
+        SCROLLABLE_Y = scrollable;
+
+        if (SCROLLABLE_Y) {
+            float y = getMaxY();
+            int n = getNumberOfDigits(y);
+            if (n <= 1) {
+                SCROLLABLE_Y = !SCROLLABLE_Y;
+            } else {
+                y = Float.parseFloat(Float.toString(y).substring(0, 2));
+                sH = y * 100;
             }
         }
     }
@@ -305,7 +361,7 @@ public class LineGraph extends View {
         this.color = color;
     }
 
-    public void setLabelTextSize(int size){
+    public void setLabelTextSize(int size) {
 
         LABEL_SIZE = size;
 
