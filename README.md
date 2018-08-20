@@ -13,7 +13,7 @@
   * Line Graph
   * Pie Chart
   * Bar Graph
-  * Edit graph
+  * Edit Graph View
 * Documentation
 * Guidelines for Contributors
 * License
