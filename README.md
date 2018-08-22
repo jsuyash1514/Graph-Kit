@@ -1,5 +1,3 @@
-<div align="center"><img src="/images/LOGO.gif" height = "400" width = "1000"/></div>
-
 # Graph Library
 [![Platform](https://img.shields.io/badge/platform-Android-yellow.svg)](https://www.android.com)
 [![API](https://img.shields.io/badge/API-16%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=16)
