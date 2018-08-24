@@ -41,7 +41,7 @@ and also gt normalized points from the curve.
 ```
 ### Java
 ```
-com.example.suyash.graphlibrary.LineGraph lineGraph = new com.example.suyash.graphlibrary.LineGraph(getApplicationContext(),700,700); //Pass view width and view height as parameters
+LineGraph lineGraph = new LineGraph(getApplicationContext(),700,700); //Pass view width and view height as parameters
 //Then add the view to your layout
 layout.addView(lineGraph);
 ```
@@ -67,7 +67,7 @@ To add Data Points to your Line Graph create an ArrayList of DataPoints and add 
 ```
 ### Java
 ```
-com.example.suyash.graphlibrary.BarGraph barGraph = new com.example.suyash.graphlibrary.BarGraph(getApplicationContext(),700,700); //Pass view width and view height as parameters
+BarGraph barGraph = new BarGraph(getApplicationContext(),700,700); //Pass view width and view height as parameters
 //Then add the view to your layout
 layout.addView(barGraph);
 ```
@@ -93,7 +93,7 @@ To add Data to your Bar Graph create an ArrayList of BarGraphDataPoint and add i
  ```
  ### Java
  ```
- com.example.suyash.graphlibrary.PieChart pieChart = new com.example.suyash.graphlibrary.PieChart(getApplicationContext(),700,700); //Pass view width and view height as parameters
+PieChart pieChart = new PieChart(getApplicationContext(),700,700); //Pass view width and view height as parameters
  //Then add the view to your layout
 layout.addView(pieChart);
  ```
@@ -106,6 +106,25 @@ layout.addView(pieChart);
         points.add(new DataPoint("Voleyball",(float)12.4,Color.parseColor("#F5B041")));
         pieChart.setPoints(points);
  ```
+ 
+ ## EditGraphView Usage
+ ### XML
+ 
+ ```
+ <com.example.library.EditGraphView
+        android:id="@+id/editgraphview"
+        android:layout_width="350dp"
+        android:layout_height="350dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="56dp"/>
+ ```
+### Java
+```
+EditGraphView v = new EditGraphView(this, 700, 700);//Pass view width and view height as parameters
+ //Then add the view to your layout
+layout.addView(pieChart);
+```
 
 
 
