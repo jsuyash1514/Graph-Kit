@@ -41,7 +41,9 @@ and also gt normalized points from the curve.
 ```
 ### Java
 ```
-com.example.suyash.graphlibrary.LineGraph lineGraph = new com.example.suyash.graphlibrary.LineGraph(getApplicationContext(),700,700);
+com.example.suyash.graphlibrary.LineGraph lineGraph = new com.example.suyash.graphlibrary.LineGraph(getApplicationContext(),700,700); //Pass view width and view height as parameters
+//Then add the view to your layout
+layout.addView(lineGraph);
 ```
 To add Data Points to your Line Graph create an ArrayList of DataPoints and add them as shown below:
 ```
@@ -52,7 +54,58 @@ To add Data Points to your Line Graph create an ArrayList of DataPoints and add 
         points.add(new DataPoint(150,200));
         lineGraph.setPoints(points);
 ```
-
+## Bar Graph Usage
+### XML
+```
+<com.example.suyash.graphlibrary.BarGraph
+        android:layout_width="700dp"
+        android:layout_height="700dp"
+        android:id="@+id/barGraph"
+        custom:label_text_size="25"
+        >
+        </com.example.suyash.graphlibrary.BarGraph>
+```
+### Java
+```
+com.example.suyash.graphlibrary.BarGraph barGraph = new com.example.suyash.graphlibrary.BarGraph(getApplicationContext(),700,700); //Pass view width and view height as parameters
+//Then add the view to your layout
+layout.addView(barGraph);
+```
+To add Data to your Bar Graph create an ArrayList of BarGraphDataPoint and add it as shown below:
+```
+        ArrayList<BarGraphDataPoint> points = new ArrayList<>();
+        points.add(new BarGraphDataPoint("2014",5, Color.parseColor("#34495E")));
+        points.add(new BarGraphDataPoint("2015",9, Color.parseColor("#EC7063")));
+        points.add(new BarGraphDataPoint("2016",2, Color.parseColor("#2ECC71")));
+        points.add(new BarGraphDataPoint("2017",4, Color.parseColor("#F5B041")));
+        barGraph.setPoints(points);
+ ```
+ ## Pie Chart Usage
+ 
+ ### XML
+ 
+ ```
+ <com.example.suyash.graphlibrary.PieChart
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/grid_pie"
+        custom:label_text_size="40">
+ ```
+ ### Java
+ ```
+ com.example.suyash.graphlibrary.PieChart pieChart = new com.example.suyash.graphlibrary.PieChart(getApplicationContext(),700,700); //Pass view width and view height as parameters
+ //Then add the view to your layout
+layout.addView(pieChart);
+ ```
+ To add Data to your Pie Chart create an ArrayList of DataPoint and add it as shown below:
+ ```
+        ArrayList<DataPoint> points = new ArrayList<>();
+        points.add(new DataPoint("Football",(float)40.1,Color.parseColor("#34495E")));
+        points.add(new DataPoint("Cricket", (float)30.9, Color.parseColor("#EC7063")));
+        points.add(new DataPoint("Basketball", (float)15.8,Color.parseColor("#2ECC71")));
+        points.add(new DataPoint("Voleyball",(float)12.4,Color.parseColor("#F5B041")));
+        pieChart.setPoints(points);
+ ```
 
 
 
