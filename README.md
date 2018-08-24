@@ -144,6 +144,30 @@ layout.addView(pieChart);
 | Trace Color for Line            | Color.BLACK         | .setGraphColor(...)        | graph_color        | Set the color for tracing the line |
 | Label Text Size                    | 20          | .setLabelTextSize(...)       | label_text_size        | Size of text used in the label markings  |
 
+## BarGraph
+
+| Property                    | Default values | Java method             | Attribute       | Description                                                                                                                   |
+|-----------------------------|----------------|-------------------------|-----------------|-------------------------------------------------------------------------------------------------------------------------------|
+| Data Points                 | NA             | .setPoints(...)     | NA    | Data Points to plot |                                                                                               
+| Label Text Size                    | 20          | .setLabelTextSize(...)       | label_text_size        | Size of text used in the label markings  |
+
+## PieChart
+
+| Property                    | Default values | Java method             | Attribute       | Description                                                                                                                   |
+|-----------------------------|----------------|-------------------------|-----------------|-------------------------------------------------------------------------------------------------------------------------------|
+| Data Points                 | NA             | .setPoints(...)     | NA    | Data Points to plot |                                                                                               
+
+## EditGraphView
+
+
+| Property                    | Default values | Java method             | Attribute       | Description                                                                                                                   |
+|-----------------------------|----------------|-------------------------|-----------------|-------------------------------------------------------------------------------------------------------------------------------|
+| Line Thickness                | 12             | .lineThickness(...)     | NA    | Data Points to plot |                                                                                               
+| Label Text Size                    | 20          | .setLabelTextSize(...)       | label_text_size        | Size of text used in the label markings  |
+
+
+
+
 
 # Guideline for Contributors
 
