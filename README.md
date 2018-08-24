@@ -133,9 +133,17 @@ layout.addView(pieChart);
 
 
 
-# Documentation
+# API Documentation
+## LineGraph
 
-----------> Make a table listing all the member function (XML attributes, JAVA methods, Description, default value) Refer material shadow.
+| Property                    | Default values | Java method             | Attribute       | Description                                                                                                                   |
+|-----------------------------|----------------|-------------------------|-----------------|-------------------------------------------------------------------------------------------------------------------------------|
+| Data Points                 | NA             | .setPoints(...)     | NA    | Data Points to plot                                                                                               |
+| Scroll X                 | false           | .setSCrollX(...)     | scrollablex     | Is the graph scrollable along the x-axis                                                                                                 |
+| Scroll Y               | false       | .setScrollY(...)         | scrollabley         | Is the graph scrollable alog the y-axis|
+| Trace Color for Line            | Color.BLACK         | .setGraphColor(...)        | graph_color        | Set the color for tracing the line |
+| Label Text Size                    | 20          | .setLabelTextSize(...)       | label_text_size        | Size of text used in the label markings  |
+
 
 # Guideline for Contributors
 
