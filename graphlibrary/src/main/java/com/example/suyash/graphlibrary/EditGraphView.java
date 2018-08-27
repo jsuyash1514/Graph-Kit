@@ -1,6 +1,7 @@
 package com.example.suyash.graphlibrary;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -70,6 +71,12 @@ public class EditGraphView extends View {
         second_control_points = new ArrayList<>();
         points_On_Graph = new ArrayList<>();
         normalized_points = new ArrayList<>();
+
+        TypedArray typedArray = context.getTheme().obtainStyledAttributes(attrs, R.styleable.EditGraphView, 0, 0);
+        color = typedArray.getColor(R.styleable.EditGraphView_graph_color,Color.BLACK);
+        thickness = (int)typedArray.getFloat(R.styleable.EditGraphView_line_thickness,12);
+        TOUCH_TOLERANCE = typedArray.getInteger(R.styleable.EditGraphView_touch_tolerance,20);
+
     }
 
     public EditGraphView(Context c, float vgW, float vgH) {
