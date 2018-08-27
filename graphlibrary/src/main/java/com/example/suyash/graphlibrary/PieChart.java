@@ -82,8 +82,10 @@ public class PieChart extends View {
         if (width == 0 && height == 0 && init){
             width = this.getMeasuredWidth();
             height = this.getMeasuredHeight();
+
             Log.d("TAG: width = ",""+width);
             Log.d("TAG: height = ",""+height);
+
 
             boolean widthMatchParent = (ViewGroup.LayoutParams.MATCH_PARENT==getLayoutParams().width || ViewGroup.LayoutParams.WRAP_CONTENT==getLayoutParams().width);
             if(!widthMatchParent){width = width/2;}
@@ -133,14 +135,14 @@ public class PieChart extends View {
         Canvas index = new Canvas(bitmap);
         mPaint.setAntiAlias(true);
         mPaint.setStyle(Paint.Style.FILL);
-        mPaint.setStrokeWidth(width / 100);
+        mPaint.setStrokeWidth(diameter / 100);
         mPaint.setTextSize(LABEL_SIZE);
 
         for (int i = 0; i < dataPoints.size(); i++) {
             mPaint.setColor(dataPoints.get(i).color);
-            index.drawCircle(width / 25, (width / 10) + (i * (width / 10)), width / 25, mPaint);
+            index.drawCircle(diameter / 25, (diameter / 10) + (i * (diameter / 10)), diameter / 25, mPaint);
             mPaint.setColor(Color.BLACK);
-            index.drawText(dataPoints.get(i).category + " : " + dataPoints.get(i).percentage + "% ", width / 10, (width / 8) + (i * (width / 10)), mPaint);
+            index.drawText(dataPoints.get(i).category + " : " + dataPoints.get(i).percentage + "% ", diameter / 10, (diameter / 8) + (i * (diameter / 10)), mPaint);
         }
         return bitmap;
 

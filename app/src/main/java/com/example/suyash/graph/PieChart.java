@@ -19,7 +19,6 @@ public class PieChart extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pie_chart);
 
-//        GridLayout gridLayout = (GridLayout) findViewById(R.id.grid_pie);
 
 
 
@@ -31,7 +30,6 @@ public class PieChart extends AppCompatActivity {
         points.add(new DataPoint("Voleyball",(float)12.4,Color.parseColor("#F5B041")));
 
         pieChart.setPoints(points);
-//        gridLayout.addView(pieChart);
     }
 
     @Override
