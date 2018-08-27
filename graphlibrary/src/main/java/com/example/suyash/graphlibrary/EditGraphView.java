@@ -398,6 +398,10 @@ public class EditGraphView extends View {
 
     }
 
+    public void setTouchTolerance(int t){
+        TOUCH_TOLERANCE = t;
+    }
+
 }
 
 
