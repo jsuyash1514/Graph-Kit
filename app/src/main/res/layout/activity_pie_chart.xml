@@ -8,19 +8,11 @@
     xmlns:custom="http://schemas.android.com/apk/res-auto"
     tools:context="com.example.suyash.graph.PieChart">
 
-    <!--<GridLayout-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_margin="10dp"-->
-        <!--android:id="@+id/grid_pie">-->
-
-    <!--</GridLayout>-->
-
     <com.example.suyash.graphlibrary.PieChart
-        android:layout_width="700dp"
-        android:layout_height="700dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:id="@+id/grid_pie"
-        custom:label_text_size="25">
+        custom:label_text_size="40">
 
     </com.example.suyash.graphlibrary.PieChart>
 </LinearLayout>
