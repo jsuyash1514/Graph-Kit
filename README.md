@@ -27,6 +27,8 @@ and also gt normalized points from the curve.
 ## Line Graph Usage
 ### XML
 
+<img src="https://github.com/jsuyash1514/GraphLibrary/blob/master/images/line_graph.png" align = "right" height = "300px">
+
 ```xml
 <com.example.suyash.graphlibrary.LineGraph
         android:id="@+id/lineGraph"
@@ -40,6 +42,7 @@ and also gt normalized points from the curve.
         tools:layout_editor_absoluteY="0dp">
     </com.example.suyash.graphlibrary.LineGraph>    
 ```
+---
 ### Java
 ```java
 LineGraph lineGraph = new LineGraph(getApplicationContext(),700,700); //Pass view width and view height as parameters
@@ -57,6 +60,9 @@ To add Data Points to your Line Graph create an ArrayList of DataPoints and add 
 ```
 ## Bar Graph Usage
 ### XML
+
+<img src="https://github.com/jsuyash1514/GraphLibrary/blob/master/images/bar_graph.png" align = "right" height = "300px">
+
 ```xml
 <com.example.suyash.graphlibrary.BarGraph
         android:layout_width="700dp"
@@ -66,6 +72,7 @@ To add Data Points to your Line Graph create an ArrayList of DataPoints and add 
         >
         </com.example.suyash.graphlibrary.BarGraph>
 ```
+---
 ### Java
 ```java
 BarGraph barGraph = new BarGraph(getApplicationContext(),700,700); //Pass view width and view height as parameters
@@ -81,9 +88,10 @@ To add Data to your Bar Graph create an ArrayList of BarGraphDataPoint and add i
         points.add(new BarGraphDataPoint("2017",4, Color.parseColor("#F5B041")));
         barGraph.setPoints(points);
  ```
- ## Pie Chart Usage
- 
+ ## Pie Chart Usage 
  ### XML
+ 
+ <img src="https://github.com/jsuyash1514/GraphLibrary/blob/master/images/pie_chart.png" align = "right" height = "300px">
  
  ```xml
  <com.example.suyash.graphlibrary.PieChart
@@ -92,6 +100,7 @@ To add Data to your Bar Graph create an ArrayList of BarGraphDataPoint and add i
         android:id="@+id/grid_pie"
         custom:label_text_size="40">
  ```
+ ---
  ### Java
  ```java
 PieChart pieChart = new PieChart(getApplicationContext(),700,700); //Pass view width and view height as parameters
@@ -111,6 +120,8 @@ layout.addView(pieChart);
  ## EditGraphView Usage
  ### XML
  
+ <img src="https://github.com/jsuyash1514/GraphLibrary/blob/master/images/edit_graph.gif" align = "right" height = "300px">
+ 
  ```xml
  <com.example.library.EditGraphView
         android:id="@+id/editgraphview"
@@ -120,6 +131,7 @@ layout.addView(pieChart);
         android:layout_marginStart="8dp"
         android:layout_marginTop="56dp"/>
  ```
+ ---
 ### Java
 ```java
 EditGraphView v = new EditGraphView(this, 700, 700);//Pass view width and view height as parameters
