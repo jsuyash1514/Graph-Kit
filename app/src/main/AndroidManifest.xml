@@ -22,7 +22,9 @@
         <activity android:name=".PieChartLanding" />
         <activity android:name=".LineGraphLanding" />
         <activity android:name=".BarGraphLanding" />
-        <activity android:name=".FreeCurveLanding"></activity>
+        <activity android:name=".FreeCurveLanding" />
+        <activity android:name=".PieChartNew" />
+        <activity android:name=".PieChartAddEntry"></activity>
     </application>
 
 </manifest>

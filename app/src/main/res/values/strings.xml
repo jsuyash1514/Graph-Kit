@@ -8,4 +8,9 @@
     <string name="bar_graph">Bar Graph</string>
     <string name="recents">Recents</string>
     <string name="no_recent">No recent charts to show</string>
+    <string name="create_new">Create New Chart</string>
+    <string name="chart_title">Chart Title</string>
+    <string name="entries">Entries</string>
+    <string name="no_entries">No entry to show</string>
+    <string name="add_entry">Add Entry</string>
 </resources>
