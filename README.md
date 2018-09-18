@@ -190,4 +190,4 @@ If you want to contribute to improve this library, please read [our guidelines](
 
 # License
 
-**Graph Library** is licensed under `MIT License`. View license [here].  <----- Link to LICENSE.md
+**Graph Library** is licensed under `MIT License`. View license [here](https://github.com/jsuyash1514/GraphLibrary/blob/master/LICENSE).  
