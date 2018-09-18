@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Graph</string>
+    <string name="app_name">Graph Library</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_line_graph">LineGraph</string>
     <string name="free_curve">Free Curve</string>
