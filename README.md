@@ -37,9 +37,7 @@ and also gt normalized points from the curve.
         custom:graph_color="#ff0000"
         custom:label_text_size="25"
         custom:line_thickness="8.0"
-        custom:scrollablex="true"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp">
+        custom:scrollablex="true">
     </com.example.suyash.graphlibrary.LineGraph>    
 ```
 ---
