@@ -79,7 +79,7 @@ public class PieChart extends View {
     public void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        if (width == 0 && height == 0 && init){
+        if (width == 0 && height == 0){
             width = this.getMeasuredWidth();
             height = this.getMeasuredHeight();
 

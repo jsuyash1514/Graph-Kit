@@ -1,53 +1,29 @@
 package com.example.suyash.graph;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.suyash.graphlibrary.DataPoint;
+import com.example.suyash.graphlibrary.PieChart;
+
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
-    Button lineGraph, pieChart, barGraph;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        lineGraph = (Button)findViewById(R.id.button_lineGraph);
-        pieChart = (Button)findViewById(R.id.button_pieChart);
-        barGraph = (Button)findViewById(R.id.button_barGraph);
-
-        lineGraph.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), com.example.suyash.graph.LineGraph.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-
-        pieChart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(getApplicationContext(), com.example.suyash.graph.PieChart.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-
-        barGraph.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),BarGraphActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
+        PieChart pieChart = (PieChart) findViewById(R.id.pie);
+        ArrayList<DataPoint> dataPoints = new ArrayList<>();
+        dataPoints.add(new DataPoint("Hello",25, Color.parseColor("#2d2d2d")));
+        pieChart.setPoints(dataPoints);
 
     }
 
