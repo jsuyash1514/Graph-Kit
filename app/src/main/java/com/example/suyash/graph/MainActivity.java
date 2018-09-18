@@ -16,8 +16,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle(R.string.app_name);
-        toolbar.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        toolbar.setTitle("");
 
         lineGraph = findViewById(R.id.card_lineGraph);
         pieChart = findViewById(R.id.card_pieChart);
