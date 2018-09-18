@@ -58,11 +58,7 @@
             android:layout_marginTop="15dp"
             android:layout_marginStart="16dp"
             />
-        <LinearLayout
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:layout_width="0px"
-            android:layout_height="0px"/>
+
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -74,8 +70,7 @@
             android:layout_marginTop="8dp"
             android:padding="5dp"
             android:textCursorDrawable="@null"
-            android:nextFocusUp="@id/xInput"
-            android:nextFocusLeft="@id/xInput"
+            android:inputType="numberDecimal"
             />
         <TextView
             android:layout_width="wrap_content"
@@ -84,11 +79,6 @@
             android:layout_marginTop="15dp"
             android:layout_marginStart="16dp"
             />
-        <LinearLayout
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:layout_width="0px"
-            android:layout_height="0px"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -100,8 +90,7 @@
             android:layout_marginTop="8dp"
             android:padding="5dp"
             android:textCursorDrawable="@null"
-            android:nextFocusUp="@id/yInput"
-            android:nextFocusLeft="@id/yInput"
+            android:inputType="numberDecimal"
             />
 
     </LinearLayout>

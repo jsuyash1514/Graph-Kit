@@ -23,11 +23,6 @@ public class LinePointNew extends AppCompatActivity {
             }
         });
 
-        EditText xInputEditText = findViewById(R.id.xInput);
-        xInputEditText.setInputType(InputType.TYPE_CLASS_NUMBER);
-
-        EditText yInputEditText = findViewById(R.id.yInput);
-        yInputEditText.setInputType(InputType.TYPE_CLASS_NUMBER);
     }
     @Override
     public void onBackPressed(){
