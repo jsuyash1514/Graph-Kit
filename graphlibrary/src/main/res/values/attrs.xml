@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <attr name="label_text_size" format="integer"/>
+    <attr name="line_thickness" format="float"/>
+    <attr name="graph_color" format="color"/>
     <declare-styleable name="LineGraph">
         <attr name="scrollablex" format="boolean"/>
         <attr name="scrollabley" format="boolean"/>
-        <attr name="graph_color" format="color"/>
-        <attr name="line_thickness" format="float"/>
+        <attr name="graph_color"/>
+        <attr name="line_thickness"/>
         <attr name="label_text_size"/>
     </declare-styleable>
     <declare-styleable name="BarGraph">
@@ -13,6 +15,11 @@
     </declare-styleable>
     <declare-styleable name="PieChart">
         <attr name="label_text_size"/>
+    </declare-styleable>
+    <declare-styleable name="EditGraphView">
+        <attr name="graph_color"/>
+        <attr name="line_thickness"/>
+        <attr name="touch_tolerance" format="integer"/>
     </declare-styleable>
 
 </resources>
