@@ -20,10 +20,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        PieChart pieChart = (PieChart) findViewById(R.id.pie);
-        ArrayList<DataPoint> dataPoints = new ArrayList<>();
-        dataPoints.add(new DataPoint("Hello",25, Color.parseColor("#2d2d2d")));
-        pieChart.setPoints(dataPoints);
 
     }
 
