@@ -23,10 +23,11 @@ and also gt normalized points from the curve.
 ---------> Add dependencies in gradle 
 
 # Features
- 
+
 ## Line Graph Usage
 ### XML
-```
+
+```xml
 <com.example.suyash.graphlibrary.LineGraph
         android:id="@+id/lineGraph"
         android:layout_width="700dp"
@@ -40,13 +41,13 @@ and also gt normalized points from the curve.
     </com.example.suyash.graphlibrary.LineGraph>    
 ```
 ### Java
-```
+```java
 LineGraph lineGraph = new LineGraph(getApplicationContext(),700,700); //Pass view width and view height as parameters
 //Then add the view to your layout
 layout.addView(lineGraph);
 ```
 To add Data Points to your Line Graph create an ArrayList of DataPoints and add them as shown below:
-```
+```java
         ArrayList<DataPoint> points = new ArrayList<>();
         points.add(new DataPoint(10,10));
         points.add(new DataPoint(100,50));
@@ -56,7 +57,7 @@ To add Data Points to your Line Graph create an ArrayList of DataPoints and add 
 ```
 ## Bar Graph Usage
 ### XML
-```
+```xml
 <com.example.suyash.graphlibrary.BarGraph
         android:layout_width="700dp"
         android:layout_height="700dp"
@@ -66,13 +67,13 @@ To add Data Points to your Line Graph create an ArrayList of DataPoints and add 
         </com.example.suyash.graphlibrary.BarGraph>
 ```
 ### Java
-```
+```java
 BarGraph barGraph = new BarGraph(getApplicationContext(),700,700); //Pass view width and view height as parameters
 //Then add the view to your layout
 layout.addView(barGraph);
 ```
 To add Data to your Bar Graph create an ArrayList of BarGraphDataPoint and add it as shown below:
-```
+```java
         ArrayList<BarGraphDataPoint> points = new ArrayList<>();
         points.add(new BarGraphDataPoint("2014",5, Color.parseColor("#34495E")));
         points.add(new BarGraphDataPoint("2015",9, Color.parseColor("#EC7063")));
@@ -84,7 +85,7 @@ To add Data to your Bar Graph create an ArrayList of BarGraphDataPoint and add i
  
  ### XML
  
- ```
+ ```xml
  <com.example.suyash.graphlibrary.PieChart
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -92,13 +93,13 @@ To add Data to your Bar Graph create an ArrayList of BarGraphDataPoint and add i
         custom:label_text_size="40">
  ```
  ### Java
- ```
+ ```java
 PieChart pieChart = new PieChart(getApplicationContext(),700,700); //Pass view width and view height as parameters
  //Then add the view to your layout
 layout.addView(pieChart);
  ```
  To add Data to your Pie Chart create an ArrayList of DataPoint and add it as shown below:
- ```
+ ```java
         ArrayList<DataPoint> points = new ArrayList<>();
         points.add(new DataPoint("Football",(float)40.1,Color.parseColor("#34495E")));
         points.add(new DataPoint("Cricket", (float)30.9, Color.parseColor("#EC7063")));
@@ -110,7 +111,7 @@ layout.addView(pieChart);
  ## EditGraphView Usage
  ### XML
  
- ```
+ ```xml
  <com.example.library.EditGraphView
         android:id="@+id/editgraphview"
         android:layout_width="350dp"
@@ -120,7 +121,7 @@ layout.addView(pieChart);
         android:layout_marginTop="56dp"/>
  ```
 ### Java
-```
+```java
 EditGraphView v = new EditGraphView(this, 700, 700);//Pass view width and view height as parameters
  //Then add the view to your layout
 layout.addView(pieChart);
