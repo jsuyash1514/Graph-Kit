@@ -8,15 +8,15 @@ Line Graph, Bar Graph and Pie Chart. This library also includes an EditGraphView
 and also gt normalized points from the curve.
 
 # Table of Content
-* Usage
-* Features
-  * Line Graph
-  * Pie Chart
-  * Bar Graph
-  * Edit Graph View
-* Documentation
-* Guidelines for Contributors
-* License
+* [Usage](#usage)
+* [Features](#features)
+  * [Line Graph](#line-graph-usage)
+  * [Pie Chart](#pie-chart-usage)
+  * [Bar Graph](#bar-graph-usage)
+  * [Edit Graph View](#editgraphview-usage)
+* [Documentation](#api-documentation)
+* [Guidelines for Contributors](#guidelines-for-contributors)
+* [License](#license)
 
 # Usage
 
@@ -182,7 +182,7 @@ layout.addView(pieChart);
 
 
 
-# Guideline for Contributors
+# Guidelines for Contributors
 
 If you want to contribute to improve this library, please read [our guidelines](https://github.com/jsuyash1514/GraphLibrary/blob/master/CONTRIBUTING.md).
 
