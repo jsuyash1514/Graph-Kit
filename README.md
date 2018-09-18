@@ -186,7 +186,12 @@ layout.addView(pieChart);
 
 If you want to contribute to improve this library, please read [our guidelines](https://github.com/jsuyash1514/GraphLibrary/blob/master/CONTRIBUTING.md).
 
------------> Breifly describe the bugs or drawbacks if any
+### Possible Improvements
+
+* The Graphs can be made plottable in real-time.
+* Snapping feature can be added in EditGraphView.
+* Polar Coordinate system can be added.
+* Graphs can be plotted from functions and their roots, stationary points, integrals, etc. can be obtained from the graphs.
 
 # License
 
