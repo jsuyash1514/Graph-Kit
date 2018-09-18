@@ -1,9 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.suyash.graph.PieChartAddEntry">
+    android:orientation="vertical"
+    tools:context="com.example.suyash.graph.MainActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" >
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:id="@+id/pieEntryCloseButton"
+                android:src="@drawable/ic_close_white_24dp"
+                android:background="@color/colorPrimary"
+                android:layout_marginStart="15dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/entry"
+                android:textSize="18sp"
+                android:layout_marginTop="14dp"
+                android:layout_marginBottom="14dp"
+                android:textColor="@color/colorAccent" />
+        </android.support.v7.widget.Toolbar>
+    </android.support.design.widget.AppBarLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="1">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/category"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="16dp"
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/categoryInput"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/rounded"
+            android:textSize="25sp"
+            android:layout_marginTop="8dp"
+            android:padding="5dp"
+            android:textCursorDrawable="@null"
+            android:inputType="textPersonName"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/percentage"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="16dp"
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/percantageInput"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/rounded"
+            android:textSize="25sp"
+            android:layout_marginTop="8dp"
+            android:padding="5dp"
+            android:textCursorDrawable="@null"
+            android:inputType="numberDecimal"
+            />
+    </LinearLayout>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/add"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/colorAccent"
+        android:id="@+id/addLinePointEntry"
+        />
+</LinearLayout>
