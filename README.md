@@ -186,7 +186,7 @@ If you want to contribute to improve this library, please read [our guidelines](
 
 ### Possible Improvements
 
-* The Graphs can be made plottable in real-time.
+* The Graphs can be made to plot in real-time.
 * Snapping feature can be added in EditGraphView.
 * Polar Coordinate system can be added.
 * Graphs can be plotted from functions and their roots, stationary points, integrals, etc. can be obtained from the graphs.
