@@ -184,7 +184,7 @@ layout.addView(pieChart);
 
 # Guideline for Contributors
 
-If you want to contribute to improve this library, please read [our guidelines].<--- Link to CONTRIBUTING.md
+If you want to contribute to improve this library, please read [our guidelines](https://github.com/jsuyash1514/GraphLibrary/blob/master/CONTRIBUTING.md).
 
 -----------> Breifly describe the bugs or drawbacks if any
 
