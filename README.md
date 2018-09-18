@@ -25,6 +25,7 @@ and also get normalized points from the curve.
 # Features
 
 ## Line Graph Usage
+There are two ways you can use this Graph: through XML or Java.
 ### XML
 
 <img src="https://github.com/jsuyash1514/GraphLibrary/blob/master/images/line_graph.png" align = "right" height = "300px">
@@ -41,12 +42,18 @@ and also get normalized points from the curve.
     </com.example.suyash.graphlibrary.LineGraph>    
 ```
 ---
+Then use the View in your java file as follows:<br/>
+```java
+LineGraph lineGraph = findViewById(R.id.lineGraph);
+```
 ### Java
+You can use the following Java code to add the View in your desired layout.<br/>
 ```java
 LineGraph lineGraph = new LineGraph(getApplicationContext(),700,700); //Pass view width and view height as parameters
 //Then add the view to your layout
 layout.addView(lineGraph);
 ```
+---
 To add Data Points to your Line Graph create an ArrayList of DataPoints and add them as shown below:
 ```java
         ArrayList<DataPoint> points = new ArrayList<>();
@@ -57,6 +64,7 @@ To add Data Points to your Line Graph create an ArrayList of DataPoints and add 
         lineGraph.setPoints(points);
 ```
 ## Bar Graph Usage
+There are two ways you can use this Graph: through XML or Java.
 ### XML
 
 <img src="https://github.com/jsuyash1514/GraphLibrary/blob/master/images/bar_graph.png" align = "right" height = "300px">
@@ -71,12 +79,18 @@ To add Data Points to your Line Graph create an ArrayList of DataPoints and add 
         </com.example.suyash.graphlibrary.BarGraph>
 ```
 ---
+Then use the View in your java file as follows:<br/>
+```java
+BarGraph barGraph = findViewById(R.id.barGraph);
+```
 ### Java
+You can use the following Java code to add the View in your desired layout.<br/>
 ```java
 BarGraph barGraph = new BarGraph(getApplicationContext(),700,700); //Pass view width and view height as parameters
 //Then add the view to your layout
 layout.addView(barGraph);
 ```
+---
 To add Data to your Bar Graph create an ArrayList of BarGraphDataPoint and add it as shown below:
 ```java
         ArrayList<BarGraphDataPoint> points = new ArrayList<>();
@@ -87,6 +101,7 @@ To add Data to your Bar Graph create an ArrayList of BarGraphDataPoint and add i
         barGraph.setPoints(points);
  ```
  ## Pie Chart Usage 
+ There are two ways you can use this Graph: through XML or Java.
  ### XML
  
  <img src="https://github.com/jsuyash1514/GraphLibrary/blob/master/images/pie_chart.png" align = "right" height = "300px">
@@ -95,16 +110,22 @@ To add Data to your Bar Graph create an ArrayList of BarGraphDataPoint and add i
  <com.example.suyash.graphlibrary.PieChart
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/grid_pie"
+        android:id="@+id/pie_chart"
         custom:label_text_size="40">
  ```
  ---
+ Then use the View in your java file as follows:<br/>
+```java
+PieChart pieChart = findViewById(R.id.pie_chart);
+```
  ### Java
+ You can use the following Java code to add the View in your desired layout.<br/>
  ```java
 PieChart pieChart = new PieChart(getApplicationContext(),700,700); //Pass view width and view height as parameters
  //Then add the view to your layout
 layout.addView(pieChart);
  ```
+ ---
  To add Data to your Pie Chart create an ArrayList of DataPoint and add it as shown below:
  ```java
         ArrayList<DataPoint> points = new ArrayList<>();
@@ -116,6 +137,7 @@ layout.addView(pieChart);
  ```
  
  ## EditGraphView Usage
+ There are two ways you can use this Graph: through XML or Java.
  ### XML
  
  <img src="https://github.com/jsuyash1514/GraphLibrary/blob/master/images/edit_graph.gif" align = "right" height = "300px">
@@ -130,19 +152,17 @@ layout.addView(pieChart);
         android:layout_marginTop="56dp"/>
  ```
  ---
+ Then use the View in your java file as follows:<br/>
+ ```java
+ final EditGraphView v = findViewById(R.id.editgraphview);
+ ```
 ### Java
+You can use the following Java code to add the View in your desired layout.<br/>
 ```java
 EditGraphView v = new EditGraphView(this, 700, 700);//Pass view width and view height as parameters
  //Then add the view to your layout
 layout.addView(pieChart);
 ```
-
-
-
-
-
-
-
 
 # API Documentation
 ## LineGraph
