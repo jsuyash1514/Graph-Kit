@@ -6,4 +6,6 @@
     <string name="line_graph">Line Graph</string>
     <string name="pie_chart">Pie Chart</string>
     <string name="bar_graph">Bar Graph</string>
+    <string name="recents">Recents</string>
+    <string name="no_recent">No recent charts to show</string>
 </resources>
