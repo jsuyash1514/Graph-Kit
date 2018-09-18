@@ -6,4 +6,14 @@
     <string name="line_graph">Line Graph</string>
     <string name="pie_chart">Pie Chart</string>
     <string name="bar_graph">Bar Graph</string>
+    <string name="create_new_graph">Create New Graph</string>
+    <string name="recents">Recents</string>
+    <string name="graph_title">Graph Title</string>
+    <string name="points">Points</string>
+    <string name="add_point">Add Point</string>
+    <string name="entry">Entry</string>
+    <string name="x">X :</string>
+    <string name="y">Y :</string>
+    <string name="add">Add</string>
+    <string name="no_pts">No Points To Show</string>
 </resources>

@@ -20,9 +20,16 @@
             </intent-filter>
         </activity>
         <activity android:name=".PieChartLanding" />
-        <activity android:name=".LineGraphLanding" />
+        <activity
+            android:name=".LineGraphLanding"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".BarGraphLanding" />
-        <activity android:name=".FreeCurveLanding"></activity>
+        <activity android:name=".FreeCurveLanding" />
+        <activity
+            android:name=".LineGraphNew"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".LinePointNew"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>
