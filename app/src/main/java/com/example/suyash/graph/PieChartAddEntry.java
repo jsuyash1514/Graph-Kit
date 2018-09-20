@@ -36,7 +36,7 @@ public class PieChartAddEntry extends AppCompatActivity {
         pieChartSelectedcolor = findViewById(R.id.pieChartSelectedColor);
         colorize = findViewById(R.id.pieChartColorizer);
 
-        selectedColorRGB = getResources().getColor(R.color.grey);``
+        selectedColorRGB = getResources().getColor(R.color.grey);
 
         DarkBlue.setOnClickListener(new View.OnClickListener() {
             @Override
