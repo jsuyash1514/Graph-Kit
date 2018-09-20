@@ -1,17 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.suyash.graph.PieChartNew">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
         android:id="@+id/edit"
-        android:orderInCategory="100"
-        android:title="Edit"
-        app:showAsAction="never" />
+        android:title="Edit" />
     <item
         android:id="@+id/delete"
-        android:orderInCategory="200"
-        android:title="Delete"
-        app:showAsAction="never" />
+        android:title="Delete" />
 </menu>

@@ -3,6 +3,7 @@ package com.example.suyash.graph;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
@@ -29,13 +30,14 @@ public class PieChartNew extends AppCompatActivity {
         recyclerView = findViewById(R.id.pieChartEntriesListRecyclerView);
         pieChartEntryAdapter = new PieChartEntryAdapter(this, pieChartEntries);
 
-//        PieChartEntryModel pieChartEntryModel = new PieChartEntryModel("Male",49.7,getResources().getColor(R.color.yellow));
-//        pieChartEntries.add(pieChartEntryModel);
-//        pieChartEntryAdapter.notifyDataSetChanged();
-//
-//        RecyclerView.LayoutManager recycler = new LinearLayoutManager(this);
-//        recyclerView.setLayoutManager(recycler);
-//        recyclerView.setAdapter(pieChartEntryAdapter);
+        PieChartEntryModel pieChartEntryModel = new PieChartEntryModel("Male",49.7,getResources().getColor(R.color.yellow));
+        pieChartEntries.add(pieChartEntryModel);
+        pieChartEntryAdapter.notifyDataSetChanged();
+
+        RecyclerView.LayoutManager recycler = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(recycler);
+        recyclerView.setAdapter(pieChartEntryAdapter);
+
 
         if (pieChartEntries.size() == 0) {
             noEnteries.setVisibility(View.VISIBLE);

@@ -3,10 +3,14 @@ package com.example.suyash.graph;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import java.util.List;
@@ -33,12 +37,35 @@ public class PieChartEntryAdapter extends RecyclerView.Adapter<RecyclerView.View
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder, int position) {
         PieChartEntryModel model = list.get(position);
         if (model!=null){
             ((PieChartHolder)holder).name.setText(model.getName());
             ((PieChartHolder)holder).percentage.setText(Double.toString(model.getPercentage())+'%');
             ((PieChartHolder)holder).color.setBackgroundColor(model.getColor());
+            ((PieChartHolder)holder).menu.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    PopupMenu popupMenu = new PopupMenu(context,((PieChartHolder) holder).menu);
+                    popupMenu.inflate(R.menu.pie_chart_entries_menu);
+                    popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                        @Override
+                        public boolean onMenuItemClick(MenuItem item) {
+                            switch (item.getItemId()){
+                                case R.id.edit:
+                                    // handle edit
+                                    break;
+                                case R.id.delete:
+                                    list.remove(holder.getAdapterPosition());
+                                    notifyItemRemoved(holder.getAdapterPosition());
+                                    return true;
+                            }
+                            return false;
+                        }
+                    });
+                    popupMenu.show();
+                }
+            });
         }
     }
 
@@ -60,12 +87,15 @@ public class PieChartEntryAdapter extends RecyclerView.Adapter<RecyclerView.View
     class PieChartHolder extends RecyclerView.ViewHolder{
         TextView name, percentage;
         ImageView color;
+        ImageButton menu;
 
         public PieChartHolder(View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.pieChartEntriesName);
             percentage = itemView.findViewById(R.id.pieChartEntriesPercentage);
             color = itemView.findViewById(R.id.pieChartEntriesColor);
+            menu = itemView.findViewById(R.id.pieChartEntriesMenu);
+
         }
     }
 }
