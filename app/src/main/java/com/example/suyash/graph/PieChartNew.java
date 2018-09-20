@@ -1,6 +1,7 @@
 package com.example.suyash.graph;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,7 +16,7 @@ import java.util.List;
 
 public class PieChartNew extends AppCompatActivity {
     RecyclerView recyclerView;
-    List<PieChartEntryModel> pieChartEntries = new ArrayList<>();
+    final List<PieChartEntryModel> pieChartEntries = new ArrayList<>();
     PieChartEntryAdapter pieChartEntryAdapter;
 
     @Override
@@ -30,9 +31,14 @@ public class PieChartNew extends AppCompatActivity {
         recyclerView = findViewById(R.id.pieChartEntriesListRecyclerView);
         pieChartEntryAdapter = new PieChartEntryAdapter(this, pieChartEntries);
 
-        PieChartEntryModel pieChartEntryModel = new PieChartEntryModel("Male",49.7,getResources().getColor(R.color.yellow));
-        pieChartEntries.add(pieChartEntryModel);
-        pieChartEntryAdapter.notifyDataSetChanged();
+        Bundle bundle = getIntent().getExtras();
+
+        if (bundle!=null){
+            PieChartEntryModel pieChartEntryModel = new PieChartEntryModel(bundle.get("name").toString(),(Double)bundle.get("percentage"),(int)bundle.get("color"));
+            pieChartEntries.add(pieChartEntryModel);
+            pieChartEntryAdapter.notifyDataSetChanged();
+        }
+
 
         RecyclerView.LayoutManager recycler = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(recycler);

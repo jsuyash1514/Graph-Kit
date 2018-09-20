@@ -172,10 +172,11 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/addLinePointEntry"
+        android:id="@+id/addPieChartEntry"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
         android:text="@string/add"
+        android:textSize="18sp"
         android:textColor="@color/colorAccent" />
 </LinearLayout>

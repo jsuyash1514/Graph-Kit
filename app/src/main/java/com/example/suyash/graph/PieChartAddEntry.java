@@ -2,10 +2,15 @@ package com.example.suyash.graph;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.pes.androidmaterialcolorpickerdialog.ColorPicker;
@@ -13,6 +18,9 @@ import com.pes.androidmaterialcolorpickerdialog.ColorPicker;
 public class PieChartAddEntry extends AppCompatActivity {
     int selectedColorR, selectedColorG, selectedColorB, selectedColorRGB;
     ImageButton DarkBlue, LightBlue, Red, Yellow, Green, Grey, pieChartSelectedcolor, colorize;
+    EditText name,percentage;
+    Button add;
+    boolean n = false,p=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +43,104 @@ public class PieChartAddEntry extends AppCompatActivity {
         Grey = findViewById(R.id.grey);
         pieChartSelectedcolor = findViewById(R.id.pieChartSelectedColor);
         colorize = findViewById(R.id.pieChartColorizer);
+        name = findViewById(R.id.categoryInput);
+        percentage = findViewById(R.id.percantageInput);
+        add = findViewById(R.id.addPieChartEntry);
+
+        add.setBackgroundColor(getResources().getColor(R.color.button_inactive));
+        add.setClickable(false);
+
+        name.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.length() == 0) {
+                    n = false;
+                    add.setBackgroundColor(getResources().getColor(R.color.button_inactive));
+                    add.setClickable(false);
+                }
+                else {
+                    n = true;
+                    if(n&p){
+                        add.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                        add.setClickable(true);
+                    }
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(String.valueOf(s).isEmpty() || String.valueOf(s)==null || String.valueOf(s)==""){
+                    n=false;
+                    add.setBackgroundColor(getResources().getColor(R.color.button_inactive));
+                    add.setClickable(false);
+                }
+                else {
+                    n = true;
+                    if (n & p) {
+                        add.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                        add.setClickable(true);
+                    }
+                }
+            }
+        });
+
+        percentage.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.length() == 0) {
+                    p = false;
+                    add.setBackgroundColor(getResources().getColor(R.color.button_inactive));
+                    add.setClickable(false);
+                }
+                else {
+                    p = true;
+                    if(n&p){
+                        add.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                        add.setClickable(true);
+                    }
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(String.valueOf(s).isEmpty() || String.valueOf(s)==null || String.valueOf(s)==""){
+                    p=false;
+                    add.setBackgroundColor(getResources().getColor(R.color.button_inactive));
+                    add.setClickable(false);
+                }
+                else {
+                    p = true;
+                    if (n & p) {
+                        add.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                        add.setClickable(true);
+                    }
+                }
+            }
+        });
+
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String n = name.getText().toString();
+                Double p = Double.valueOf(percentage.getText().toString());
+                int c = selectedColorRGB;
+                Intent intent = new Intent(getApplicationContext(),PieChartNew.class);
+                intent.putExtra("name",n);
+                intent.putExtra("percentage",p);
+                intent.putExtra("color",c);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+
 
         selectedColorRGB = getResources().getColor(R.color.grey);
 
