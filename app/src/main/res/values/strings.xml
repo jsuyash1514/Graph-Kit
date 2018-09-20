@@ -14,7 +14,8 @@
     <string name="no_entries">No entry to show</string>
     <string name="add_entry">Add Entry</string>
     <string name="entry">Entry</string>
-    <string name="category">Category</string>
+    <string name="category">Name</string>
     <string name="percentage">Percentage</string>
+    <string name="color">Color</string>
     <string name="add">Add</string>
 </resources>
