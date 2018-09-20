@@ -65,14 +65,13 @@
             android:textSize="14sp" />
 
 
-
         <LinearLayout
             android:id="@+id/blank"
-            android:orientation="vertical"
+            android:layout_width="0px"
+            android:layout_height="0px"
             android:focusable="true"
             android:focusableInTouchMode="true"
-            android:layout_width="0px"
-            android:layout_height="0px"/>
+            android:orientation="vertical" />
 
 
         <EditText
@@ -83,16 +82,14 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/rounded"
-            android:padding="5sp"
-            android:textSize="25sp"
-            android:textCursorDrawable="@null"
             android:focusedByDefault="false"
+            android:inputType="textPersonName"
             android:nextFocusForward="@id/blank"
-            android:nextFocusUp="@id/pieChartTitleEditText"
             android:nextFocusLeft="@id/pieChartTitleEditText"
-            android:inputType="textPersonName"/>
-
-
+            android:nextFocusUp="@id/pieChartTitleEditText"
+            android:padding="5sp"
+            android:textCursorDrawable="@null"
+            android:textSize="25sp" />
 
 
         <LinearLayout
@@ -127,14 +124,26 @@
 
 
         <TextView
+            android:id="@+id/pieChartNoEntries"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="100dp"
             android:layout_marginRight="100dp"
-            android:layout_marginTop="100dp"
             android:text="@string/no_entries"
             android:textColor="#707070"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:visibility="gone" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/pieChartEntriesListRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp" />
+
+
     </LinearLayout>
 
     <Button
