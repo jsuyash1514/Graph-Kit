@@ -1,5 +1,6 @@
 package com.example.suyash.graph;
 
+import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +13,7 @@ import com.example.suyash.graphlibrary.DataPoint;
 import com.example.suyash.graphlibrary.PieChart;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class PieChartResult extends AppCompatActivity {
     ImageButton backButton;
@@ -31,13 +33,16 @@ public class PieChartResult extends AppCompatActivity {
 
         PieChart pieChart = findViewById(R.id.pie_chart);
         ArrayList<DataPoint> points = new ArrayList<>();
-        points.add(new DataPoint("Football",(float)40.1, Color.parseColor("#34495E")));
-        points.add(new DataPoint("Cricket", (float)30.9, Color.parseColor("#EC7063")));
-        points.add(new DataPoint("Basketball", (float)15.8,Color.parseColor("#2ECC71")));
-        points.add(new DataPoint("Voleyball",(float)12.4,Color.parseColor("#F5B041")));
 
-
+        PieChartEntryDatabase db = Room.databaseBuilder(getApplicationContext(),PieChartEntryDatabase.class,"pieChartEntries")
+                .allowMainThreadQueries()
+                .build();
+        List<PieChartEntryModel> pieChartEntries = db.pieChartEntryModelDao().getAllPieChartEntries();
+        for (int i=0;i<pieChartEntries.size();i++){
+            points.add(new DataPoint(pieChartEntries.get(i).getName(),(float)pieChartEntries.get(i).getPercentage(),pieChartEntries.get(i).getColor()));
+        }
         pieChart.setPoints(points);
+        db.close();
     }
 
     public void onBackPressed(){

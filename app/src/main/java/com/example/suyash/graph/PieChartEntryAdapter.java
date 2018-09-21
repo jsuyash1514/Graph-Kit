@@ -43,7 +43,7 @@ public class PieChartEntryAdapter extends RecyclerView.Adapter<RecyclerView.View
         PieChartEntryModel model = list.get(position);
         if (model!=null){
             ((PieChartHolder)holder).name.setText(model.getName());
-            ((PieChartHolder)holder).percentage.setText(Double.toString(model.getPercentage())+'%');
+            ((PieChartHolder)holder).percentage.setText(Double.toString(model.getPercentage()));
             ((PieChartHolder)holder).color.setBackgroundColor(model.getColor());
         }
     }
@@ -98,11 +98,13 @@ public class PieChartEntryAdapter extends RecyclerView.Adapter<RecyclerView.View
                                     list.remove(getAdapterPosition());
                                     notifyItemRemoved(getAdapterPosition());
                                     itemView.getContext().startActivity(intent);
+                                    db.close();
                                     break;
                                 case R.id.delete:
                                     db.pieChartEntryModelDao().delete(list.get(getAdapterPosition()));
                                     list.remove(getAdapterPosition());
                                     notifyItemRemoved(getAdapterPosition());
+                                    db.close();
                                     return true;
                             }
                             return false;

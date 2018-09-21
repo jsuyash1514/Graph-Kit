@@ -75,6 +75,8 @@ public class PieChartNew extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        db.close();
     }
 
     @Override

@@ -231,6 +231,7 @@ public class PieChartAddEntry extends AppCompatActivity {
             }
         });
 
+        db.close();
 
     }
 
