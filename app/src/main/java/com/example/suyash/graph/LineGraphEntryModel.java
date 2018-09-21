@@ -1,8 +1,5 @@
 package com.example.suyash.graph;
 
-import android.widget.Spinner;
-import android.widget.TextView;
-
 /**
  * Created by karthik on 9/21/18.
  */

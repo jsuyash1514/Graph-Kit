@@ -8,35 +8,35 @@
     tools:context="com.example.suyash.graph.LineGraphDisplay">
 
     <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay"
-        android:id="@+id/appBar">
+        android:theme="@style/AppTheme.AppBarOverlay">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" >
+            app:popupTheme="@style/AppTheme.PopupOverlay">
 
             <ImageButton
+                android:id="@+id/lineGraphDisplayBack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_arrow_back_white_24dp"
-                android:id="@+id/lineGraphDisplayBack"
-                android:background="#00000011"/>
+                android:background="#00000011"
+                android:src="@drawable/ic_arrow_back_white_24dp" />
 
             <TextView
                 android:id="@+id/line_graph_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="14dp"
                 android:layout_marginLeft="125dp"
                 android:layout_marginRight="125dp"
-                android:textSize="18sp"
                 android:layout_marginTop="14dp"
-                android:layout_marginBottom="14dp"
-                android:textColor="@color/colorAccent" />
+                android:textColor="@color/colorAccent"
+                android:textSize="18sp" />
 
         </android.support.v7.widget.Toolbar>
 
@@ -47,16 +47,12 @@
         android:id="@+id/lineGraph"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
         app:graph_color="#305c99"
         app:label_text_size="25"
         app:line_thickness="8.0"
-        app:scrollablex="true"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        >
-
-    </com.example.suyash.graphlibrary.LineGraph>
-
+        app:scrollablex="true" />
 
 
 </LinearLayout>

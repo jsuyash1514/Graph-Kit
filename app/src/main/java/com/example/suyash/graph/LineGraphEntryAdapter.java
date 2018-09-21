@@ -16,7 +16,7 @@ import java.util.ArrayList;
  * Created by karthik on 9/21/18.
  */
 
-public class LineGraphEntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+public class LineGraphEntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context context;
     private ArrayList<LineGraphEntryModel> list;
 
@@ -29,16 +29,16 @@ public class LineGraphEntryAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view;
-        view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_line_graph,parent,false);
+        view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_line_graph, parent, false);
         return new LineGraphHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder, int position) {
         LineGraphEntryModel model = list.get(position);
-        if (model!=null){
-            ((LineGraphHolder)holder).x_dis.setText(Float.toString(model.getX()));
-            ((LineGraphHolder)holder).y_dis.setText(Float.toString(model.getY()));
+        if (model != null) {
+            ((LineGraphHolder) holder).x_dis.setText(Float.toString(model.getX()));
+            ((LineGraphHolder) holder).y_dis.setText(Float.toString(model.getY()));
         }
     }
 
