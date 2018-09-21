@@ -29,14 +29,21 @@ public class PieChartLanding extends AppCompatActivity {
         createNew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),PieChartNew.class));
+                Intent intent = new Intent(getApplicationContext(),PieChartNew.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                 
                 finish();
+                startActivity(intent);
             }
         });
     }
     @Override
     public void onBackPressed(){
-        startActivity(new Intent(this, MainActivity.class));
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         finish();
+        startActivity(intent);
     }
 }

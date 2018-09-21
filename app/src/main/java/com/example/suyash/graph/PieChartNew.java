@@ -57,8 +57,12 @@ public class PieChartNew extends AppCompatActivity {
         addEntry.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), PieChartAddEntry.class));
+                Intent intent = new Intent(getApplicationContext(), PieChartAddEntry.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                 
                 finish();
+                startActivity(intent);
             }
         });
         close.setOnClickListener(new View.OnClickListener() {
@@ -71,7 +75,11 @@ public class PieChartNew extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(this, PieChartLanding.class));
+        Intent intent = new Intent(this, PieChartLanding.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+         
         finish();
+        startActivity(intent);
     }
 }

@@ -1,7 +1,7 @@
 package com.example.suyash.graph;
 
-import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -17,23 +17,18 @@ import com.pes.androidmaterialcolorpickerdialog.ColorPicker;
 
 public class PieChartAddEntry extends AppCompatActivity {
     int selectedColorR, selectedColorG, selectedColorB, selectedColorRGB;
-    ImageButton DarkBlue, LightBlue, Red, Yellow, Green, Grey, pieChartSelectedcolor, colorize;
+    ImageButton DarkBlue, LightBlue, Red, Yellow, Green, Grey, pieChartSelectedcolor, colorize, close;
     EditText name, percentage;
     Button add;
+    String defaultName;
+    Double defaultPercentage;
+    int defaultColor;
     boolean n = false, p = false, isClickable = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pie_chart_add_entry);
-
-        ImageButton close = findViewById(R.id.pieEntryCloseButton);
-        close.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
 
         DarkBlue = findViewById(R.id.DarkBlue);
         LightBlue = findViewById(R.id.LightBlue);
@@ -46,9 +41,46 @@ public class PieChartAddEntry extends AppCompatActivity {
         name = findViewById(R.id.categoryInput);
         percentage = findViewById(R.id.percantageInput);
         add = findViewById(R.id.addPieChartEntry);
+        close = findViewById(R.id.pieEntryCloseButton);
 
         add.setBackgroundColor(getResources().getColor(R.color.button_inactive));
+        selectedColorRGB = getResources().getColor(R.color.grey);
 
+        final Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            defaultName = bundle.get("editName").toString();
+            name.setText(defaultName);
+            defaultPercentage = (Double) bundle.get("editPercentage");
+            percentage.setText(defaultPercentage.toString());
+            defaultColor = (int) bundle.get("editColor");
+            selectedColorRGB = defaultColor;
+            pieChartSelectedcolor.setBackgroundColor(selectedColorRGB);
+            n = true;
+            p = true;
+            isClickable = true;
+            add.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+        }
+
+        close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (bundle != null) {
+                    String n = defaultName;
+                    Double p = Double.valueOf(defaultPercentage);
+                    int c = defaultColor;
+                    Intent intent = new Intent(getApplicationContext(), PieChartNew.class);
+                    intent.putExtra("name", n);
+                    intent.putExtra("percentage", p);
+                    intent.putExtra("color", c);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+                    finish();
+                    startActivity(intent);
+
+                } else onBackPressed();
+            }
+        });
         name.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -101,7 +133,7 @@ public class PieChartAddEntry extends AppCompatActivity {
                     p = true;
                     if (n & p) {
                         add.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-                        isClickable=true;
+                        isClickable = true;
                     }
                 }
             }
@@ -121,28 +153,7 @@ public class PieChartAddEntry extends AppCompatActivity {
                 }
             }
         });
-        add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (isClickable) {
-                    String n = name.getText().toString();
-                    Double p = Double.valueOf(percentage.getText().toString());
-                    int c = selectedColorRGB;
-                    Intent intent = new Intent(getApplicationContext(), PieChartNew.class);
-                    intent.putExtra("name", n);
-                    intent.putExtra("percentage", p);
-                    intent.putExtra("color", c);
-                    startActivity(intent);
-                    finish();
-                }
-                else{
-                    Toast.makeText(getBaseContext(),"Invalid Name or Percentage!",Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
 
-
-        selectedColorRGB = getResources().getColor(R.color.grey);
 
         DarkBlue.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -192,36 +203,69 @@ public class PieChartAddEntry extends AppCompatActivity {
             }
         });
 
-        final Context context = this;
-
-        final ColorPicker cp = new ColorPicker(this);
-
         colorize.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cp.show();
-                Button okColor = (Button) cp.findViewById(R.id.okColorButton);
+                showColorizer();
+            }
+        });
 
-                okColor.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        selectedColorR = cp.getRed();
-                        selectedColorG = cp.getGreen();
-                        selectedColorB = cp.getBlue();
-                        selectedColorRGB = cp.getColor();
-                        pieChartSelectedcolor.setBackgroundColor(selectedColorRGB);
-                        cp.dismiss();
-                    }
-                });
+
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isClickable) {
+                    String n = name.getText().toString();
+                    Double p = Double.valueOf(percentage.getText().toString());
+                    int c = selectedColorRGB;
+                    Intent intent = new Intent(getApplicationContext(), PieChartNew.class);
+                    intent.putExtra("name", n);
+                    intent.putExtra("percentage", p);
+                    intent.putExtra("color", c);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+                    finish();
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(getBaseContext(), "Invalid Name or Percentage!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
 
     }
 
+    public void showColorizer() {
+        final ColorPicker cp = new ColorPicker(this, Color.red(selectedColorRGB), Color.green(selectedColorRGB), Color.blue(selectedColorRGB));
+        cp.show();
+        Button okColor = (Button) cp.findViewById(R.id.okColorButton);
+
+        okColor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectedColorR = cp.getRed();
+                selectedColorG = cp.getGreen();
+                selectedColorB = cp.getBlue();
+                selectedColorRGB = cp.getColor();
+                pieChartSelectedcolor.setBackgroundColor(selectedColorRGB);
+                cp.dismiss();
+                Log.d("Color", selectedColorR + "");
+                Log.d("Color", selectedColorG + "");
+                Log.d("Color", selectedColorB + "");
+                Log.d("Color", selectedColorRGB + "");
+            }
+        });
+    }
+
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(this, PieChartNew.class));
+        Intent intent = new Intent(this, PieChartNew.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
         finish();
+        startActivity(intent);
+
     }
 }

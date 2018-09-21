@@ -26,35 +26,54 @@ public class MainActivity extends AppCompatActivity {
         lineGraph.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), LineGraphLanding.class));
+
+                Intent intent = new Intent(getApplicationContext(), LineGraphLanding.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                
                 finish();
+                startActivity(intent);
             }
         });
 
         pieChart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), PieChartLanding.class));
+                Intent intent = new Intent(getApplicationContext(), PieChartLanding.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 finish();
+                startActivity(intent);
             }
         });
 
         barGraph.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), BarGraphLanding.class));
+                Intent intent = new Intent(getApplicationContext(), BarGraphLanding.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 finish();
+                startActivity(intent);
             }
         });
 
         freeCurve.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), FreeCurveLanding.class));
+                Intent intent = new Intent(getApplicationContext(), FreeCurveLanding.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 finish();
+                startActivity(intent);
             }
         });
 
+    }
+
+    public void onBackPressed(){
+        finish();
     }
 
 }
