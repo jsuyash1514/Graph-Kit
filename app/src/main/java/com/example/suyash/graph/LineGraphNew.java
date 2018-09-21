@@ -6,6 +6,7 @@ import android.graphics.PointF;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -60,7 +61,7 @@ public class LineGraphNew extends AppCompatActivity {
             linePtRecyclerView.setLayoutManager(mLayoutManager);
             linePtRecyclerView.setItemAnimator(new DefaultItemAnimator());
             linePtRecyclerView.setAdapter(lineGraphEntryAdapter);
-
+            linePtRecyclerView.addItemDecoration(new DividerItemDecoration(getApplicationContext(),LinearLayoutManager.VERTICAL));
             linePtRecyclerView.setVisibility(View.VISIBLE);
 
         }
