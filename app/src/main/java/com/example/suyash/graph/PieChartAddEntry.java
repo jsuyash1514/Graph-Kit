@@ -1,5 +1,6 @@
 package com.example.suyash.graph;
 
+import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -61,23 +62,6 @@ public class PieChartAddEntry extends AppCompatActivity {
             add.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
         }
 
-        close.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (bundle != null) {
-                    String n = defaultName;
-                    Double p = Double.valueOf(defaultPercentage);
-                    int c = defaultColor;
-                    Intent intent = new Intent(getApplicationContext(), PieChartNew.class);
-                    intent.putExtra("name", n);
-                    intent.putExtra("percentage", p);
-                    intent.putExtra("color", c);
-                    finish();
-                    startActivity(intent);
-
-                } else onBackPressed();
-            }
-        });
         name.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -208,6 +192,11 @@ public class PieChartAddEntry extends AppCompatActivity {
         });
 
 
+        final PieChartEntryDatabase db = Room.databaseBuilder(getApplicationContext(),PieChartEntryDatabase.class,"pieChartEntries")
+                .allowMainThreadQueries()
+                .build();
+
+
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -215,15 +204,30 @@ public class PieChartAddEntry extends AppCompatActivity {
                     String n = name.getText().toString();
                     Double p = Double.valueOf(percentage.getText().toString());
                     int c = selectedColorRGB;
+                    db.pieChartEntryModelDao().insert(new PieChartEntryModel(n,p,c));
                     Intent intent = new Intent(getApplicationContext(), PieChartNew.class);
-                    intent.putExtra("name", n);
-                    intent.putExtra("percentage", p);
-                    intent.putExtra("color", c);
                     finish();
                     startActivity(intent);
+
                 } else {
                     Toast.makeText(getBaseContext(), "Invalid Name or Percentage!", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+
+
+        close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (bundle != null) {
+                    String n = defaultName;
+                    Double p = Double.valueOf(defaultPercentage);
+                    int c = defaultColor;
+                    db.pieChartEntryModelDao().insert(new PieChartEntryModel(n,p,c));
+                    Intent intent = new Intent(getApplicationContext(), PieChartNew.class);
+                    finish();
+                    startActivity(intent);
+                } else onBackPressed();
             }
         });
 
