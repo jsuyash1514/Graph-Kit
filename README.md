@@ -193,7 +193,7 @@ layout.addView(pieChart);
 
 | Property                    | Default values | Java method             | Attribute       | Description                                                                                                                   |
 |-----------------------------|----------------|-------------------------|-----------------|-------------------------------------------------------------------------------------------------------------------------------|
-| Line Thickness                | 12             | .lineThickness(...)     | NA    | Data Points to plot |                                                                                               
+| Line Thickness                | 12             | .lineThickness(...)     | line_thickness    | Data Points to plot |                                                                                               
 | Line Color                  | Color.BLACK          | .lineColor(...)      | graph_color        | Set the color for tracing the line  |
 | Get Y-coord from X-coord    | NA                 |   .getYFromX(...)        | NA                | Get Y-coord for a specific X between 0 and 1 |
 | Set Touch Tolerance         | 20                  | .setTouchTolerance(...)  | touch_tolerance | Set Touch Tolerance for anchor points |
