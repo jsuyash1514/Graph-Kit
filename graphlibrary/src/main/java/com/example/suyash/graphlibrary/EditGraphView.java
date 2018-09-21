@@ -75,8 +75,11 @@ public class EditGraphView extends View {
 
         TypedArray typedArray = context.getTheme().obtainStyledAttributes(attrs, R.styleable.EditGraphView, 0, 0);
         color = typedArray.getColor(R.styleable.EditGraphView_graph_color, Color.BLACK);
+        lineColor(color);
         thickness = (int) typedArray.getFloat(R.styleable.EditGraphView_line_thickness, 12);
+        lineThickness(thickness);
         TOUCH_TOLERANCE = typedArray.getInteger(R.styleable.EditGraphView_touch_tolerance, 20);
+        setTouchTolerance(TOUCH_TOLERANCE);
 
     }
 

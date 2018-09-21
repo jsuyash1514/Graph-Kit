@@ -29,9 +29,9 @@ public class FreeCurveLanding extends AppCompatActivity {
 //        TypedArray a = getApplicationContext().obtainStyledAttributes(typedValue.data, new int[] { R.attr.colorPrimary });
 //        int colorPrimary = a.getColor(0, 0);
 //        a.recycle();
-        editGraphView.lineColor(Color.parseColor("#305c99"));
-        editGraphView.lineThickness(10);
-        editGraphView.setTouchTolerance(25);
+//        editGraphView.lineColor(Color.parseColor("#305c99"));
+//        editGraphView.lineThickness(10);
+//        editGraphView.setTouchTolerance(25);
         SeekBar seekBar = findViewById(R.id.seekBar);
         seekBar.getProgressDrawable().setColorFilter(Color.parseColor("#305c99"), PorterDuff.Mode.SRC_IN);
         seekBar.getThumb().setColorFilter(Color.parseColor("#305c99"), PorterDuff.Mode.SRC_IN);

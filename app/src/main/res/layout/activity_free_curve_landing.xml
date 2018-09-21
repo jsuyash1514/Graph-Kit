@@ -16,7 +16,9 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_weight="1"
-        app:graph_color="@color/colorPrimary" />
+        app:graph_color="@color/colorPrimary"
+        app:line_thickness="8"
+        />
 
     <LinearLayout
         android:layout_width="match_parent"
