@@ -28,8 +28,11 @@
         <activity
             android:name=".LineGraphNew"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".LinePointNew"
-            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".LinePointNew"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".LineGraphDisplay"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

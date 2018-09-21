@@ -48,6 +48,7 @@ public class LinePointNew extends AppCompatActivity {
             ((EditText)findViewById(R.id.xInput)).setText("");
             ((EditText)findViewById(R.id.yInput)).setText("");
             ((EditText)findViewById(R.id.xInput)).requestFocus();
+            Toast.makeText(getApplicationContext(),"Point Added",Toast.LENGTH_SHORT).show();
         }
         else {
             Toast.makeText(getApplicationContext(),"Invalid Input!",Toast.LENGTH_SHORT).show();

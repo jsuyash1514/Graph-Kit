@@ -16,4 +16,5 @@
     <string name="y">Y :</string>
     <string name="add">Add</string>
     <string name="no_pts">No Points To Show</string>
+    <string name="line_graph_title">Line Graph</string>
 </resources>

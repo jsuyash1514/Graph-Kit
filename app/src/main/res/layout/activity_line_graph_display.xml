@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.suyash.graph.MainActivity">
+    tools:context="com.example.suyash.graph.LineGraphDisplay">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -24,15 +24,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_arrow_back_white_24dp"
-                android:id="@+id/lineGraphBack"
+                android:id="@+id/lineGraphDisplayBack"
                 android:background="#00000011"/>
 
             <TextView
+                android:id="@+id/line_graph_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="125dp"
                 android:layout_marginRight="125dp"
-                android:text="@string/line_graph_title"
                 android:textSize="18sp"
                 android:layout_marginTop="14dp"
                 android:layout_marginBottom="14dp"
@@ -43,42 +43,20 @@
     </android.support.design.widget.AppBarLayout>
 
 
-    <Button
-        android:id="@+id/createNewLineGraph"
+    <com.example.suyash.graphlibrary.LineGraph
+        android:id="@+id/lineGraph"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:backgroundTint="@color/colorPrimary"
-        android:text="@string/create_new_graph"
-        android:textColor="@color/colorAccent" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="32dp"
+        android:layout_height="match_parent"
+        app:graph_color="#305c99"
+        app:label_text_size="25"
+        app:line_thickness="8.0"
+        app:scrollablex="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         >
 
-        <View
-        android:layout_width="12dp"
-        android:layout_height="1dp"
-        android:layout_marginTop="10dp"
-        android:background="#C4C4C4"
-            android:layout_marginEnd="2dp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/recents"
-            android:textSize="14sp"
-            android:textColor="#707070"/>
-        <View
-            android:layout_width="fill_parent"
-            android:layout_marginTop="10dp"
-            android:layout_height="1dp"
-            android:background="#C4C4C4"
-            android:layout_marginStart="2dp"/>
-    </LinearLayout>
+    </com.example.suyash.graphlibrary.LineGraph>
+
+
 
 </LinearLayout>

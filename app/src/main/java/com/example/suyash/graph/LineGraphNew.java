@@ -11,8 +11,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -21,6 +23,7 @@ public class LineGraphNew extends AppCompatActivity {
     static ArrayList<LineGraphEntryModel> lineGraphPts;
     static int lineGraphPtsNumber = 0;
     LineGraphEntryAdapter lineGraphEntryAdapter;
+    static String line_graph_name = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,10 +35,13 @@ public class LineGraphNew extends AppCompatActivity {
 
         lineGraphPtsNumber = lineGraphPts.size();
 
+        ((EditText)findViewById(R.id.lineGraphTitleEditText)).setText(line_graph_name);
         Button addlinePoint = findViewById(R.id.addLinePoint);
         addlinePoint.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                EditText lineGraphNameEditText = findViewById(R.id.lineGraphTitleEditText);
+                line_graph_name = lineGraphNameEditText.getText().toString();
                 Intent intent = new Intent(getApplicationContext(),LinePointNew.class);
                 startActivity(intent);
             }
@@ -65,6 +71,26 @@ public class LineGraphNew extends AppCompatActivity {
             linePtRecyclerView.setVisibility(View.VISIBLE);
 
         }
+
+        ImageButton tickMakeGraphButton = findViewById(R.id.okLineGraph);
+        tickMakeGraphButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent showLineGraph = new Intent(getApplicationContext(),LineGraphDisplay.class);
+                if(lineGraphPtsNumber >= 2) {
+                    EditText lineGraphNameEditText = findViewById(R.id.lineGraphTitleEditText);
+                    line_graph_name = lineGraphNameEditText.getText().toString();
+                    if(!line_graph_name.isEmpty() && !line_graph_name.equals("")){
+
+                        startActivity(showLineGraph);
+                    }else{
+                        Toast.makeText(getApplicationContext(),"Enter graph name!",Toast.LENGTH_SHORT).show();
+                    }
+                }else {
+                    Toast.makeText(getApplicationContext(),"Not enough points to plot!",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
     }
     @Override
