@@ -72,9 +72,6 @@ public class PieChartAddEntry extends AppCompatActivity {
                     intent.putExtra("name", n);
                     intent.putExtra("percentage", p);
                     intent.putExtra("color", c);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-
                     finish();
                     startActivity(intent);
 
@@ -222,9 +219,6 @@ public class PieChartAddEntry extends AppCompatActivity {
                     intent.putExtra("name", n);
                     intent.putExtra("percentage", p);
                     intent.putExtra("color", c);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-
                     finish();
                     startActivity(intent);
                 } else {
@@ -261,9 +255,6 @@ public class PieChartAddEntry extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(this, PieChartNew.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-
         finish();
         startActivity(intent);
 

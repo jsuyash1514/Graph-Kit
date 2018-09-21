@@ -30,9 +30,7 @@ public class PieChartLanding extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),PieChartNew.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                 
+                
                 finish();
                 startActivity(intent);
             }

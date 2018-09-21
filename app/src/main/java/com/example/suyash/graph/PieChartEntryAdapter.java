@@ -44,29 +44,6 @@ public class PieChartEntryAdapter extends RecyclerView.Adapter<RecyclerView.View
             ((PieChartHolder)holder).name.setText(model.getName());
             ((PieChartHolder)holder).percentage.setText(Double.toString(model.getPercentage())+'%');
             ((PieChartHolder)holder).color.setBackgroundColor(model.getColor());
-//            ((PieChartHolder)holder).menu.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    PopupMenu popupMenu = new PopupMenu(context,((PieChartHolder) holder).menu);
-//                    popupMenu.inflate(R.menu.pie_chart_entries_menu);
-//                    popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-//                        @Override
-//                        public boolean onMenuItemClick(MenuItem item) {
-//                            switch (item.getItemId()){
-//                                case R.id.edit:
-//
-//                                    break;
-//                                case R.id.delete:
-//                                    list.remove(holder.getAdapterPosition());
-//                                    notifyItemRemoved(holder.getAdapterPosition());
-//                                    return true;
-//                            }
-//                            return false;
-//                        }
-//                    });
-//                    popupMenu.show();
-//                }
-//            });
         }
     }
 
@@ -111,14 +88,8 @@ public class PieChartEntryAdapter extends RecyclerView.Adapter<RecyclerView.View
                                 case R.id.edit:
                                     Intent intent = new Intent(itemView.getContext(),PieChartAddEntry.class);
                                     intent.putExtra("editName",list.get(getAdapterPosition()).getName());
-                                    Log.d("Holder:","Sent " + list.get(getAdapterPosition()).getName());
                                     intent.putExtra("editPercentage",list.get(getAdapterPosition()).getPercentage());
-                                    Log.d("Holder:","Sent " + list.get(getAdapterPosition()).getPercentage());
                                     intent.putExtra("editColor",list.get(getAdapterPosition()).getColor());
-                                    Log.d("Holder:","Sent " + list.get(getAdapterPosition()).getColor());
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                    
                                     itemView.getContext().startActivity(intent);
                                     list.remove(getAdapterPosition());
                                     notifyItemRemoved(getAdapterPosition());
