@@ -25,7 +25,6 @@ public class PieChart extends View {
     float width=0, height=0;
     private int LABEL_SIZE = 20;
     float diameter;
-    boolean init = true;
 
     public PieChart(Context context, AttributeSet attrs) {
         super(context, attrs);

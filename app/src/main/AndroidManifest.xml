@@ -24,7 +24,8 @@
         <activity android:name=".BarGraphLanding" />
         <activity android:name=".FreeCurveLanding" />
         <activity android:name=".PieChartNew" />
-        <activity android:name=".PieChartAddEntry"></activity>
+        <activity android:name=".PieChartAddEntry" />
+        <activity android:name=".PieChartResult"></activity>
     </application>
 
 </manifest>

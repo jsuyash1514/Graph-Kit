@@ -36,8 +36,6 @@ public class PieChartNew extends AppCompatActivity {
                 .allowMainThreadQueries()
                 .build();
 
-        Log.d("Databes Path: ", getDatabasePath("pieChart").getAbsolutePath());
-
         List<PieChartEntryModel> pieChartEntries = db.pieChartEntryModelDao().getAllPieChartEntries();
         pieChartEntryAdapter = new PieChartEntryAdapter(this, pieChartEntries);
 
@@ -67,6 +65,14 @@ public class PieChartNew extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onBackPressed();
+            }
+        });
+        done.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),PieChartResult.class);
+                finish();
+                startActivity(intent);
             }
         });
     }
