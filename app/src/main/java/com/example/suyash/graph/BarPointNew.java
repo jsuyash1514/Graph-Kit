@@ -215,9 +215,9 @@ public class BarPointNew extends AppCompatActivity {
                     name.requestFocus();
                     Toast.makeText(getApplicationContext(), "Point Added", Toast.LENGTH_SHORT).show();
 //                    db.pieChartEntryModelDao().insert(new PieChartEntryModel(n,p,c));
-//                    Intent intent = new Intent(getApplicationContext(), PieChartNew.class);
-//                    finish();
-//                    startActivity(intent);
+                    Intent intent = new Intent(getApplicationContext(), BarGraphNew.class);
+                    finish();
+                    startActivity(intent);
 
                 } else {
                     Toast.makeText(getBaseContext(), "Invalid Name!", Toast.LENGTH_SHORT).show();
@@ -234,9 +234,9 @@ public class BarPointNew extends AppCompatActivity {
                     Float p = Float.valueOf(defaultData);
                     int c = defaultColor;
 //                    db.pieChartEntryModelDao().insert(new PieChartEntryModel(n,p,c));
-//                    Intent intent = new Intent(getApplicationContext(), PieChartNew.class);
-//                    finish();
-//                    startActivity(intent);
+                    Intent intent = new Intent(getApplicationContext(), BarGraphNew.class);
+                    finish();
+                    startActivity(intent);
                 } else onBackPressed();
             }
         });

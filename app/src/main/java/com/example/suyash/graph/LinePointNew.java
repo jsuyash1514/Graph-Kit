@@ -36,6 +36,9 @@ public class LinePointNew extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 getPoint();
+                Intent intent = new Intent(getApplicationContext(), LineGraphNew.class);
+                finish();
+                startActivity(intent);
             }
         });
 
