@@ -2,21 +2,20 @@ package com.example.suyash.graph;
 
 import android.arch.persistence.room.Room;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import com.pes.androidmaterialcolorpickerdialog.ColorPicker;
+import com.jaredrummler.android.colorpicker.ColorPickerDialog;
+import com.jaredrummler.android.colorpicker.ColorPickerDialogListener;
 
-public class PieChartAddEntry extends AppCompatActivity {
+public class PieChartAddEntry extends AppCompatActivity implements ColorPickerDialogListener{
     int selectedColorR, selectedColorG, selectedColorB, selectedColorRGB;
     ImageButton DarkBlue, LightBlue, Red, Yellow, Green, Grey, pieChartSelectedcolor, colorize, close;
     EditText name, percentage;
@@ -25,7 +24,7 @@ public class PieChartAddEntry extends AppCompatActivity {
     Double defaultPercentage;
     int defaultColor;
     boolean n = false, p = false, isClickable = false;
-
+    private final int DIALOG_ID = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -236,26 +235,21 @@ public class PieChartAddEntry extends AppCompatActivity {
     }
 
     public void showColorizer() {
-        final ColorPicker cp = new ColorPicker(this, Color.red(selectedColorRGB), Color.green(selectedColorRGB), Color.blue(selectedColorRGB));
-        cp.show();
-        Button okColor = (Button) cp.findViewById(R.id.okColorButton);
-
-        okColor.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selectedColorR = cp.getRed();
-                selectedColorG = cp.getGreen();
-                selectedColorB = cp.getBlue();
-                selectedColorRGB = cp.getColor();
-                pieChartSelectedcolor.setBackgroundColor(selectedColorRGB);
-                cp.dismiss();
-                Log.d("Color", selectedColorR + "");
-                Log.d("Color", selectedColorG + "");
-                Log.d("Color", selectedColorB + "");
-                Log.d("Color", selectedColorRGB + "");
-            }
-        });
+        ColorPickerDialog.newBuilder()
+                .setDialogType(ColorPickerDialog.TYPE_CUSTOM)
+                .setAllowPresets(false)
+                .setDialogId(DIALOG_ID)
+                .setColor(selectedColorRGB)
+                .setShowAlphaSlider(true)
+                .show(PieChartAddEntry.this);
     }
+
+    @Override
+    public void onColorSelected(int dialogid,int color){
+        selectedColorRGB = color;
+    }
+    @Override
+    public void onDialogDismissed(int dialogid){}
 
     @Override
     public void onBackPressed() {

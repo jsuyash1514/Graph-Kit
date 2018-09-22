@@ -61,7 +61,7 @@
             android:layout_marginBottom="16dp"
             android:layout_marginEnd="24dp"
             android:layout_marginTop="16dp"
-            android:background="@color/colorAccent"
+            android:background="#00000011"
             android:src="@drawable/ic_more_vert_black_24dp" />
 
 
