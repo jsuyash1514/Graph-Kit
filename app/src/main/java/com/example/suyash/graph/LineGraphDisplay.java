@@ -12,6 +12,8 @@ import com.example.suyash.graphlibrary.LineGraph;
 
 import java.util.ArrayList;
 
+import static com.example.suyash.graph.LineGraphNew.line_graph_name;
+
 public class LineGraphDisplay extends AppCompatActivity {
 
     @Override
@@ -19,7 +21,7 @@ public class LineGraphDisplay extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_line_graph_display);
 
-        ((TextView) findViewById(R.id.line_graph_name)).setText(LineGraphNew.line_graph_name);
+        ((TextView) findViewById(R.id.line_graph_name)).setText(line_graph_name);
 
         LineGraph lineGraph = findViewById(R.id.lineGraph);
         ArrayList<DataPoint> points = new ArrayList<>();

@@ -23,16 +23,30 @@
         <activity
             android:name=".LineGraphLanding"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".BarGraphLanding" />
-        <activity android:name=".FreeCurveLanding" />
+        <activity
+            android:name=".BarGraphLanding"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".FreeCurveLanding"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".LineGraphNew"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".LinePointNew"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".LineGraphDisplay"
+        <activity
+            android:name=".LineGraphDisplay"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".BarPointNew"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".BarGraphNew"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".BarGraphDisplay"
+            android:theme="@style/AppTheme.NoActionBar"
+            />
     </application>
 
 </manifest>
