@@ -31,10 +31,10 @@ and also gt normalized points from the curve.
         android:id="@+id/lineGraph"
         android:layout_width="700dp"
         android:layout_height="700dp"
-        custom:graph_color="#ff0000"
-        custom:label_text_size="25"
-        custom:line_thickness="8.0"
-        custom:scrollablex="true"
+        app:graph_color="#ff0000"
+        app:label_text_size="25"
+        app:line_thickness="8.0"
+        app:scrollablex="true"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp">
     </com.example.suyash.graphlibrary.LineGraph>    
@@ -61,7 +61,7 @@ To add Data Points to your Line Graph create an ArrayList of DataPoints and add 
         android:layout_width="700dp"
         android:layout_height="700dp"
         android:id="@+id/barGraph"
-        custom:label_text_size="25"
+        app:label_text_size="25"
         >
         </com.example.suyash.graphlibrary.BarGraph>
 ```
@@ -89,7 +89,7 @@ To add Data to your Bar Graph create an ArrayList of BarGraphDataPoint and add i
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/grid_pie"
-        custom:label_text_size="40">
+        app:label_text_size="40">
  ```
  ### Java
  ```
