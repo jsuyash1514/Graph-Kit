@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -76,6 +77,9 @@ public class PieChartNew extends AppCompatActivity {
         RecyclerView.LayoutManager recycler = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(recycler);
         recyclerView.setAdapter(pieChartEntryAdapter);
+        ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(pieChartEntryAdapter);
+        ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
+        touchHelper.attachToRecyclerView(recyclerView);
 
 
         if (pieChartEntries.size() == 0) {

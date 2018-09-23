@@ -52,7 +52,8 @@
         app:graph_color="#305c99"
         app:label_text_size="25"
         app:line_thickness="8.0"
-        app:scrollablex="true" />
+        app:scrollablex="true"
+        app:scrollabley="true"/>
 
 
 </LinearLayout>

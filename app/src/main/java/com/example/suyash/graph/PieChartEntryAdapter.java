@@ -14,13 +14,15 @@ import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
+
+import java.util.Collections;
 import java.util.List;
 
 /**
  * Created by suyash on 9/20/18.
  */
 
-public class PieChartEntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class PieChartEntryAdapter extends RecyclerView.Adapter<PieChartEntryAdapter.PieChartHolder> implements ItemTouchHelperAdapter{
     private Context context;
     private List<PieChartEntryModel> list;
 
@@ -31,19 +33,19 @@ public class PieChartEntryAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public PieChartHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view;
         view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_piechart_new_entries, parent, false);
         return new PieChartHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final PieChartHolder holder, int position) {
         PieChartEntryModel model = list.get(position);
         if (model != null) {
-            ((PieChartHolder) holder).name.setText(model.getName());
-            ((PieChartHolder) holder).percentage.setText(Double.toString(model.getPercentage()));
-            ((PieChartHolder) holder).color.setBackgroundColor(model.getColor());
+            holder.name.setText(model.getName());
+            holder.percentage.setText(Double.toString(model.getPercentage()));
+            holder.color.setBackgroundColor(model.getColor());
         }
     }
 
@@ -60,6 +62,27 @@ public class PieChartEntryAdapter extends RecyclerView.Adapter<RecyclerView.View
             e.printStackTrace();
         }
         return arr;
+    }
+
+    @Override
+    public void onItemDismiss(int position) {
+        list.remove(position);
+        notifyItemRemoved(position);
+    }
+
+    @Override
+    public boolean onItemMove(int fromPosition, int toPosition) {
+        if (fromPosition < toPosition) {
+            for (int i = fromPosition; i < toPosition; i++) {
+                Collections.swap(list, i, i + 1);
+            }
+        } else {
+            for (int i = fromPosition; i > toPosition; i--) {
+                Collections.swap(list, i, i - 1);
+            }
+        }
+        notifyItemMoved(fromPosition, toPosition);
+        return true;
     }
 
     class PieChartHolder extends RecyclerView.ViewHolder {
