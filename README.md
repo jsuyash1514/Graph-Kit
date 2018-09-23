@@ -95,10 +95,10 @@ layout.addView(barGraph);
 To add Data to your Bar Graph create an ArrayList of BarGraphDataPoint and add it as shown below:
 ```java
         ArrayList<BarGraphDataPoint> points = new ArrayList<>();
-        points.add(new BarGraphDataPoint("2014",5, Color.parseColor("#34495E")));
-        points.add(new BarGraphDataPoint("2015",9, Color.parseColor("#EC7063")));
-        points.add(new BarGraphDataPoint("2016",2, Color.parseColor("#2ECC71")));
-        points.add(new BarGraphDataPoint("2017",4, Color.parseColor("#F5B041")));
+        points.add(new DataPoint("2014",5, Color.parseColor("#34495E")));
+        points.add(new DataPoint("2015",9, Color.parseColor("#EC7063")));
+        points.add(new DataPoint("2016",2, Color.parseColor("#2ECC71")));
+        points.add(new DataPoint("2017",4, Color.parseColor("#F5B041")));
         barGraph.setPoints(points);
  ```
  ## Pie Chart Usage 
