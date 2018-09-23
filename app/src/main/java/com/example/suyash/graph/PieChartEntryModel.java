@@ -1,18 +1,13 @@
 package com.example.suyash.graph;
 
-
-
 /**
  * Created by suyash on 9/20/18.
  */
 public class PieChartEntryModel {
 
-
     String name;
 
-
     double percentage;
-
 
     int color;
 
