@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import static com.example.suyash.graph.BarGraphNew.barGraphPtsNumber;
+
 public class BarGraphLanding extends AppCompatActivity {
 
 
@@ -19,6 +21,7 @@ public class BarGraphLanding extends AppCompatActivity {
         createNewGraphButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                barGraphPtsNumber = 0;
                 Intent intent = new Intent(getApplicationContext(), BarGraphNew.class);
                 startActivity(intent);
             }

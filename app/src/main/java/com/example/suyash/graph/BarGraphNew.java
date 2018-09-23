@@ -7,6 +7,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -30,6 +31,7 @@ public class BarGraphNew extends AppCompatActivity {
 
         if (barGraphPtsNumber == 0) {
             barGraphPts = new ArrayList<>();
+            bar_graph_name = "";
         }
 
         barGraphPtsNumber = barGraphPts.size();
@@ -89,6 +91,9 @@ public class BarGraphNew extends AppCompatActivity {
             barPtRecyclerView.setItemAnimator(new DefaultItemAnimator());
             barPtRecyclerView.setAdapter(barGraphEntryAdapter);
             barPtRecyclerView.addItemDecoration(new DividerItemDecoration(getApplicationContext(), LinearLayoutManager.VERTICAL));
+            ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(barGraphEntryAdapter);
+            ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
+            touchHelper.attachToRecyclerView(barPtRecyclerView);
             barPtRecyclerView.setVisibility(View.VISIBLE);
 
         }

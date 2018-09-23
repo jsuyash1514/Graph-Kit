@@ -7,6 +7,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -29,6 +30,7 @@ public class LineGraphNew extends AppCompatActivity {
         setContentView(R.layout.activity_new_line_graph);
         if (lineGraphPtsNumber == 0) {
             lineGraphPts = new ArrayList<>();
+            line_graph_name = "";
         }
 
         lineGraphPtsNumber = lineGraphPts.size();
@@ -66,6 +68,10 @@ public class LineGraphNew extends AppCompatActivity {
             linePtRecyclerView.setItemAnimator(new DefaultItemAnimator());
             linePtRecyclerView.setAdapter(lineGraphEntryAdapter);
             linePtRecyclerView.addItemDecoration(new DividerItemDecoration(getApplicationContext(), LinearLayoutManager.VERTICAL));
+            ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(lineGraphEntryAdapter);
+            ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
+            touchHelper.attachToRecyclerView(linePtRecyclerView);
+            linePtRecyclerView.setVisibility(View.VISIBLE);
             linePtRecyclerView.setVisibility(View.VISIBLE);
 
         }
@@ -89,7 +95,6 @@ public class LineGraphNew extends AppCompatActivity {
                 }
             }
         });
-
 
 
     }

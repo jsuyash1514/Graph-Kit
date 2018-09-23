@@ -14,13 +14,14 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 
 /**
  * Created by karthik on 9/21/18.
  */
 
-public class BarGraphEntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class BarGraphEntryAdapter extends RecyclerView.Adapter<BarGraphEntryAdapter.BarGraphHolder> implements ItemTouchHelperAdapter {
     private Context context;
     private ArrayList<BarGraphEntryModel> list;
 
@@ -31,19 +32,19 @@ public class BarGraphEntryAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public BarGraphHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view;
         view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_bargraph_new_entries, parent, false);
         return new BarGraphHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final BarGraphHolder holder, int position) {
         BarGraphEntryModel model = list.get(position);
         if (model != null) {
-            ((BarGraphHolder) holder).name.setText(model.getName());
-            ((BarGraphHolder) holder).data.setText(Float.toString(model.getData()));
-            ((BarGraphHolder) holder).color.setBackgroundColor(model.getColor());
+            holder.name.setText(model.getName());
+            holder.data.setText(Float.toString(model.getData()));
+            holder.color.setBackgroundColor(model.getColor());
         }
     }
 
@@ -61,6 +62,28 @@ public class BarGraphEntryAdapter extends RecyclerView.Adapter<RecyclerView.View
         }
         return arr;
     }
+
+    @Override
+    public void onItemDismiss(int position) {
+        list.remove(position);
+        notifyItemRemoved(position);
+    }
+
+    @Override
+    public boolean onItemMove(int fromPosition, int toPosition) {
+        if (fromPosition < toPosition) {
+            for (int i = fromPosition; i < toPosition; i++) {
+                Collections.swap(list, i, i + 1);
+            }
+        } else {
+            for (int i = fromPosition; i > toPosition; i--) {
+                Collections.swap(list, i, i - 1);
+            }
+        }
+        notifyItemMoved(fromPosition, toPosition);
+        return true;
+    }
+
 
     class BarGraphHolder extends RecyclerView.ViewHolder {
         TextView name, data;
