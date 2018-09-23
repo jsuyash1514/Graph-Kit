@@ -14,8 +14,9 @@ import android.widget.Toast;
 import com.jaredrummler.android.colorpicker.ColorPickerDialog;
 import com.jaredrummler.android.colorpicker.ColorPickerDialogListener;
 
-public class PieChartAddEntry extends AppCompatActivity implements ColorPickerDialogListener{
-    int selectedColorR, selectedColorG, selectedColorB, selectedColorRGB;
+public class PieChartAddEntry extends AppCompatActivity implements ColorPickerDialogListener {
+    private final int DIALOG_ID = 0;
+    int selectedColorRGB;
     ImageButton DarkBlue, LightBlue, Red, Yellow, Green, Grey, pieChartSelectedcolor, colorize, close;
     EditText name, percentage;
     Button add;
@@ -23,7 +24,7 @@ public class PieChartAddEntry extends AppCompatActivity implements ColorPickerDi
     Double defaultPercentage;
     int defaultColor;
     boolean n = false, p = false, isClickable = false;
-    private final int DIALOG_ID = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -241,12 +242,14 @@ public class PieChartAddEntry extends AppCompatActivity implements ColorPickerDi
 
 
     @Override
-    public void onColorSelected(int dialogid,int color){
+    public void onColorSelected(int dialogid, int color) {
         selectedColorRGB = color;
         pieChartSelectedcolor.setBackgroundColor(color);
     }
+
     @Override
-    public void onDialogDismissed(int dialogid){}
+    public void onDialogDismissed(int dialogid) {
+    }
 
     @Override
     public void onBackPressed() {

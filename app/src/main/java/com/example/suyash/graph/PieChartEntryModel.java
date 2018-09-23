@@ -3,7 +3,6 @@ package com.example.suyash.graph;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.PrimaryKey;
 
 /**
  * Created by suyash on 9/20/18.

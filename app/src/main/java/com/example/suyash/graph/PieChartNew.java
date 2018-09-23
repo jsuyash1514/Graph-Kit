@@ -1,7 +1,6 @@
 package com.example.suyash.graph;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,9 +18,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PieChartNew extends AppCompatActivity {
-    RecyclerView recyclerView;
     static List<PieChartEntryModel> pieChartEntries;
     static String title;
+    RecyclerView recyclerView;
     PieChartEntryAdapter pieChartEntryAdapter;
     EditText pieChartName;
 
@@ -47,11 +46,11 @@ public class PieChartNew extends AppCompatActivity {
         pieChartName = findViewById(R.id.pieChartTitleEditText);
 
 
-
         pieChartName.setText(title);
         pieChartName.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -65,7 +64,7 @@ public class PieChartNew extends AppCompatActivity {
         });
 
         Bundle bundle = getIntent().getExtras();
-        if (bundle!=null) {
+        if (bundle != null) {
             if (bundle.get("name") != null) {
                 PieChartEntryModel pieChartEntryModel = new PieChartEntryModel(bundle.get("name").toString(), (Double) bundle.get("percentage"), (int) bundle.get("color"));
                 pieChartEntries.add(pieChartEntryModel);
@@ -91,13 +90,12 @@ public class PieChartNew extends AppCompatActivity {
         addEntry.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(pieChartName.getText().toString().length() != 0){
+                if (pieChartName.getText().toString().length() != 0) {
                     Intent intent = new Intent(getApplicationContext(), PieChartAddEntry.class);
                     finish();
                     startActivity(intent);
-                }
-                else {
-                    Toast.makeText(getApplicationContext(),"Enter a chart title.",Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Enter a chart title.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -111,15 +109,13 @@ public class PieChartNew extends AppCompatActivity {
         done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (pieChartName.getText().toString().length() == 0){
-                    Toast.makeText(getApplicationContext(),"Enter a chart title.",Toast.LENGTH_SHORT).show();
-                }
-                else if(pieChartEntries.size() == 0){
-                    Toast.makeText(getApplicationContext(),"Add atleast one entry",Toast.LENGTH_SHORT).show();
-                }
-                else{
+                if (pieChartName.getText().toString().length() == 0) {
+                    Toast.makeText(getApplicationContext(), "Enter a chart title.", Toast.LENGTH_SHORT).show();
+                } else if (pieChartEntries.size() == 0) {
+                    Toast.makeText(getApplicationContext(), "Add atleast one entry", Toast.LENGTH_SHORT).show();
+                } else {
                     finish();
-                    startActivity(new Intent(getApplicationContext(),PieChartResult.class));
+                    startActivity(new Intent(getApplicationContext(), PieChartResult.class));
                 }
             }
         });

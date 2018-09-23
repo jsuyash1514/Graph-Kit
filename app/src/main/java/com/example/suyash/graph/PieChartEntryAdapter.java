@@ -1,12 +1,10 @@
 package com.example.suyash.graph;
 
 import android.app.Activity;
-import android.arch.persistence.room.Room;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,7 +20,7 @@ import java.util.List;
  * Created by suyash on 9/20/18.
  */
 
-public class PieChartEntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+public class PieChartEntryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context context;
     private List<PieChartEntryModel> list;
 
@@ -35,17 +33,17 @@ public class PieChartEntryAdapter extends RecyclerView.Adapter<RecyclerView.View
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view;
-        view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_piechart_new_entries,parent,false);
+        view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_piechart_new_entries, parent, false);
         return new PieChartHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder, int position) {
         PieChartEntryModel model = list.get(position);
-        if (model!=null){
-            ((PieChartHolder)holder).name.setText(model.getName());
-            ((PieChartHolder)holder).percentage.setText(Double.toString(model.getPercentage()));
-            ((PieChartHolder)holder).color.setBackgroundColor(model.getColor());
+        if (model != null) {
+            ((PieChartHolder) holder).name.setText(model.getName());
+            ((PieChartHolder) holder).percentage.setText(Double.toString(model.getPercentage()));
+            ((PieChartHolder) holder).color.setBackgroundColor(model.getColor());
         }
     }
 
@@ -81,20 +79,20 @@ public class PieChartEntryAdapter extends RecyclerView.Adapter<RecyclerView.View
             menu.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    PopupMenu popupMenu = new PopupMenu(context,menu);
+                    PopupMenu popupMenu = new PopupMenu(context, menu);
                     popupMenu.inflate(R.menu.pie_chart_entries_menu);
                     popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                         @Override
                         public boolean onMenuItemClick(MenuItem item) {
-                            switch (item.getItemId()){
+                            switch (item.getItemId()) {
                                 case R.id.edit:
-                                    Intent intent = new Intent(itemView.getContext(),PieChartAddEntry.class);
-                                    intent.putExtra("editName",list.get(getAdapterPosition()).getName());
-                                    intent.putExtra("editPercentage",list.get(getAdapterPosition()).getPercentage());
-                                    intent.putExtra("editColor",list.get(getAdapterPosition()).getColor());
+                                    Intent intent = new Intent(itemView.getContext(), PieChartAddEntry.class);
+                                    intent.putExtra("editName", list.get(getAdapterPosition()).getName());
+                                    intent.putExtra("editPercentage", list.get(getAdapterPosition()).getPercentage());
+                                    intent.putExtra("editColor", list.get(getAdapterPosition()).getColor());
                                     list.remove(getAdapterPosition());
                                     notifyItemRemoved(getAdapterPosition());
-                                    ((Activity)context).finish();
+                                    ((Activity) context).finish();
                                     itemView.getContext().startActivity(intent);
                                     break;
                                 case R.id.delete:
