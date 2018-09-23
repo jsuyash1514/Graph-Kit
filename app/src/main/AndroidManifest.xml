@@ -44,9 +44,9 @@
         <activity
             android:name=".BarGraphNew"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".BarGraphDisplay"
-            android:theme="@style/AppTheme.NoActionBar"
-            />
+        <activity
+            android:name=".BarGraphDisplay"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".PieChartNew" />
         <activity android:name=".PieChartAddEntry" />
         <activity android:name=".PieChartResult"></activity>
