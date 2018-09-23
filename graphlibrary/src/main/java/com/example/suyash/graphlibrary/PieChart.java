@@ -92,11 +92,11 @@ public class PieChart extends View {
             boolean heightMatchParent = (ViewGroup.LayoutParams.MATCH_PARENT==getLayoutParams().height || ViewGroup.LayoutParams.WRAP_CONTENT==getLayoutParams().height);
             if(!heightMatchParent){height = height/2;}
 
-            Bitmap bitmap1 = drawPieChart();
-            Bitmap bitmap2 = drawIndex();
-            canvas.drawBitmap(bitmap1, 0, 0, mBitmapPaint);
-            canvas.drawBitmap(bitmap2, 0, height / 2, mBitmapPaint);
         }
+        Bitmap bitmap1 = drawPieChart();
+        Bitmap bitmap2 = drawIndex();
+        canvas.drawBitmap(bitmap1, 0, 0, mBitmapPaint);
+        canvas.drawBitmap(bitmap2, 0, height / 2, mBitmapPaint);
     }
 
 
