@@ -213,6 +213,7 @@ If you want to contribute to improve this library, please read [our guidelines](
 * Number of curves can be plotted in a single line graph to compare between the plots or to find the intersections.
 * The Graphs can be made to plot in real-time.
 * Snapping feature can be added in EditGraphView.
+* Undo and Redo feature can be added in Edit graph.
 * Polar Coordinate system can be added.
 * Graphs can be plotted from functions and their roots, stationary points, integrals, etc. can be obtained from the graphs.
 
