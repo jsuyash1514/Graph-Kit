@@ -6,12 +6,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.TextView;
+
 
 public class PieChartLanding extends AppCompatActivity {
     ImageButton back;
     Button createNew;
-    TextView noRecent;
+
 
 
     @Override
@@ -21,7 +21,6 @@ public class PieChartLanding extends AppCompatActivity {
 
         back = findViewById(R.id.pieToolbar_back);
         createNew = findViewById(R.id.pie_createNewButton);
-        noRecent = findViewById(R.id.piechartNoRecent);
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
