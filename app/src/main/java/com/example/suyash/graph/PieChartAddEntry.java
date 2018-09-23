@@ -239,23 +239,11 @@ public class PieChartAddEntry extends AppCompatActivity implements ColorPickerDi
                 .show(PieChartAddEntry.this);
     }
 
-<<<<<<< HEAD
-        okColor.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selectedColorR = cp.getRed();
-                selectedColorG = cp.getGreen();
-                selectedColorB = cp.getBlue();
-                selectedColorRGB = cp.getColor();
-                pieChartSelectedcolor.setBackgroundColor(selectedColorRGB);
-                cp.dismiss();
-            }
-        });
-=======
+
     @Override
     public void onColorSelected(int dialogid,int color){
         selectedColorRGB = color;
->>>>>>> b4d193d81820cbac01d708a0f1afaf2c1e7d329c
+        pieChartSelectedcolor.setBackgroundColor(color);
     }
     @Override
     public void onDialogDismissed(int dialogid){}
