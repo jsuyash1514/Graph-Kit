@@ -49,7 +49,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".PieChartNew" />
         <activity android:name=".PieChartAddEntry" />
-        <activity android:name=".PieChartResult"></activity>
+        <activity android:name=".PieChartResult"/>
 
     </application>
 

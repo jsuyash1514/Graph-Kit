@@ -122,8 +122,8 @@ public class BarGraph extends View {
 
         for(int i = barWidth,j = 0;j<numberOfFields;i+=barWidth,j++){
             Rect bounds = new Rect();
-            mPaint.getTextBounds(pointList.get(j).category, 0, pointList.get(j).category.length(), bounds);
-            mCanvas.drawText(pointList.get(j).category,i - bounds.width()/2 - barWidth/2,-2*(mPaint.ascent()),mPaint);
+            mPaint.getTextBounds(pointList.get(j).getName(), 0, pointList.get(j).getName().length(), bounds);
+            mCanvas.drawText(pointList.get(j).getName(),i - bounds.width()/2 - barWidth/2,-2*(mPaint.ascent()),mPaint);
         }
 
         int nD = getNumberOfDigits(maxY);
@@ -155,9 +155,9 @@ public class BarGraph extends View {
         for(int i = 0,j=0;j<numberOfFields;i+=barWidth,j++){
             Log.d("TAG--",j+"");
             Log.d("TAG",i+"");
-            Rect rect = new Rect(i+space,(int)(pointList.get(j).percentage/scaleY),i+barWidth-space,0);
+            Rect rect = new Rect(i+space,(int)(pointList.get(j).getData() /scaleY),i+barWidth-space,0);
             Paint rPaint = new Paint();
-            rPaint.setColor(pointList.get(j).color);
+            rPaint.setColor(pointList.get(j).getColor());
             rPaint.setStyle(Paint.Style.FILL);
             mCanvas.drawRect(rect,rPaint);
         }
@@ -165,10 +165,10 @@ public class BarGraph extends View {
     }
 
     private float getMaxY() {
-        float maxY = pointList.get(0).percentage;
+        float maxY = pointList.get(0).getData();
         for (int i = 0; i < pointList.size(); i++) {
-            if (pointList.get(i).percentage > maxY) {
-                maxY = pointList.get(i).percentage;
+            if (pointList.get(i).getData() > maxY) {
+                maxY = pointList.get(i).getData();
             }
         }
         return maxY;
