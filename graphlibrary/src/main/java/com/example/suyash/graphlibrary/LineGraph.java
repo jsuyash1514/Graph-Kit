@@ -255,7 +255,7 @@ public class LineGraph extends View {
         int nD = getNumberOfDigits(maxY);
         float v;
         if (nD > 1) {
-            v = (float) Math.pow(10, nD - 2);
+            v = (float) Math.pow(10, nD - 1);
         } else {
             v = (float) Math.pow(10, 0);
         }
@@ -367,4 +367,7 @@ public class LineGraph extends View {
 
     }
 
+    public Bitmap getBitmap() {
+        return mBitmap;
+    }
 }

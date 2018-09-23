@@ -27,6 +27,9 @@ public class PieChart extends View {
     private int LABEL_SIZE = 40;
     float diameter;
 
+    Bitmap mBitmap;
+    Canvas mCanvas;
+
     public PieChart(Context context, AttributeSet attrs) {
         super(context, attrs);
         TypedArray typedArray = context.getTheme().obtainStyledAttributes(attrs, R.styleable.PieChart, 0, 0);
@@ -64,6 +67,7 @@ public class PieChart extends View {
         mBitmapPaint = new Paint(Paint.DITHER_FLAG);
 
         dataPoints = new ArrayList<>();
+
     }
 
     public void setLabelTextSize(int LABEL_SIZE) {
@@ -79,25 +83,36 @@ public class PieChart extends View {
     public void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        if (width == 0 && height == 0){
+        if (width == 0 && height == 0) {
             width = this.getMeasuredWidth();
             height = this.getMeasuredHeight();
 
-            Log.d("TAG: width = ",""+width);
-            Log.d("TAG: height = ",""+height);
+            Log.d("TAG: width = ", "" + width);
+            Log.d("TAG: height = ", "" + height);
 
 
-            boolean widthMatchParent = (ViewGroup.LayoutParams.MATCH_PARENT==getLayoutParams().width || ViewGroup.LayoutParams.WRAP_CONTENT==getLayoutParams().width);
-            if(!widthMatchParent){width = width/2;}
-            boolean heightMatchParent = (ViewGroup.LayoutParams.MATCH_PARENT==getLayoutParams().height || ViewGroup.LayoutParams.WRAP_CONTENT==getLayoutParams().height);
-            if(!heightMatchParent){height = height/2;}
+            boolean widthMatchParent = (ViewGroup.LayoutParams.MATCH_PARENT == getLayoutParams().width || ViewGroup.LayoutParams.WRAP_CONTENT == getLayoutParams().width);
+            if (!widthMatchParent) {
+                width = width / 2;
+            }
+            boolean heightMatchParent = (ViewGroup.LayoutParams.MATCH_PARENT == getLayoutParams().height || ViewGroup.LayoutParams.WRAP_CONTENT == getLayoutParams().height);
+            if (!heightMatchParent) {
+                height = height / 2;
+            }
+
+            mBitmap = Bitmap.createBitmap((int)width, (int)height, Bitmap.Config.ARGB_8888);
+            mCanvas = new Canvas(mBitmap);
+        }
 
             Bitmap bitmap1 = drawPieChart();
             Bitmap bitmap2 = drawIndex();
+            mCanvas.drawColor(Color.parseColor("#111111"));
+            mCanvas.drawBitmap(bitmap1, 0, 0, mBitmapPaint);
+            mCanvas.drawBitmap(bitmap2, 0, height / 2, mBitmapPaint);
             canvas.drawBitmap(bitmap1, 0, 0, mBitmapPaint);
             canvas.drawBitmap(bitmap2, 0, height / 2, mBitmapPaint);
         }
-    }
+
 
 
     public void setPoints(ArrayList<DataPoint> pointList) {
@@ -149,6 +164,10 @@ public class PieChart extends View {
         }
         return bitmap;
 
+    }
+
+    public Bitmap getBitmap() {
+        return mBitmap;
     }
 
 }

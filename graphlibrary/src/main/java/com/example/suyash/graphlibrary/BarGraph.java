@@ -190,4 +190,7 @@ public class BarGraph extends View {
 
     }
 
+    public Bitmap getBitmap() {
+        return mBitmap;
+    }
 }
