@@ -51,7 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="15dp"
-            android:text="@string/category" />
+            android:text="@string/name" />
 
         <EditText
             android:id="@+id/categoryInput"
@@ -71,7 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="15dp"
-            android:text="@string/percentage" />
+            android:text="@string/data" />
 
         <EditText
             android:id="@+id/percantageInput"

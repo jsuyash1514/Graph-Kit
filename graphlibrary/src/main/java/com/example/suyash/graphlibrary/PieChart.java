@@ -103,12 +103,12 @@ public class PieChart extends View {
     public void setPoints(ArrayList<DataPoint> pointList) {
         float sum=0;
         for(int i=0;i<pointList.size();i++){
-            sum+=pointList.get(i).percentage;
+            sum+=pointList.get(i).getData();
         }
         for (int i=0;i<pointList.size();i++){
-            float per = (((pointList.get(i).percentage)/sum)*100);
+            float per = (((pointList.get(i).getData())/sum)*100);
             DecimalFormat dec = new DecimalFormat("#0.00");
-            this.dataPoints.add(new DataPoint(pointList.get(i).category,Float.valueOf(dec.format(per)),pointList.get(i).color));
+            this.dataPoints.add(new DataPoint(pointList.get(i).getName(),Float.valueOf(dec.format(per)),pointList.get(i).getColor()));
         }
         invalidate();
     }
@@ -123,8 +123,8 @@ public class PieChart extends View {
         oval.set(-canvas.getWidth() / 3, -canvas.getHeight() / 3, canvas.getWidth() / 3, canvas.getHeight() / 3);
         float startAngle = 0;
         for (int i = 0; i < dataPoints.size(); i++) {
-            mPaint.setColor(dataPoints.get(i).color);
-            float sweepAngle = (dataPoints.get(i).percentage * 360) / 100;
+            mPaint.setColor(dataPoints.get(i).getColor());
+            float sweepAngle = (dataPoints.get(i).getData() * 360) / 100;
             canvas.drawArc(oval, startAngle, sweepAngle, true, mPaint);
             startAngle += sweepAngle;
         }
@@ -142,10 +142,10 @@ public class PieChart extends View {
         mPaint.setTextSize(LABEL_SIZE);
 
         for (int i = 0; i < dataPoints.size(); i++) {
-            mPaint.setColor(dataPoints.get(i).color);
+            mPaint.setColor(dataPoints.get(i).getColor());
             index.drawCircle(diameter / 25, (diameter / 10) + (i * (diameter / 10)), diameter / 25, mPaint);
             mPaint.setColor(Color.BLACK);
-            index.drawText(dataPoints.get(i).category + " : " + dataPoints.get(i).percentage + "% ", diameter / 10, (diameter / 8) + (i * (diameter / 10)), mPaint);
+            index.drawText(dataPoints.get(i).getName() + " : " + dataPoints.get(i).getData() + "% ", diameter / 10, (diameter / 8) + (i * (diameter / 10)), mPaint);
         }
         return bitmap;
 
