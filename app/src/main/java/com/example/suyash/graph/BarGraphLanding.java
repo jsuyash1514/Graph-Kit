@@ -23,6 +23,7 @@ public class BarGraphLanding extends AppCompatActivity {
             public void onClick(View view) {
                 barGraphPtsNumber = 0;
                 Intent intent = new Intent(getApplicationContext(), BarGraphNew.class);
+                finish();
                 startActivity(intent);
             }
         });

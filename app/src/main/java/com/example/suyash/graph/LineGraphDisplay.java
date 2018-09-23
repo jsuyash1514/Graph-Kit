@@ -45,7 +45,8 @@ public class LineGraphDisplay extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(this, LineGraphNew.class));
         finish();
+        startActivity(new Intent(this, LineGraphNew.class));
+
     }
 }

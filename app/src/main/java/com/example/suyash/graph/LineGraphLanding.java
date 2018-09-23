@@ -24,6 +24,7 @@ public class LineGraphLanding extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), LineGraphNew.class);
                 lineGraphPtsNumber = 0;
+                finish();
                 startActivity(intent);
             }
         });
