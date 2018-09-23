@@ -56,6 +56,14 @@ public class FreeCurveLanding extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Y-Value : " + Float.valueOf(three_round_format.format(editGraphView.getYFromX(getProgress()))), Toast.LENGTH_SHORT).show();
             }
         });
+
+        Button resetButton = findViewById(R.id.resetGraph);
+        resetButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                editGraphView.resetGraph();
+            }
+        });
     }
 
     private float getProgress() {

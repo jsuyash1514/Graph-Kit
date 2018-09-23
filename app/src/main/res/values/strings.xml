@@ -27,5 +27,7 @@
     <string name="color">Color</string>
     <string name="options">&#8942;</string>
     <string name="entries">Entries</string>
-    <string name="no_entries">No Entries</string>
+    <string name="no_entries">No Entries to Show</string>
+    <string name="edit_graph_label">Edit Graph</string>
+    <string name="resetGraph">Reset</string>
 </resources>
