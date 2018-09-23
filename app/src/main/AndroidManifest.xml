@@ -20,12 +20,37 @@
             </intent-filter>
         </activity>
         <activity android:name=".PieChartLanding" />
-        <activity android:name=".LineGraphLanding" />
-        <activity android:name=".BarGraphLanding" />
-        <activity android:name=".FreeCurveLanding" />
+        <activity
+            android:name=".LineGraphLanding"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".BarGraphLanding"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".FreeCurveLanding"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".LineGraphNew"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".LinePointNew"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".LineGraphDisplay"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".BarPointNew"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".BarGraphNew"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".BarGraphDisplay"
+            android:theme="@style/AppTheme.NoActionBar"
+            />
         <activity android:name=".PieChartNew" />
         <activity android:name=".PieChartAddEntry" />
         <activity android:name=".PieChartResult"></activity>
+
     </application>
 
 </manifest>

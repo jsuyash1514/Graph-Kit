@@ -52,6 +52,7 @@ public class EditGraphView extends View {
     public EditGraphView(Context c, AttributeSet attrs) {
 
         super(c, attrs);
+        context = c;
         mPath = new Path();
         mBitmapPaint = new Paint(Paint.DITHER_FLAG);
         mPaint = new Paint();
@@ -73,9 +74,12 @@ public class EditGraphView extends View {
         normalized_points = new ArrayList<>();
 
         TypedArray typedArray = context.getTheme().obtainStyledAttributes(attrs, R.styleable.EditGraphView, 0, 0);
-        color = typedArray.getColor(R.styleable.EditGraphView_graph_color,Color.BLACK);
-        thickness = (int)typedArray.getFloat(R.styleable.EditGraphView_line_thickness,12);
-        TOUCH_TOLERANCE = typedArray.getInteger(R.styleable.EditGraphView_touch_tolerance,20);
+        color = typedArray.getColor(R.styleable.EditGraphView_graph_color, Color.BLACK);
+        lineColor(color);
+        thickness = (int) typedArray.getFloat(R.styleable.EditGraphView_line_thickness, 12);
+        lineThickness(thickness);
+        TOUCH_TOLERANCE = typedArray.getInteger(R.styleable.EditGraphView_touch_tolerance, 20);
+        setTouchTolerance(TOUCH_TOLERANCE);
 
     }
 
@@ -398,7 +402,7 @@ public class EditGraphView extends View {
 
     }
 
-    public void setTouchTolerance(int t){
+    public void setTouchTolerance(int t) {
         TOUCH_TOLERANCE = t;
     }
 
