@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+
 public class LinePointNew extends AppCompatActivity {
 
     boolean isClickable = false;

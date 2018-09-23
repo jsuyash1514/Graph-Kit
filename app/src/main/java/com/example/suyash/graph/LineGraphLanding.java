@@ -7,7 +7,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import static com.example.suyash.graph.LineGraphNew.lineGraphPtsNumber;
+
 public class LineGraphLanding extends AppCompatActivity {
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +23,7 @@ public class LineGraphLanding extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), LineGraphNew.class);
+                lineGraphPtsNumber = 0;
                 finish();
                 startActivity(intent);
             }
