@@ -35,8 +35,9 @@ public class LineGraphLanding extends AppCompatActivity {
     }
 
     @Override
-    public void onBackPressed() {
-        startActivity(new Intent(this, MainActivity.class));
+    public void onBackPressed(){
         finish();
+        startActivity(new Intent(this, MainActivity.class));
+
     }
 }

@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 /**
@@ -23,14 +24,13 @@ public class PieChart extends View {
 
     ArrayList<DataPoint> dataPoints;
     float width=0, height=0;
-    private int LABEL_SIZE = 20;
+    private int LABEL_SIZE = 40;
     float diameter;
-    boolean init = true;
 
     public PieChart(Context context, AttributeSet attrs) {
         super(context, attrs);
         TypedArray typedArray = context.getTheme().obtainStyledAttributes(attrs, R.styleable.PieChart, 0, 0);
-        LABEL_SIZE = typedArray.getInteger(R.styleable.PieChart_label_text_size, 20);
+        LABEL_SIZE = typedArray.getInteger(R.styleable.PieChart_label_text_size, 40);
 
 
         mPaint = new Paint();
@@ -101,7 +101,16 @@ public class PieChart extends View {
 
 
     public void setPoints(ArrayList<DataPoint> pointList) {
-        this.dataPoints = pointList;
+        float sum=0;
+        for(int i=0;i<pointList.size();i++){
+            sum+=pointList.get(i).percentage;
+        }
+        for (int i=0;i<pointList.size();i++){
+            float per = (((pointList.get(i).percentage)/sum)*100);
+            DecimalFormat dec = new DecimalFormat("#0.00");
+            this.dataPoints.add(new DataPoint(pointList.get(i).category,Float.valueOf(dec.format(per)),pointList.get(i).color));
+        }
+        invalidate();
     }
 
     private Bitmap drawPieChart() {
@@ -118,12 +127,6 @@ public class PieChart extends View {
             float sweepAngle = (dataPoints.get(i).percentage * 360) / 100;
             canvas.drawArc(oval, startAngle, sweepAngle, true, mPaint);
             startAngle += sweepAngle;
-        }
-
-        if (startAngle < 360) {
-            dataPoints.add(new DataPoint("Other", ((360 - startAngle) * 100) / 360, Color.parseColor("#99A3A4")));
-            mPaint.setColor(Color.parseColor("#99A3A4"));
-            canvas.drawArc(oval, startAngle, 360 - startAngle, true, mPaint);
         }
         return bitmap;
     }

@@ -26,35 +26,44 @@ public class MainActivity extends AppCompatActivity {
         lineGraph.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), LineGraphLanding.class));
+
+                Intent intent = new Intent(getApplicationContext(), LineGraphLanding.class);
                 finish();
+                startActivity(intent);
             }
         });
 
         pieChart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), PieChartLanding.class));
+                Intent intent = new Intent(getApplicationContext(), PieChartLanding.class);
                 finish();
+                startActivity(intent);
             }
         });
 
         barGraph.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), BarGraphLanding.class));
+                Intent intent = new Intent(getApplicationContext(), BarGraphLanding.class);
                 finish();
+                startActivity(intent);
             }
         });
 
         freeCurve.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), FreeCurveLanding.class));
+                Intent intent = new Intent(getApplicationContext(), FreeCurveLanding.class);
                 finish();
+                startActivity(intent);
             }
         });
 
+    }
+
+    public void onBackPressed() {
+        finish();
     }
 
 }

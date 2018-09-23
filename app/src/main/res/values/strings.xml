@@ -22,4 +22,14 @@
     <string name="name">Name</string>
     <string name="data">Data</string>
     <string name="entries">Entries</string>
+    <string name="no_recent">No recent charts to show</string>
+    <string name="create_new">Create New Chart</string>
+    <string name="chart_title">Chart Title</string>
+    <string name="entries">Entries</string>
+    <string name="no_entries">No entry to show</string>
+    <string name="add_entry">Add Entry</string>
+    <string name="category">Name</string>
+    <string name="percentage">Data</string>
+    <string name="color">Color</string>
+    <string name="options">&#8942;</string>
 </resources>
