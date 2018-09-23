@@ -89,7 +89,8 @@
             android:nextFocusUp="@id/pieChartTitleEditText"
             android:padding="5sp"
             android:textCursorDrawable="@null"
-            android:textSize="25sp" />
+            android:textSize="25sp"
+            android:maxLines="1"/>
 
 
         <LinearLayout

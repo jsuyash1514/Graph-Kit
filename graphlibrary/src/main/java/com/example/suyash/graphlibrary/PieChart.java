@@ -110,6 +110,7 @@ public class PieChart extends View {
             DecimalFormat dec = new DecimalFormat("#0.00");
             this.dataPoints.add(new DataPoint(pointList.get(i).category,Float.valueOf(dec.format(per)),pointList.get(i).color));
         }
+        invalidate();
     }
 
     private Bitmap drawPieChart() {

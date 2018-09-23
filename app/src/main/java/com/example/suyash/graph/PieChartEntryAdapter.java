@@ -1,5 +1,6 @@
 package com.example.suyash.graph;
 
+import android.app.Activity;
 import android.arch.persistence.room.Room;
 import android.content.Context;
 import android.content.Intent;
@@ -80,9 +81,6 @@ public class PieChartEntryAdapter extends RecyclerView.Adapter<RecyclerView.View
             menu.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    final PieChartEntryDatabase db = Room.databaseBuilder(itemView.getContext(),PieChartEntryDatabase.class,"pieChartEntries")
-                            .allowMainThreadQueries()
-                            .build();
                     PopupMenu popupMenu = new PopupMenu(context,menu);
                     popupMenu.inflate(R.menu.pie_chart_entries_menu);
                     popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
@@ -94,17 +92,14 @@ public class PieChartEntryAdapter extends RecyclerView.Adapter<RecyclerView.View
                                     intent.putExtra("editName",list.get(getAdapterPosition()).getName());
                                     intent.putExtra("editPercentage",list.get(getAdapterPosition()).getPercentage());
                                     intent.putExtra("editColor",list.get(getAdapterPosition()).getColor());
-                                    db.pieChartEntryModelDao().delete(list.get(getAdapterPosition()));
                                     list.remove(getAdapterPosition());
                                     notifyItemRemoved(getAdapterPosition());
+                                    ((Activity)context).finish();
                                     itemView.getContext().startActivity(intent);
-                                    db.close();
                                     break;
                                 case R.id.delete:
-                                    db.pieChartEntryModelDao().delete(list.get(getAdapterPosition()));
                                     list.remove(getAdapterPosition());
                                     notifyItemRemoved(getAdapterPosition());
-                                    db.close();
                                     return true;
                             }
                             return false;
