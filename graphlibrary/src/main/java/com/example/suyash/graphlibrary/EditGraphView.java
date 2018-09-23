@@ -52,6 +52,7 @@ public class EditGraphView extends View {
     public EditGraphView(Context c, AttributeSet attrs) {
 
         super(c, attrs);
+        context = c;
         mPath = new Path();
         mBitmapPaint = new Paint(Paint.DITHER_FLAG);
         mPaint = new Paint();
@@ -73,9 +74,12 @@ public class EditGraphView extends View {
         normalized_points = new ArrayList<>();
 
         TypedArray typedArray = context.getTheme().obtainStyledAttributes(attrs, R.styleable.EditGraphView, 0, 0);
-        color = typedArray.getColor(R.styleable.EditGraphView_graph_color,Color.BLACK);
-        thickness = (int)typedArray.getFloat(R.styleable.EditGraphView_line_thickness,12);
-        TOUCH_TOLERANCE = typedArray.getInteger(R.styleable.EditGraphView_touch_tolerance,20);
+        color = typedArray.getColor(R.styleable.EditGraphView_graph_color, Color.BLACK);
+        lineColor(color);
+        thickness = (int) typedArray.getFloat(R.styleable.EditGraphView_line_thickness, 12);
+        lineThickness(thickness);
+        TOUCH_TOLERANCE = typedArray.getInteger(R.styleable.EditGraphView_touch_tolerance, 20);
+        setTouchTolerance(TOUCH_TOLERANCE);
 
     }
 
@@ -122,7 +126,7 @@ public class EditGraphView extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
+
 
         if (vH == 0 && vW == 0) {
 
@@ -154,6 +158,13 @@ public class EditGraphView extends View {
             edit_points.add(new PointF(vW / 3.0f, vH * 2.0f / 3.0f));
             edit_points.add(new PointF(vW * 2.0f / 3.0f, vH / 3.0f));
             edit_points.add(last_pt);
+
+            first_control_points = new ArrayList<>();
+            second_control_points = new ArrayList<>();
+            points_On_Graph = new ArrayList<>();
+            normalized_points = new ArrayList<>();
+
+            mPath = new Path();
         }
 
         mPaint.setStrokeWidth(thickness);
@@ -169,6 +180,27 @@ public class EditGraphView extends View {
             flg = 1;
             calcPoints();
         }
+        super.onDraw(canvas);
+    }
+
+    public void resetGraph(){
+
+//        first_pt = new PointF();
+//        last_pt = new PointF();
+//        first_pt.x = 0;
+//        first_pt.y = vH;
+//        last_pt.x = vW - 100.0f;
+//        last_pt.y = 100.0f;
+//        edit_points = new ArrayList<>();
+//        edit_points.add(first_pt);
+//        edit_points.add(new PointF(vW / 3.0f, vH * 2.0f / 3.0f));
+//        edit_points.add(new PointF(vW * 2.0f / 3.0f, vH / 3.0f));
+//        edit_points.add(last_pt);
+        vH = 0;
+        vW = 0;
+        flg = 0;
+        invalidate();
+        Log.d("TAG","reset called");
 
     }
 
@@ -398,7 +430,7 @@ public class EditGraphView extends View {
 
     }
 
-    public void setTouchTolerance(int t){
+    public void setTouchTolerance(int t) {
         TOUCH_TOLERANCE = t;
     }
 

@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 public class BarGraph extends View {
 
-    ArrayList<BarGraphDataPoint> pointList;
+    ArrayList<DataPoint> pointList;
     boolean pointSetflg = false, initflg = false;
     int numberOfFields = 0;
     int vH = 0, vW = 0;
@@ -52,7 +52,7 @@ public class BarGraph extends View {
         this.vW = vW;
     }
 
-    public void setPoints(ArrayList<BarGraphDataPoint> pointList){
+    public void setPoints(ArrayList<DataPoint> pointList){
         this.pointList = pointList;
         pointSetflg = true;
         numberOfFields = pointList.size();
@@ -122,14 +122,14 @@ public class BarGraph extends View {
 
         for(int i = barWidth,j = 0;j<numberOfFields;i+=barWidth,j++){
             Rect bounds = new Rect();
-            mPaint.getTextBounds(pointList.get(j).getX(), 0, pointList.get(j).getX().length(), bounds);
-            mCanvas.drawText(pointList.get(j).getX(),i - bounds.width()/2 - barWidth/2,-2*(mPaint.ascent()),mPaint);
+            mPaint.getTextBounds(pointList.get(j).getName(), 0, pointList.get(j).getName().length(), bounds);
+            mCanvas.drawText(pointList.get(j).getName(),i - bounds.width()/2 - barWidth/2,-2*(mPaint.ascent()),mPaint);
         }
 
         int nD = getNumberOfDigits(maxY);
         float v;
         if (nD > 1) {
-            v = (float) Math.pow(10, nD - 2);
+            v = (float) Math.pow(10, nD - 1);
         } else {
             v = (float) Math.pow(10, 0);
         }
@@ -155,7 +155,7 @@ public class BarGraph extends View {
         for(int i = 0,j=0;j<numberOfFields;i+=barWidth,j++){
             Log.d("TAG--",j+"");
             Log.d("TAG",i+"");
-            Rect rect = new Rect(i+space,(int)(pointList.get(j).getY()/scaleY),i+barWidth-space,0);
+            Rect rect = new Rect(i+space,(int)(pointList.get(j).getData() /scaleY),i+barWidth-space,0);
             Paint rPaint = new Paint();
             rPaint.setColor(pointList.get(j).getColor());
             rPaint.setStyle(Paint.Style.FILL);
@@ -165,10 +165,10 @@ public class BarGraph extends View {
     }
 
     private float getMaxY() {
-        float maxY = pointList.get(0).y;
+        float maxY = pointList.get(0).getData();
         for (int i = 0; i < pointList.size(); i++) {
-            if (pointList.get(i).y > maxY) {
-                maxY = pointList.get(i).y;
+            if (pointList.get(i).getData() > maxY) {
+                maxY = pointList.get(i).getData();
             }
         }
         return maxY;

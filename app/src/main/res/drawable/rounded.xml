@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?><!--  res/drawable/rounded_edittext.xml -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_focused="false" android:state_window_focused="false">
+
+        <shape xmlns:android="http://schemas.android.com/apk/res/android" android:padding="10dp" android:shape="rectangle">
+
+            <stroke android:width="2dp" android:color="@android:color/darker_gray" />
+            <corners android:bottomLeftRadius="7dp" android:bottomRightRadius="7dp" android:topLeftRadius="7dp" android:topRightRadius="7dp" />
+        </shape>
+    </item>
+    <item android:state_focused="true" android:state_window_focused="true">
+        <shape xmlns:android="http://schemas.android.com/apk/res/android" android:padding="10dp" android:shape="rectangle">
+
+            <stroke android:width="2dp" android:color="@color/colorPrimary" />
+            <corners android:bottomLeftRadius="7dp" android:bottomRightRadius="7dp" android:topLeftRadius="7dp" android:topRightRadius="7dp" />
+        </shape>
+    </item>
+</selector>

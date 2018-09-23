@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 /**
@@ -23,14 +24,13 @@ public class PieChart extends View {
 
     ArrayList<DataPoint> dataPoints;
     float width=0, height=0;
-    private int LABEL_SIZE = 20;
+    private int LABEL_SIZE = 40;
     float diameter;
-    boolean init = true;
 
     public PieChart(Context context, AttributeSet attrs) {
         super(context, attrs);
         TypedArray typedArray = context.getTheme().obtainStyledAttributes(attrs, R.styleable.PieChart, 0, 0);
-        LABEL_SIZE = typedArray.getInteger(R.styleable.PieChart_label_text_size, 20);
+        LABEL_SIZE = typedArray.getInteger(R.styleable.PieChart_label_text_size, 40);
 
 
         mPaint = new Paint();
@@ -79,7 +79,7 @@ public class PieChart extends View {
     public void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        if (width == 0 && height == 0 && init){
+        if (width == 0 && height == 0){
             width = this.getMeasuredWidth();
             height = this.getMeasuredHeight();
 
@@ -101,7 +101,16 @@ public class PieChart extends View {
 
 
     public void setPoints(ArrayList<DataPoint> pointList) {
-        this.dataPoints = pointList;
+        float sum=0;
+        for(int i=0;i<pointList.size();i++){
+            sum+=pointList.get(i).getData();
+        }
+        for (int i=0;i<pointList.size();i++){
+            float per = (((pointList.get(i).getData())/sum)*100);
+            DecimalFormat dec = new DecimalFormat("#0.00");
+            this.dataPoints.add(new DataPoint(pointList.get(i).getName(),Float.valueOf(dec.format(per)),pointList.get(i).getColor()));
+        }
+        invalidate();
     }
 
     private Bitmap drawPieChart() {
@@ -114,16 +123,10 @@ public class PieChart extends View {
         oval.set(-canvas.getWidth() / 3, -canvas.getHeight() / 3, canvas.getWidth() / 3, canvas.getHeight() / 3);
         float startAngle = 0;
         for (int i = 0; i < dataPoints.size(); i++) {
-            mPaint.setColor(dataPoints.get(i).color);
-            float sweepAngle = (dataPoints.get(i).percentage * 360) / 100;
+            mPaint.setColor(dataPoints.get(i).getColor());
+            float sweepAngle = (dataPoints.get(i).getData() * 360) / 100;
             canvas.drawArc(oval, startAngle, sweepAngle, true, mPaint);
             startAngle += sweepAngle;
-        }
-
-        if (startAngle < 360) {
-            dataPoints.add(new DataPoint("Other", ((360 - startAngle) * 100) / 360, Color.parseColor("#99A3A4")));
-            mPaint.setColor(Color.parseColor("#99A3A4"));
-            canvas.drawArc(oval, startAngle, 360 - startAngle, true, mPaint);
         }
         return bitmap;
     }
@@ -139,10 +142,10 @@ public class PieChart extends View {
         mPaint.setTextSize(LABEL_SIZE);
 
         for (int i = 0; i < dataPoints.size(); i++) {
-            mPaint.setColor(dataPoints.get(i).color);
+            mPaint.setColor(dataPoints.get(i).getColor());
             index.drawCircle(diameter / 25, (diameter / 10) + (i * (diameter / 10)), diameter / 25, mPaint);
             mPaint.setColor(Color.BLACK);
-            index.drawText(dataPoints.get(i).category + " : " + dataPoints.get(i).percentage + "% ", diameter / 10, (diameter / 8) + (i * (diameter / 10)), mPaint);
+            index.drawText(dataPoints.get(i).getName() + " : " + dataPoints.get(i).getData() + "% ", diameter / 10, (diameter / 8) + (i * (diameter / 10)), mPaint);
         }
         return bitmap;
 

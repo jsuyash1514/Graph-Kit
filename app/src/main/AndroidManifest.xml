@@ -8,7 +8,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme.NoActionBar">
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
@@ -19,9 +19,38 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LineGraph" />
-        <activity android:name=".PieChart" />
-        <activity android:name=".BarGraphActivity"></activity>
+        <activity android:name=".PieChartLanding" />
+        <activity
+            android:name=".LineGraphLanding"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".BarGraphLanding"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".FreeCurveLanding"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".LineGraphNew"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".LinePointNew"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".LineGraphDisplay"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".BarPointNew"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".BarGraphNew"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".BarGraphDisplay"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".PieChartNew" />
+        <activity android:name=".PieChartAddEntry" />
+        <activity android:name=".PieChartResult"/>
+
     </application>
 
 </manifest>
