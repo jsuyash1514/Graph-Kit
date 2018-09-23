@@ -7,6 +7,7 @@
     android:orientation="vertical"
     tools:context="com.example.suyash.graph.LineGraphDisplay">
 
+
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appBar"
         android:layout_width="match_parent"
@@ -35,25 +36,31 @@
                 android:layout_marginLeft="125dp"
                 android:layout_marginRight="125dp"
                 android:layout_marginTop="14dp"
+                android:text="@string/bar_graph"
                 android:textColor="@color/colorAccent"
                 android:textSize="18sp" />
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/saveImage"
+                android:background="#00000011"
+                android:layout_gravity="end"
+                android:layout_margin="8dp"
+                android:src="@drawable/ic_save_white_24dp"/>
 
         </android.support.v7.widget.Toolbar>
 
     </android.support.design.widget.AppBarLayout>
-
-
     <com.example.suyash.graphlibrary.BarGraph
+        android:id="@+id/barGraph"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/barGraph"
-        android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        app:label_text_size="25"
-        >
-    </com.example.suyash.graphlibrary.BarGraph>
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:label_text_size="25"/>
+
 
 
 </LinearLayout>
