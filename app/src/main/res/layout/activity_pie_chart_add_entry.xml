@@ -164,7 +164,7 @@
                 android:layout_height="30dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginStart="16dp"
-                android:background="@color/colorAccent"
+                android:background="#00000011"
                 android:src="@drawable/ic_colorize_black_24dp" />
 
         </LinearLayout>

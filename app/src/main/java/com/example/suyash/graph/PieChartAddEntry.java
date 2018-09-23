@@ -1,7 +1,6 @@
 package com.example.suyash.graph;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -12,9 +11,10 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import com.pes.androidmaterialcolorpickerdialog.ColorPicker;
+import com.jaredrummler.android.colorpicker.ColorPickerDialog;
+import com.jaredrummler.android.colorpicker.ColorPickerDialogListener;
 
-public class PieChartAddEntry extends AppCompatActivity {
+public class PieChartAddEntry extends AppCompatActivity implements ColorPickerDialogListener{
     int selectedColorR, selectedColorG, selectedColorB, selectedColorRGB;
     ImageButton DarkBlue, LightBlue, Red, Yellow, Green, Grey, pieChartSelectedcolor, colorize, close;
     EditText name, percentage;
@@ -23,7 +23,7 @@ public class PieChartAddEntry extends AppCompatActivity {
     Double defaultPercentage;
     int defaultColor;
     boolean n = false, p = false, isClickable = false;
-
+    private final int DIALOG_ID = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -230,10 +230,16 @@ public class PieChartAddEntry extends AppCompatActivity {
     }
 
     public void showColorizer() {
-        final ColorPicker cp = new ColorPicker(this, Color.red(selectedColorRGB), Color.green(selectedColorRGB), Color.blue(selectedColorRGB));
-        cp.show();
-        Button okColor = (Button) cp.findViewById(R.id.okColorButton);
+        ColorPickerDialog.newBuilder()
+                .setDialogType(ColorPickerDialog.TYPE_CUSTOM)
+                .setAllowPresets(false)
+                .setDialogId(DIALOG_ID)
+                .setColor(selectedColorRGB)
+                .setShowAlphaSlider(true)
+                .show(PieChartAddEntry.this);
+    }
 
+<<<<<<< HEAD
         okColor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -245,7 +251,14 @@ public class PieChartAddEntry extends AppCompatActivity {
                 cp.dismiss();
             }
         });
+=======
+    @Override
+    public void onColorSelected(int dialogid,int color){
+        selectedColorRGB = color;
+>>>>>>> b4d193d81820cbac01d708a0f1afaf2c1e7d329c
     }
+    @Override
+    public void onDialogDismissed(int dialogid){}
 
     @Override
     public void onBackPressed() {
