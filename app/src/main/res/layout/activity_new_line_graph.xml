@@ -66,11 +66,15 @@
             android:layout_marginTop="15dp"
             android:text="@string/graph_title" />
 
+
         <LinearLayout
+            android:id="@+id/lineBlank"
             android:layout_width="0px"
             android:layout_height="0px"
             android:focusable="true"
-            android:focusableInTouchMode="true" />
+            android:focusableInTouchMode="true"
+            android:orientation="vertical" />
+
 
         <EditText
             android:id="@+id/lineGraphTitleEditText"
@@ -80,9 +84,13 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/rounded"
-            android:nextFocusLeft="@id/lineGraphTitleEditText"
-            android:nextFocusUp="@id/lineGraphTitleEditText"
-            android:padding="5dp"
+            android:focusedByDefault="false"
+            android:inputType="textPersonName"
+            android:maxLines="1"
+            android:nextFocusForward="@id/lineBlank"
+            android:nextFocusLeft="@id/pieChartTitleEditText"
+            android:nextFocusUp="@id/pieChartTitleEditText"
+            android:padding="5sp"
             android:textCursorDrawable="@null"
             android:textSize="25sp" />
 

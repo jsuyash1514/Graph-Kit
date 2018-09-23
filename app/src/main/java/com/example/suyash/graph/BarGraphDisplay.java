@@ -9,7 +9,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.suyash.graphlibrary.BarGraph;
-import com.example.suyash.graphlibrary.BarGraphDataPoint;
+import com.example.suyash.graphlibrary.DataPoint;
 
 import java.util.ArrayList;
 
@@ -34,10 +34,10 @@ public class BarGraphDisplay extends AppCompatActivity {
         });
 
         BarGraph barGraph = findViewById(R.id.barGraph);
-        ArrayList<BarGraphDataPoint> points = new ArrayList<>();
+        ArrayList<DataPoint> points = new ArrayList<>();
         for (BarGraphEntryModel entry : barGraphPts) {
 
-            points.add(new BarGraphDataPoint(entry.getName(), entry.getData(), entry.color));
+            points.add(new DataPoint(entry.getName(), entry.getData(), entry.color));
 
         }
 
@@ -46,7 +46,7 @@ public class BarGraphDisplay extends AppCompatActivity {
 
     @Override
     public void onBackPressed(){
-        Intent intent = new Intent(getApplicationContext(),BarPointNew.class);
+        Intent intent = new Intent(getApplicationContext(),BarGraphNew.class);
         finish();
         startActivity(intent);
     }
