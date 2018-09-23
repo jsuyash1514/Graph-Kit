@@ -20,6 +20,7 @@ public class BarGraphLanding extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), BarGraphNew.class);
+                finish();
                 startActivity(intent);
             }
         });

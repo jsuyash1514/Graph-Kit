@@ -16,7 +16,6 @@ import android.widget.Toast;
 
 import com.jaredrummler.android.colorpicker.ColorPickerDialog;
 import com.jaredrummler.android.colorpicker.ColorPickerDialogListener;
-import com.pes.androidmaterialcolorpickerdialog.ColorPicker;
 
 import static com.example.suyash.graph.BarGraphNew.barGraphPts;
 import static com.example.suyash.graph.BarGraphNew.barGraphPtsNumber;

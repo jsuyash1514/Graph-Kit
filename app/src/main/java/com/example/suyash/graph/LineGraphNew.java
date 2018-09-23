@@ -41,6 +41,7 @@ public class LineGraphNew extends AppCompatActivity {
                 EditText lineGraphNameEditText = findViewById(R.id.lineGraphTitleEditText);
                 line_graph_name = lineGraphNameEditText.getText().toString();
                 Intent intent = new Intent(getApplicationContext(), LinePointNew.class);
+                finish();
                 startActivity(intent);
             }
         });
@@ -79,7 +80,7 @@ public class LineGraphNew extends AppCompatActivity {
                     EditText lineGraphNameEditText = findViewById(R.id.lineGraphTitleEditText);
                     line_graph_name = lineGraphNameEditText.getText().toString();
                     if (!line_graph_name.isEmpty() && !line_graph_name.equals("")) {
-
+                        finish();
                         startActivity(showLineGraph);
                     } else {
                         Toast.makeText(getApplicationContext(), "Enter graph name!", Toast.LENGTH_SHORT).show();
@@ -96,7 +97,7 @@ public class LineGraphNew extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(this, LineGraphLanding.class));
         finish();
+        startActivity(new Intent(this, LineGraphLanding.class));
     }
 }

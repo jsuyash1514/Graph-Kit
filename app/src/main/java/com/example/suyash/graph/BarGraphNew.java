@@ -43,6 +43,7 @@ public class BarGraphNew extends AppCompatActivity {
                 EditText barGraphNameEditText = findViewById(R.id.lineGraphTitleEditText);
                 bar_graph_name = barGraphNameEditText.getText().toString();
                 Intent intent = new Intent(getApplicationContext(), BarPointNew.class);
+                finish();
                 startActivity(intent);
             }
         });
@@ -64,7 +65,7 @@ public class BarGraphNew extends AppCompatActivity {
                     EditText lineGraphNameEditText = findViewById(R.id.lineGraphTitleEditText);
                     bar_graph_name = lineGraphNameEditText.getText().toString();
                     if (!bar_graph_name.isEmpty() && !bar_graph_name.equals("")) {
-
+                        finish();
                         startActivity(showBarGraph);
                     } else {
                         Toast.makeText(getApplicationContext(), "Enter graph name!", Toast.LENGTH_SHORT).show();

@@ -1,5 +1,6 @@
 package com.example.suyash.graph;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -93,6 +94,7 @@ public class BarGraphEntryAdapter extends RecyclerView.Adapter<RecyclerView.View
                                     intent.putExtra("editColor", list.get(getAdapterPosition()).getColor());
                                     list.remove(getAdapterPosition());
                                     notifyItemRemoved(getAdapterPosition());
+                                    ((Activity)context).finish();
                                     itemView.getContext().startActivity(intent);
                                     break;
                                 case R.id.delete:
