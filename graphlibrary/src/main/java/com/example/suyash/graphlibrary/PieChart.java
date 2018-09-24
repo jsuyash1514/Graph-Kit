@@ -23,6 +23,7 @@ public class PieChart extends View {
     Paint mPaint, mBitmapPaint;
 
     ArrayList<DataPoint> dataPoints;
+    ArrayList<Float> quantityList;
     float width=0, height=0;
     private int LABEL_SIZE = 40;
     float diameter;
@@ -36,6 +37,7 @@ public class PieChart extends View {
         LABEL_SIZE = typedArray.getInteger(R.styleable.PieChart_label_text_size, 40);
 
         dataPoints = new ArrayList<>();
+        quantityList = new ArrayList<>();
 
     }
 
@@ -111,6 +113,7 @@ public class PieChart extends View {
             float per = (((pointList.get(i).getData())/sum)*100);
             DecimalFormat dec = new DecimalFormat("#0.00");
             this.dataPoints.add(new DataPoint(pointList.get(i).getName(),Float.valueOf(dec.format(per)),pointList.get(i).getColor()));
+            this.quantityList.add(pointList.get(i).getData());
         }
         invalidate();
     }
@@ -149,7 +152,7 @@ public class PieChart extends View {
             mPaint.setColor(dataPoints.get(i).getColor());
             index.drawCircle(diameter / 25, (diameter / 10) + (i * (diameter / 10)), diameter / 25, mPaint);
             mPaint.setColor(Color.BLACK);
-            index.drawText(dataPoints.get(i).getName() + " : " + dataPoints.get(i).getData() + "% ", diameter / 10, (diameter / 8) + (i * (diameter / 10)), mPaint);
+            index.drawText(dataPoints.get(i).getName() + " : "+ quantityList.get(i) + " : " + dataPoints.get(i).getData() + "% ", diameter / 10, (diameter / 8) + (i * (diameter / 10)), mPaint);
         }
         return bitmap;
 
