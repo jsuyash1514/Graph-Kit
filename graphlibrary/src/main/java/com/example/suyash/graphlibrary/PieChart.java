@@ -44,7 +44,9 @@ public class PieChart extends View {
         mPaint.setStrokeWidth(10);
         mPaint.setTextSize(60);
 
-        mBitmapPaint = new Paint(Paint.DITHER_FLAG);
+        mBitmapPaint = new Paint();
+        mBitmapPaint.setDither(true);
+        mBitmapPaint.setAntiAlias(true);
         dataPoints = new ArrayList<>();
 
     }
@@ -64,7 +66,9 @@ public class PieChart extends View {
         mPaint.setTextSize(60);
 
 
-        mBitmapPaint = new Paint(Paint.DITHER_FLAG);
+        mBitmapPaint = new Paint();
+        mBitmapPaint.setDither(true);
+        mBitmapPaint.setAntiAlias(true);
 
         dataPoints = new ArrayList<>();
 
@@ -106,7 +110,6 @@ public class PieChart extends View {
 
             Bitmap bitmap1 = drawPieChart();
             Bitmap bitmap2 = drawIndex();
-            mCanvas.drawColor(Color.parseColor("#111111"));
             mCanvas.drawBitmap(bitmap1, 0, 0, mBitmapPaint);
             mCanvas.drawBitmap(bitmap2, 0, height / 2, mBitmapPaint);
             canvas.drawBitmap(bitmap1, 0, 0, mBitmapPaint);
@@ -133,6 +136,7 @@ public class PieChart extends View {
         else diameter = height/2;
         Bitmap bitmap = Bitmap.createBitmap((int) diameter, (int) diameter, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
+        canvas.drawColor(Color.WHITE);
         canvas.translate(canvas.getWidth() / 2, canvas.getHeight() / 2);
         RectF oval = new RectF();
         oval.set(-canvas.getWidth() / 3, -canvas.getHeight() / 3, canvas.getWidth() / 3, canvas.getHeight() / 3);
@@ -151,6 +155,7 @@ public class PieChart extends View {
         else diameter = height/2;
         Bitmap bitmap = Bitmap.createBitmap((int) diameter, (int) diameter, Bitmap.Config.ARGB_8888);
         Canvas index = new Canvas(bitmap);
+        index.drawColor(Color.WHITE);
         mPaint.setAntiAlias(true);
         mPaint.setStyle(Paint.Style.FILL);
         mPaint.setStrokeWidth(diameter / 100);
