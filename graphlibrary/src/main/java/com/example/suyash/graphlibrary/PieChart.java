@@ -108,14 +108,15 @@ public class PieChart extends View {
             mCanvas = new Canvas(mBitmap);
         }
 
+
             Bitmap bitmap1 = drawPieChart();
             Bitmap bitmap2 = drawIndex();
             mCanvas.drawBitmap(bitmap1, 0, 0, mBitmapPaint);
             mCanvas.drawBitmap(bitmap2, 0, height / 2, mBitmapPaint);
             canvas.drawBitmap(bitmap1, 0, 0, mBitmapPaint);
             canvas.drawBitmap(bitmap2, 0, height / 2, mBitmapPaint);
-        }
 
+        }
 
 
     public void setPoints(ArrayList<DataPoint> pointList) {

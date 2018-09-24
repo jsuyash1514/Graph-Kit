@@ -208,8 +208,12 @@ If you want to contribute to improve this library, please read [our guidelines](
 
 ### Possible Improvements
 
+* Line graph can be plotted for all 4 quadrants.
+* Zoom-in and zoom-out features can be added to graphs. 
+* Number of curves can be plotted in a single line graph to compare between the plots or to find the intersections.
 * The Graphs can be made to plot in real-time.
 * Snapping feature can be added in EditGraphView.
+* Undo and Redo feature can be added in Edit graph.
 * Polar Coordinate system can be added.
 * Graphs can be plotted from functions and their roots, stationary points, integrals, etc. can be obtained from the graphs.
 
