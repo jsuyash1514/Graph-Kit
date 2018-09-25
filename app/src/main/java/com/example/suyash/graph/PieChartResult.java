@@ -55,6 +55,7 @@ public class PieChartResult extends AppCompatActivity {
         chartTitle.setText(title);
 
         final PieChart pieChart = findViewById(R.id.pie_chart);
+        pieChart.setLabelTextSize(60);
         ArrayList<DataPoint> points = new ArrayList<>();
 
         for (int i = 0; i < pieChartEntries.size(); i++) {

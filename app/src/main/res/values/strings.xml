@@ -18,8 +18,8 @@
     <string name="no_pts">No Points To Show</string>
     <string name="line_graph_title">Line Graph</string>
     <string name="get_y_val">Get Y value</string>
-    <string name="name">Name</string>
-    <string name="data">Data</string>
+    <string name="name">Label</string>
+    <string name="data">Quantity</string>
     <string name="no_recent">No recent charts to show</string>
     <string name="create_new">Create New Chart</string>
     <string name="chart_title">Chart Title</string>
