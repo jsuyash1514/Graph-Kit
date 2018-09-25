@@ -11,7 +11,15 @@
         android:id="@+id/appBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:contentInsetEnd="0dp"
+        android:contentInsetLeft="0dp"
+        android:contentInsetRight="0dp"
+        android:contentInsetStart="0dp"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        app:contentInsetEnd="0dp"
+        app:contentInsetLeft="0dp"
+        app:contentInsetRight="0dp"
+        app:contentInsetStart="0dp">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
@@ -53,8 +61,7 @@
         android:layout_marginTop="8dp"
         android:layout_weight="1"
         app:graph_color="@color/colorPrimary"
-        app:line_thickness="8"
-        />
+        app:line_thickness="8" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -65,43 +72,45 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:layout_gravity="bottom"
             android:layout_weight="3"
-            android:layout_gravity="bottom">
+            android:orientation="vertical">
+
             <SeekBar
                 android:id="@+id/seekBar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:max="1000" />
+
             <TextView
+                android:id="@+id/x_value_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/x_value_label"
                 android:layout_gravity="center_horizontal"
-                android:text="X: 0.0"
-                />
+                android:text="X: 0.0" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/resetGraph"
-            android:backgroundTint="@color/colorPrimary"
-            android:text="@string/resetGraph"
-            android:textColor="@color/colorAccent"/>
-        <Button
-            android:id="@+id/getYVal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorPrimary"
-            android:text="@string/get_y_val"
-            android:textColor="@color/colorAccent"
-            />
+
+            <Button
+                android:id="@+id/resetGraph"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorPrimary"
+                android:text="@string/resetGraph"
+                android:textColor="@color/colorAccent" />
+
+            <Button
+                android:id="@+id/getYVal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorPrimary"
+                android:text="@string/get_y_val"
+                android:textColor="@color/colorAccent" />
         </LinearLayout>
 
     </LinearLayout>
