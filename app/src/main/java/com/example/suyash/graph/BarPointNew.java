@@ -30,6 +30,7 @@ public class BarPointNew extends AppCompatActivity implements ColorPickerDialogL
     int defaultColor;
     boolean n = false, p = false, isClickable = false;
     private static final int DIALOG_ID = 0;
+    Bundle bundle2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +54,7 @@ public class BarPointNew extends AppCompatActivity implements ColorPickerDialogL
         selectedColorRGB = getResources().getColor(R.color.grey);
 
         final Bundle bundle = getIntent().getExtras();
+        bundle2 = bundle;
         if (bundle != null) {
             defaultName = bundle.get("editName").toString();
             name.setText(defaultName);
@@ -197,11 +199,6 @@ public class BarPointNew extends AppCompatActivity implements ColorPickerDialogL
         });
 
 
-//        final PieChartEntryDatabase db = Room.databaseBuilder(getApplicationContext(),PieChartEntryDatabase.class,"pieChartEntries")
-//                .allowMainThreadQueries()
-//                .build();
-
-
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -216,7 +213,6 @@ public class BarPointNew extends AppCompatActivity implements ColorPickerDialogL
                     c = defaultColor;
                     name.requestFocus();
                     Toast.makeText(getApplicationContext(), "Point Added", Toast.LENGTH_SHORT).show();
-//                    db.pieChartEntryModelDao().insert(new PieChartEntryModel(n,p,c));
                     Intent intent = new Intent(getApplicationContext(), BarGraphNew.class);
                     finish();
                     startActivity(intent);
@@ -231,40 +227,13 @@ public class BarPointNew extends AppCompatActivity implements ColorPickerDialogL
         close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (bundle != null) {
-                    String n = defaultName;
-                    Float p = Float.valueOf(defaultData);
-                    int c = defaultColor;
-//                    db.pieChartEntryModelDao().insert(new PieChartEntryModel(n,p,c));
-                    Intent intent = new Intent(getApplicationContext(), BarGraphNew.class);
-                    finish();
-                    startActivity(intent);
-                } else onBackPressed();
+                 onBackPressed();
             }
         });
 
     }
 
     public void showColorizer() {
-//        final ColorPicker cp = new ColorPicker(this, Color.red(selectedColorRGB), Color.green(selectedColorRGB), Color.blue(selectedColorRGB));
-//        cp.show();
-//        Button okColor = (Button) cp.findViewById(R.id.okColorButton);
-//
-//        okColor.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                selectedColorR = cp.getRed();
-//                selectedColorG = cp.getGreen();
-//                selectedColorB = cp.getBlue();
-//                selectedColorRGB = cp.getColor();
-//                pieChartSelectedcolor.setBackgroundColor(selectedColorRGB);
-//                cp.dismiss();
-//                Log.d("Color", selectedColorR + "");
-//                Log.d("Color", selectedColorG + "");
-//                Log.d("Color", selectedColorB + "");
-//                Log.d("Color", selectedColorRGB + "");
-//            }
-//        });
         ColorPickerDialog.newBuilder()
                 .setDialogType(ColorPickerDialog.TYPE_CUSTOM)
                 .setAllowPresets(false)
@@ -284,9 +253,24 @@ public class BarPointNew extends AppCompatActivity implements ColorPickerDialogL
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(this, BarGraphNew.class);
-        finish();
-        startActivity(intent);
+        if (bundle2 != null) {
+            String n = name.getText().toString();
+            Float d = Float.parseFloat(data.getText().toString());
+            int c = selectedColorRGB;
+            Intent intent = new Intent(getApplicationContext(), BarGraphNew.class);
+            intent.putExtra("name", n);
+            intent.putExtra("data", d);
+            intent.putExtra("color", c);
+            intent.putExtra("edit",true);
+            finish();
+            startActivity(intent);
+
+        }
+        else{
+            Intent intent = new Intent(this, BarGraphNew.class);
+            finish();
+            startActivity(intent);
+        }
 
     }
 }

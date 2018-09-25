@@ -1,12 +1,16 @@
 package com.example.suyash.graph;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -81,7 +85,7 @@ public class LineGraphEntryAdapter extends RecyclerView.Adapter<LineGraphEntryAd
 
     class LineGraphHolder extends RecyclerView.ViewHolder {
 
-        ImageButton delete;
+        ImageButton menu;
         TextView x_dis, y_dis;
         Context context;
 
@@ -90,13 +94,36 @@ public class LineGraphEntryAdapter extends RecyclerView.Adapter<LineGraphEntryAd
             context = itemView.getContext();
             x_dis = itemView.findViewById(R.id.x_val);
             y_dis = itemView.findViewById(R.id.y_val);
-            delete = itemView.findViewById(R.id.delete_pt);
+            menu = itemView.findViewById(R.id.delete_pt);
 
-            delete.setOnClickListener(new View.OnClickListener() {
+            menu.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    list.remove(getAdapterPosition());
-                    notifyItemRemoved(getAdapterPosition());
+                    PopupMenu popupMenu = new PopupMenu(context, menu);
+                    popupMenu.inflate(R.menu.bar_graph_entries_menu);
+                    popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                        @Override
+                        public boolean onMenuItemClick(MenuItem item) {
+                            switch (item.getItemId()) {
+                                case R.id.edit:
+                                    Intent intent = new Intent(itemView.getContext(), LinePointNew.class);
+                                    intent.putExtra("x", list.get(getAdapterPosition()).getX());
+                                    intent.putExtra("y", list.get(getAdapterPosition()).getY());
+                                    intent.putExtra("edit",true);
+                                    list.remove(getAdapterPosition());
+                                    notifyItemRemoved(getAdapterPosition());
+                                    ((Activity)context).finish();
+                                    itemView.getContext().startActivity(intent);
+                                    break;
+                                case R.id.delete:
+                                    list.remove(getAdapterPosition());
+                                    notifyItemRemoved(getAdapterPosition());
+                                    return true;
+                            }
+                            return false;
+                        }
+                    });
+                    popupMenu.show();
                 }
             });
         }

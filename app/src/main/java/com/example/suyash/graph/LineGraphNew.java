@@ -33,6 +33,11 @@ public class LineGraphNew extends AppCompatActivity {
             line_graph_name = "";
         }
 
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null && bundle.getBoolean("edit")){
+            lineGraphPts.add(new LineGraphEntryModel(bundle.getFloat("x"),bundle.getFloat("y")));
+        }
+
         lineGraphPtsNumber = lineGraphPts.size();
 
         ((EditText) findViewById(R.id.lineGraphTitleEditText)).setText(line_graph_name);

@@ -25,6 +25,8 @@ public class PieChartAddEntry extends AppCompatActivity implements ColorPickerDi
     int defaultColor;
     boolean n = false, p = false, isClickable = false;
 
+    Bundle bundle2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +49,7 @@ public class PieChartAddEntry extends AppCompatActivity implements ColorPickerDi
         selectedColorRGB = getResources().getColor(R.color.grey);
 
         final Bundle bundle = getIntent().getExtras();
+        bundle2 = bundle;
         if (bundle != null) {
             defaultName = bundle.get("editName").toString();
             name.setText(defaultName);
@@ -64,18 +67,7 @@ public class PieChartAddEntry extends AppCompatActivity implements ColorPickerDi
         close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (bundle != null) {
-                    String n = defaultName;
-                    Double p = Double.valueOf(defaultPercentage);
-                    int c = defaultColor;
-                    Intent intent = new Intent(getApplicationContext(), PieChartNew.class);
-                    intent.putExtra("name", n);
-                    intent.putExtra("percentage", p);
-                    intent.putExtra("color", c);
-                    finish();
-                    startActivity(intent);
-
-                } else onBackPressed();
+                onBackPressed();
             }
         });
         name.addTextChangedListener(new TextWatcher() {
@@ -253,9 +245,23 @@ public class PieChartAddEntry extends AppCompatActivity implements ColorPickerDi
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(this, PieChartNew.class);
-        finish();
-        startActivity(intent);
+        if (bundle2 != null) {
+            String n = defaultName;
+            Double p = Double.valueOf(defaultPercentage);
+            int c = defaultColor;
+            Intent intent = new Intent(getApplicationContext(), PieChartNew.class);
+            intent.putExtra("name", n);
+            intent.putExtra("percentage", p);
+            intent.putExtra("color", c);
+            finish();
+            startActivity(intent);
+
+        }
+        else{
+            Intent intent = new Intent(this, PieChartNew.class);
+            finish();
+            startActivity(intent);
+        }
 
     }
 }

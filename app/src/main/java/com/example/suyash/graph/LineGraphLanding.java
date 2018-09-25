@@ -23,6 +23,7 @@ public class LineGraphLanding extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), LineGraphNew.class);
+                intent.putExtra("edit",false);
                 lineGraphPtsNumber = 0;
                 finish();
                 startActivity(intent);
