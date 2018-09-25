@@ -7,8 +7,9 @@
     android:orientation="vertical"
     tools:context="com.example.suyash.graph.LineGraphDisplay">
 
+
+
     <android.support.design.widget.AppBarLayout
-        android:id="@+id/appBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay">
@@ -18,22 +19,32 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
+            android:contentInsetEnd="0dp"
+            android:contentInsetLeft="0dp"
+            android:contentInsetRight="0dp"
+            android:contentInsetStart="0dp"
+            app:contentInsetEnd="0dp"
+            app:contentInsetLeft="0dp"
+            app:contentInsetRight="0dp"
+            app:contentInsetStart="0dp"
             app:popupTheme="@style/AppTheme.PopupOverlay">
+
+
 
             <ImageButton
                 android:id="@+id/lineGraphDisplayBack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="#00000011"
-                android:src="@drawable/ic_arrow_back_white_24dp" />
+                android:layout_gravity="start"
+                android:backgroundTint="#00000011"
+                android:src="@drawable/ic_arrow_back_black_24dp" />
 
             <TextView
                 android:id="@+id/line_graph_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginBottom="14dp"
-                android:layout_marginLeft="125dp"
-                android:layout_marginRight="125dp"
                 android:layout_marginTop="14dp"
                 android:text="@string/line_graph"
                 android:textColor="@color/colorAccent"
@@ -41,11 +52,12 @@
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="end"
                 android:id="@+id/saveImage"
                 android:background="#00000011"
-                android:layout_gravity="end"
                 android:layout_margin="8dp"
                 android:src="@drawable/ic_save_white_24dp"/>
+
 
         </android.support.v7.widget.Toolbar>
 
