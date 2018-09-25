@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -16,19 +17,13 @@ public class LinePointNew extends AppCompatActivity {
 
     boolean isClickable = false;
     boolean xf = false, yf = false;
+    TextView xText,yText;
+    Bundle bundle2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_line_point_new);
-
-        ImageButton crossLinePoint = findViewById(R.id.crossLinePoint);
-        crossLinePoint.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onBackPressed();
-            }
-        });
 
 
         final Button addLinePointEntry = findViewById(R.id.addLinePointEntry);
@@ -43,8 +38,26 @@ public class LinePointNew extends AppCompatActivity {
             }
         });
 
-        EditText xInputEditText = findViewById(R.id.xInput);
-        EditText yInputEditText = findViewById(R.id.yInput);
+        final EditText xInputEditText = findViewById(R.id.xInput);
+        final EditText yInputEditText = findViewById(R.id.yInput);
+        xText = xInputEditText;
+        yText = yInputEditText;
+        final Bundle bundle = getIntent().getExtras();
+        bundle2 = bundle;
+        if (bundle != null && bundle.getBoolean("edit")) {
+            xInputEditText.setText(Float.toString(bundle.getFloat("x")));
+            yInputEditText.setText(Float.toString(bundle.getFloat("y")));
+        }
+
+        ImageButton crossLinePoint = findViewById(R.id.crossLinePoint);
+        crossLinePoint.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                onBackPressed();
+
+            }
+        });
 
         xInputEditText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -142,7 +155,11 @@ public class LinePointNew extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        Intent intent = new Intent(getApplicationContext(), LineGraphNew.class);
+        intent.putExtra("x",Float.parseFloat(xText.getText().toString()));
+        intent.putExtra("y",Float.parseFloat(yText.getText().toString()));
+        intent.putExtra("edit",true);
         finish();
-        startActivity(new Intent(this, LineGraphNew.class));
+        startActivity(intent);
     }
 }

@@ -34,6 +34,11 @@ public class BarGraphNew extends AppCompatActivity {
             bar_graph_name = "";
         }
 
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null && bundle.getBoolean("edit")){
+            barGraphPts.add(new BarGraphEntryModel(bundle.getString("name"),bundle.getFloat("data"),bundle.getInt("color")));
+        }
+
         barGraphPtsNumber = barGraphPts.size();
 
         ((EditText) findViewById(R.id.lineGraphTitleEditText)).setText(bar_graph_name);
