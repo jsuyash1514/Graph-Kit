@@ -47,6 +47,7 @@ public class LinePointNew extends AppCompatActivity {
         if (bundle != null && bundle.getBoolean("edit")) {
             xInputEditText.setText(Float.toString(bundle.getFloat("x")));
             yInputEditText.setText(Float.toString(bundle.getFloat("y")));
+            xf = yf = true;
         }
 
         ImageButton crossLinePoint = findViewById(R.id.crossLinePoint);
