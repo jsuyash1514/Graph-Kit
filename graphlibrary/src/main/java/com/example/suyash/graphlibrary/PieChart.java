@@ -36,6 +36,7 @@ public class PieChart extends View {
         TypedArray typedArray = context.getTheme().obtainStyledAttributes(attrs, R.styleable.PieChart, 0, 0);
         LABEL_SIZE = typedArray.getInteger(R.styleable.PieChart_label_text_size, 40);
 
+
         dataPoints = new ArrayList<>();
         quantityList = new ArrayList<>();
 
@@ -46,6 +47,7 @@ public class PieChart extends View {
 
         this.width = width;
         this.height = height;
+
 
         dataPoints = new ArrayList<>();
 
@@ -102,6 +104,7 @@ public class PieChart extends View {
         mCanvas.drawBitmap(bitmap2, 0, height / 2, mBitmapPaint);
         canvas.drawBitmap(mBitmap,0,0,mBitmapPaint);
     }
+
 
 
     public void setPoints(ArrayList<DataPoint> pointList) {

@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -20,6 +21,7 @@ import android.widget.Toast;
 import com.example.suyash.graphlibrary.DataPoint;
 import com.example.suyash.graphlibrary.LineGraph;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -33,6 +35,7 @@ import static com.example.suyash.graph.LineGraphNew.line_graph_name;
 public class LineGraphDisplay extends AppCompatActivity {
 
     Bitmap saveBitmap;
+    int w = 0,h = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +45,8 @@ public class LineGraphDisplay extends AppCompatActivity {
         ((TextView) findViewById(R.id.line_graph_name)).setText(line_graph_name);
 
         final LineGraph lineGraph = findViewById(R.id.lineGraph);
+        w = lineGraph.getWidth();
+        h = lineGraph.getHeight();
         ArrayList<DataPoint> points = new ArrayList<>();
 
         for (LineGraphEntryModel entry : LineGraphNew.lineGraphPts) {
@@ -76,6 +81,46 @@ public class LineGraphDisplay extends AppCompatActivity {
         });
     }
 
+    public static int calculateInSampleSize(BitmapFactory.Options options, int reqWidth, int reqHeight) {
+        // Raw height and width of image
+        final int height = options.outHeight;
+        final int width = options.outWidth;
+        int inSampleSize = 1;
+
+        if (height > reqHeight || width > reqWidth) {
+
+            final int halfHeight = height / 2;
+            final int halfWidth = width / 2;
+
+            // Calculate the largest inSampleSize value that is a power of 2 and keeps both
+            // height and width larger than the requested height and width.
+            Log.d("TAG",inSampleSize+"");
+            Log.d("TAG",halfHeight+"");
+            Log.d("TAG",halfWidth+"");
+            while ((halfHeight / inSampleSize) >= reqHeight
+                    && (halfWidth / inSampleSize) >= reqWidth) {
+                inSampleSize *= 2;
+            }
+        }
+
+        return inSampleSize;
+    }
+
+    public static Bitmap decodeSampledBitmap(byte[] data, int reqWidth, int reqHeight) {
+
+        // First decode with inJustDecodeBounds=true to check dimensions
+        final BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+//        BitmapFactory.decodeResource(res, resId, options);
+        BitmapFactory.decodeByteArray(data,0,data.length,options);
+        // Calculate inSampleSize
+        options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
+
+        // Decode bitmap with inSampleSize set
+        options.inJustDecodeBounds = false;
+        return BitmapFactory.decodeByteArray(data,0,data.length,options);
+    }
+
     public void saveImage()throws Exception{
 
         boolean perm = isWriteStoragePermissionGranted();
@@ -90,7 +135,13 @@ public class LineGraphDisplay extends AppCompatActivity {
             try{
                 fOut = new FileOutputStream(file);
             }catch (Exception e){e.printStackTrace();}
-            (saveBitmap).compress(Bitmap.CompressFormat.JPEG,100,fOut);
+
+//            (saveBitmap).compress(Bitmap.CompressFormat.JPEG,100,fOut);
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            saveBitmap.compress(Bitmap.CompressFormat.JPEG,100,stream);
+            byte[] byteArray = stream.toByteArray();
+            (decodeSampledBitmap(byteArray,w,h)).compress(Bitmap.CompressFormat.JPEG,100,fOut);
+
             try{
                 fOut.flush();
             }catch (Exception e){e.printStackTrace();}

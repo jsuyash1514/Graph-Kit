@@ -254,9 +254,13 @@ public class LineGraph extends View {
 
         int nD = getNumberOfDigits(maxY);
         float v;
-        if (nD > 1) {
+        if (nD > 1 && maxY <= Math.pow(10,nD - 1)) {
+            v = (float) Math.pow(10, nD - 2);
+        }
+        else if (nD > 1 ) {
             v = (float) Math.pow(10, nD - 1);
-        } else {
+        }
+        else {
             v = (float) Math.pow(10, 0);
         }
 
@@ -275,9 +279,13 @@ public class LineGraph extends View {
         }
 
         nD = getNumberOfDigits(maxX);
-        if (nD > 1) {
+        if (nD > 1 && maxX <= Math.pow(10,nD - 1)) {
             v = (float) Math.pow(10, nD - 2);
-        } else {
+        }
+        else if (nD > 1 ) {
+            v = (float) Math.pow(10, nD - 1);
+        }
+        else {
             v = (float) Math.pow(10, 0);
         }
 
@@ -368,6 +376,7 @@ public class LineGraph extends View {
     }
 
     public Bitmap getBitmap() {
+
         return mBitmap;
     }
 }
