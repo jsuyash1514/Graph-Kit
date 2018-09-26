@@ -9,6 +9,7 @@
         <attr name="graph_color"/>
         <attr name="line_thickness"/>
         <attr name="label_text_size"/>
+        <attr name="grid_color" format="color"/>
     </declare-styleable>
     <declare-styleable name="BarGraph">
         <attr name="label_text_size"/>

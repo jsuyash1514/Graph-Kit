@@ -30,6 +30,7 @@ public class LineGraph extends View {
     private ArrayList<DataPoint> pointList, pointListScaled;
     private float vW = 0, vH = 0, sW, sH, xDraw = 0, xStart = 0, xDrawStart = 0, yStart = 0, yDrawStart = 0, yDraw = 0, delta;
     private int color;
+    private int GRID_COLOR = Color.LTGRAY;
     private int originShift = 50;
     private int topScaleMargin = 10;
     private int rightScaleMargin = 20;
@@ -66,6 +67,7 @@ public class LineGraph extends View {
         SCROLLABLE_X = typedArray.getBoolean(R.styleable.LineGraph_scrollablex, false);
         SCROLLABLE_Y = typedArray.getBoolean(R.styleable.LineGraph_scrollabley, false);
         color = typedArray.getColor(R.styleable.LineGraph_graph_color, Color.BLACK);
+        GRID_COLOR = typedArray.getColor(R.styleable.LineGraph_grid_color,Color.LTGRAY);
         Log.d("color", color + "");
         thickness = typedArray.getFloat(R.styleable.LineGraph_line_thickness, 8.0f);
         LABEL_SIZE = typedArray.getInteger(R.styleable.LineGraph_label_text_size, 20);
@@ -265,7 +267,7 @@ public class LineGraph extends View {
         }
 
         for (float i = v / scaleY; i < sH; i += (v / scaleY)) {
-            mPaint.setColor(Color.LTGRAY);
+            mPaint.setColor(GRID_COLOR);
             mPaint.setStrokeWidth(thickness / 2);
             mCanvas.drawLine(0, -i, sW, -i, mPaint);
             mPaint.setStrokeWidth(thickness);
@@ -290,7 +292,7 @@ public class LineGraph extends View {
         }
 
         for (float i = v / scaleX; i < sW; i += (v / scaleX)) {
-            mPaint.setColor(Color.LTGRAY);
+            mPaint.setColor(GRID_COLOR);
             mPaint.setStrokeWidth(thickness / 2);
             mCanvas.drawLine(i, 0, i, -sH, mPaint);
             mPaint.setStrokeWidth(thickness);
@@ -353,6 +355,11 @@ public class LineGraph extends View {
                 sH = y * 100;
             }
         }
+    }
+
+    public void setGridColor(int c){
+        GRID_COLOR = c;
+        invalidate();
     }
 
     private int getNumberOfDigits(float n) {
