@@ -31,16 +31,14 @@ There are two ways you can use this Graph: through XML or Java.
 <img src="https://github.com/jsuyash1514/Graph-Kit/blob/master/images/line_graph.png" align = "right" height = "300px">
 
 ```xml
-<com.example.suyash.graphlibrary.LineGraph
+<com.example.suyash.graphkit.LineGraph
         android:id="@+id/lineGraph"
         android:layout_width="700dp"
         android:layout_height="700dp"
         app:graph_color="#ff0000"
         app:label_text_size="25"
         app:line_thickness="8.0"
-        app:scrollablex="true"
-       >
-    </com.example.suyash.graphlibrary.LineGraph>    
+        app:scrollablex="true"/>    
 ```
 ---
 Then use the View in your java file as follows:<br/>
@@ -71,13 +69,12 @@ There are two ways you can use this Graph: through XML or Java.
 <img src="https://github.com/jsuyash1514/Graph-Kit/blob/master/images/bar_graph.png" align = "right" height = "300px">
 
 ```xml
-<com.example.suyash.graphlibrary.BarGraph
+<com.example.suyash.graphkit.BarGraph
         android:layout_width="700dp"
         android:layout_height="700dp"
         android:id="@+id/barGraph"
-        app:label_text_size="25"
-        >
-        </com.example.suyash.graphlibrary.BarGraph>
+        app:label_text_size="25" />
+       
 ```
 ---
 Then use the View in your java file as follows:<br/>
@@ -108,11 +105,11 @@ To add Data to your Bar Graph create an ArrayList of DataPoint and add it as sho
  <img src="https://github.com/jsuyash1514/Graph-Kit/blob/master/images/pie_chart.png" align = "right" height = "300px">
  
  ```xml
- <com.example.suyash.graphlibrary.PieChart
+ <com.example.suyash.graphkit.PieChart
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/grid_pie"
-        app:label_text_size="40">
+        app:label_text_size="40"/>
 
  ```
  ---
@@ -145,7 +142,7 @@ layout.addView(pieChart);
  <img src="https://github.com/jsuyash1514/Graph-Kit/blob/master/images/edit_graph.gif" align = "right" height = "300px">
  
  ```xml
- <com.example.library.EditGraphView
+ <com.example.suyash.graphkit.EditGraphView
         android:id="@+id/editgraphview"
         android:layout_width="350dp"
         android:layout_height="350dp"
@@ -189,7 +186,10 @@ layout.addView(pieChart);
 
 | Property                    | Default values | Java method             | Attribute       | Description                                                                                                                   |
 |-----------------------------|----------------|-------------------------|-----------------|-------------------------------------------------------------------------------------------------------------------------------|
-| Data Points                 | NA             | .setPoints(...)     | NA    | Data Points to plot |                                                                                               
+| Data Points                 | NA             | .setPoints(...)     | NA    | Data Points to plot | 
+
+| Label Text Size                    | 20          | .setLabelTextSize(...)       | label_text_size        | Size of text used in the label markings  |
+
 
 ## EditGraphView
 
