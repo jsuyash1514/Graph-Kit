@@ -187,7 +187,6 @@ layout.addView(pieChart);
 | Property                    | Default values | Java method             | Attribute       | Description                                                                                                                   |
 |-----------------------------|----------------|-------------------------|-----------------|-------------------------------------------------------------------------------------------------------------------------------|
 | Data Points                 | NA             | .setPoints(...)     | NA    | Data Points to plot | 
-
 | Label Text Size                    | 20          | .setLabelTextSize(...)       | label_text_size        | Size of text used in the label markings  |
 
 
