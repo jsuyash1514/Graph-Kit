@@ -8,6 +8,8 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -42,7 +44,7 @@ public class BarGraphNew extends AppCompatActivity {
         barGraphPtsNumber = barGraphPts.size();
 
         ((EditText) findViewById(R.id.lineGraphTitleEditText)).setText(bar_graph_name);
-
+        
         Button addPointButton = findViewById(R.id.addBarPointEntry);
         addPointButton.setOnClickListener(new View.OnClickListener() {
             @Override
