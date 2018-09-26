@@ -31,7 +31,7 @@ There are two ways you can use this Graph: through XML or Java.
 <img src="https://github.com/jsuyash1514/Graph-Kit/blob/master/images/line_graph.png" align = "right" height = "300px">
 
 ```xml
-<com.example.suyash.graphkit.LineGraph
+<com.mdgiitr.suyash.graphkit.LineGraph
         android:id="@+id/lineGraph"
         android:layout_width="700dp"
         android:layout_height="700dp"
@@ -69,7 +69,7 @@ There are two ways you can use this Graph: through XML or Java.
 <img src="https://github.com/jsuyash1514/Graph-Kit/blob/master/images/bar_graph.png" align = "right" height = "300px">
 
 ```xml
-<com.example.suyash.graphkit.BarGraph
+<com.mdgiitr.suyash.graphkit.BarGraph
         android:layout_width="700dp"
         android:layout_height="700dp"
         android:id="@+id/barGraph"
@@ -105,7 +105,7 @@ To add Data to your Bar Graph create an ArrayList of DataPoint and add it as sho
  <img src="https://github.com/jsuyash1514/Graph-Kit/blob/master/images/pie_chart.png" align = "right" height = "300px">
  
  ```xml
- <com.example.suyash.graphkit.PieChart
+ <com.mdgiitr.suyash.graphkit.PieChart
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/grid_pie"
@@ -142,7 +142,7 @@ layout.addView(pieChart);
  <img src="https://github.com/jsuyash1514/Graph-Kit/blob/master/images/edit_graph.gif" align = "right" height = "300px">
  
  ```xml
- <com.example.suyash.graphkit.EditGraphView
+ <com.mdgiitr.suyash.graphkit.EditGraphView
         android:id="@+id/editgraphview"
         android:layout_width="350dp"
         android:layout_height="350dp"
