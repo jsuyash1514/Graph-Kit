@@ -1,4 +1,4 @@
-package com.example.suyash.graphlibrary;
+package com.example.suyash.graphkit;
 
 import android.graphics.PointF;
 

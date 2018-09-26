@@ -1,4 +1,4 @@
-package com.example.suyash.graphlibrary;
+package com.example.suyash.graphkit;
 
 import android.content.Context;
 import android.content.res.TypedArray;

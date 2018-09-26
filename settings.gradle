@@ -1,1 +1,1 @@
-include ':app', ':graphlibrary'
+include ':app', ':graphkit'

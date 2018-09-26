@@ -1,4 +1,4 @@
-package com.example.suyash.graphlibrary;
+package com.example.suyash.graphkit;
 
 /**
  * Created by suyash on 6/11/18.

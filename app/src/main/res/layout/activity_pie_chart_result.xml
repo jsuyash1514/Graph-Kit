@@ -62,13 +62,13 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <com.example.suyash.graphlibrary.PieChart
+    <com.example.suyash.graphkit.PieChart
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/pie_chart"
         custom:label_text_size="40">
 
-    </com.example.suyash.graphlibrary.PieChart>
+    </com.example.suyash.graphkit.PieChart>
 
 
 </LinearLayout>
