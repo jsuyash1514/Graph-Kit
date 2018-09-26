@@ -81,45 +81,6 @@ public class LineGraphDisplay extends AppCompatActivity {
         });
     }
 
-    public static int calculateInSampleSize(BitmapFactory.Options options, int reqWidth, int reqHeight) {
-        // Raw height and width of image
-        final int height = options.outHeight;
-        final int width = options.outWidth;
-        int inSampleSize = 1;
-
-        if (height > reqHeight || width > reqWidth) {
-
-            final int halfHeight = height / 2;
-            final int halfWidth = width / 2;
-
-            // Calculate the largest inSampleSize value that is a power of 2 and keeps both
-            // height and width larger than the requested height and width.
-            Log.d("TAG",inSampleSize+"");
-            Log.d("TAG",halfHeight+"");
-            Log.d("TAG",halfWidth+"");
-            while ((halfHeight / inSampleSize) >= reqHeight
-                    && (halfWidth / inSampleSize) >= reqWidth) {
-                inSampleSize *= 2;
-            }
-        }
-
-        return inSampleSize;
-    }
-
-    public static Bitmap decodeSampledBitmap(byte[] data, int reqWidth, int reqHeight) {
-
-        // First decode with inJustDecodeBounds=true to check dimensions
-        final BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inJustDecodeBounds = true;
-//        BitmapFactory.decodeResource(res, resId, options);
-        BitmapFactory.decodeByteArray(data,0,data.length,options);
-        // Calculate inSampleSize
-        options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
-
-        // Decode bitmap with inSampleSize set
-        options.inJustDecodeBounds = false;
-        return BitmapFactory.decodeByteArray(data,0,data.length,options);
-    }
 
     public void saveImage()throws Exception{
 
@@ -136,11 +97,7 @@ public class LineGraphDisplay extends AppCompatActivity {
                 fOut = new FileOutputStream(file);
             }catch (Exception e){e.printStackTrace();}
 
-//            (saveBitmap).compress(Bitmap.CompressFormat.JPEG,100,fOut);
-            ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            saveBitmap.compress(Bitmap.CompressFormat.JPEG,100,stream);
-            byte[] byteArray = stream.toByteArray();
-            (decodeSampledBitmap(byteArray,w,h)).compress(Bitmap.CompressFormat.JPEG,100,fOut);
+            (saveBitmap).compress(Bitmap.CompressFormat.JPEG,100,fOut);
 
             try{
                 fOut.flush();

@@ -162,9 +162,9 @@
                 android:id="@+id/pieChartSelectedColor"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
-                android:background="@color/grey"
                 android:layout_marginStart="26dp"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:background="@color/grey" />
 
             <ImageButton
                 android:id="@+id/pieChartColorizer"
@@ -185,6 +185,6 @@
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
         android:text="@string/add"
-        android:textSize="18sp"
-        android:textColor="@color/colorAccent" />
+        android:textColor="@color/colorAccent"
+        android:textSize="18sp" />
 </LinearLayout>

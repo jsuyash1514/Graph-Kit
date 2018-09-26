@@ -31,12 +31,14 @@ public class BarGraphNew extends AppCompatActivity {
 
         if (barGraphPtsNumber == 0) {
             barGraphPts = new ArrayList<>();
-            bar_graph_name = "";
         }
 
         Bundle bundle = getIntent().getExtras();
-        if (bundle != null && bundle.getBoolean("edit")){
-            barGraphPts.add(new BarGraphEntryModel(bundle.getString("name"),bundle.getFloat("data"),bundle.getInt("color")));
+        if (bundle != null && bundle.getBoolean("edit")) {
+            barGraphPts.add(new BarGraphEntryModel(bundle.getString("name"), bundle.getFloat("data"), bundle.getInt("color")));
+        }
+        if (bundle != null && bundle.getBoolean("new")) {
+            bar_graph_name = "";
         }
 
         barGraphPtsNumber = barGraphPts.size();

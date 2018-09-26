@@ -23,6 +23,7 @@ public class BarGraphLanding extends AppCompatActivity {
             public void onClick(View view) {
                 barGraphPtsNumber = 0;
                 Intent intent = new Intent(getApplicationContext(), BarGraphNew.class);
+                intent.putExtra("new", true);
                 finish();
                 startActivity(intent);
             }
@@ -39,7 +40,7 @@ public class BarGraphLanding extends AppCompatActivity {
     }
 
     @Override
-    public void onBackPressed(){
+    public void onBackPressed() {
         finish();
         startActivity(new Intent(this, MainActivity.class));
     }

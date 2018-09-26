@@ -18,7 +18,8 @@ import com.jaredrummler.android.colorpicker.ColorPickerDialogListener;
 import static com.mdgiitr.suyash.graph.BarGraphNew.barGraphPts;
 import static com.mdgiitr.suyash.graph.BarGraphNew.barGraphPtsNumber;
 
-public class BarPointNew extends AppCompatActivity implements ColorPickerDialogListener{
+public class BarPointNew extends AppCompatActivity implements ColorPickerDialogListener {
+    private static final int DIALOG_ID = 0;
     int selectedColorR, selectedColorG, selectedColorB, selectedColorRGB;
     ImageButton DarkBlue, LightBlue, Red, Yellow, Green, Grey, pieChartSelectedcolor, colorize, close;
     EditText name, data;
@@ -27,7 +28,6 @@ public class BarPointNew extends AppCompatActivity implements ColorPickerDialogL
     Float defaultData;
     int defaultColor;
     boolean n = false, p = false, isClickable = false;
-    private static final int DIALOG_ID = 0;
     Bundle bundle2;
 
     @Override
@@ -225,7 +225,7 @@ public class BarPointNew extends AppCompatActivity implements ColorPickerDialogL
         close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                 onBackPressed();
+                onBackPressed();
             }
         });
 
@@ -242,12 +242,14 @@ public class BarPointNew extends AppCompatActivity implements ColorPickerDialogL
     }
 
     @Override
-    public void onColorSelected(int dialogid,int color){
+    public void onColorSelected(int dialogid, int color) {
         selectedColorRGB = color;
         pieChartSelectedcolor.setBackgroundColor(selectedColorRGB);
     }
+
     @Override
-    public void onDialogDismissed(int dialogid){}
+    public void onDialogDismissed(int dialogid) {
+    }
 
     @Override
     public void onBackPressed() {
@@ -259,12 +261,12 @@ public class BarPointNew extends AppCompatActivity implements ColorPickerDialogL
             intent.putExtra("name", n);
             intent.putExtra("data", d);
             intent.putExtra("color", c);
-            intent.putExtra("edit",true);
+            intent.putExtra("edit", true);
+            intent.putExtra("new", false);
             finish();
             startActivity(intent);
 
-        }
-        else{
+        } else {
             Intent intent = new Intent(this, BarGraphNew.class);
             finish();
             startActivity(intent);
