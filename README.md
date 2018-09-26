@@ -18,10 +18,6 @@ and also get normalized points from the curve.
 * [Guidelines for Contributors](#guidelines-for-contributors)
 * [License](#license)
 
-# Usage
-
-
-
 # Features
 
 ## Line Graph Usage
