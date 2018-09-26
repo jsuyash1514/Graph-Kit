@@ -17,7 +17,7 @@ public class LinePointNew extends AppCompatActivity {
 
     boolean isClickable = false;
     boolean xf = false, yf = false;
-    TextView xText,yText;
+    TextView xText, yText;
     Bundle bundle2;
 
     @Override
@@ -159,11 +159,11 @@ public class LinePointNew extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(getApplicationContext(), LineGraphNew.class);
-        try{
-            intent.putExtra("x",Float.parseFloat(xText.getText().toString()));
-            intent.putExtra("y",Float.parseFloat(yText.getText().toString()));
-            intent.putExtra("edit",true);
-        }catch (Exception e){
+        try {
+            intent.putExtra("x", Float.parseFloat(xText.getText().toString()));
+            intent.putExtra("y", Float.parseFloat(yText.getText().toString()));
+            intent.putExtra("edit", true);
+        } catch (Exception e) {
             e.printStackTrace();
         }
         finish();

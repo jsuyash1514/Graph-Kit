@@ -67,7 +67,7 @@ public class LineGraph extends View {
         SCROLLABLE_X = typedArray.getBoolean(R.styleable.LineGraph_scrollablex, false);
         SCROLLABLE_Y = typedArray.getBoolean(R.styleable.LineGraph_scrollabley, false);
         color = typedArray.getColor(R.styleable.LineGraph_graph_color, Color.BLACK);
-        GRID_COLOR = typedArray.getColor(R.styleable.LineGraph_grid_color,Color.LTGRAY);
+        GRID_COLOR = typedArray.getColor(R.styleable.LineGraph_grid_color, Color.LTGRAY);
         Log.d("color", color + "");
         thickness = typedArray.getFloat(R.styleable.LineGraph_line_thickness, 8.0f);
         LABEL_SIZE = typedArray.getInteger(R.styleable.LineGraph_label_text_size, 20);
@@ -137,11 +137,11 @@ public class LineGraph extends View {
 
 
                 String mark = Float.toString(getMaxY());
-                mPaint.setStrokeWidth(thickness/2);
+                mPaint.setStrokeWidth(thickness / 2);
                 Rect bounds = new Rect();
                 mPaint.getTextBounds(mark, 0, mark.length(), bounds);
-                originShift = 2*bounds.width() + 50;
-                Log.d("TAG",originShift+"");
+                originShift = 2 * bounds.width() + 50;
+                Log.d("TAG", originShift + "");
 
                 mCanvas.translate(originShift, -originShift);
                 drawGraph();
@@ -257,7 +257,7 @@ public class LineGraph extends View {
         float maxX = getMaxX();
         float maxY = getMaxY();
 
-        topScaleMargin = rightScaleMargin = originShift-10;
+        topScaleMargin = rightScaleMargin = originShift - 10;
 
         float scaleX = maxX / (sW - originShift - rightScaleMargin);
         float scaleY = maxY / (sH - originShift - topScaleMargin);
@@ -268,13 +268,11 @@ public class LineGraph extends View {
 
         int nD = getNumberOfDigits(maxY);
         float v;
-        if (nD > 1 && maxY <= Math.pow(10,nD - 1)) {
+        if (nD > 1 && maxY <= Math.pow(10, nD - 1)) {
             v = (float) Math.pow(10, nD - 2);
-        }
-        else if (nD > 1 ) {
+        } else if (nD > 1) {
             v = (float) Math.pow(10, nD - 1);
-        }
-        else {
+        } else {
             v = (float) Math.pow(10, 0);
         }
 
@@ -293,13 +291,11 @@ public class LineGraph extends View {
         }
 
         nD = getNumberOfDigits(maxX);
-        if (nD > 1 && maxX <= Math.pow(10,nD - 1)) {
+        if (nD > 1 && maxX <= Math.pow(10, nD - 1)) {
             v = (float) Math.pow(10, nD - 2);
-        }
-        else if (nD > 1 ) {
+        } else if (nD > 1) {
             v = (float) Math.pow(10, nD - 1);
-        }
-        else {
+        } else {
             v = (float) Math.pow(10, 0);
         }
 
@@ -369,7 +365,7 @@ public class LineGraph extends View {
         }
     }
 
-    public void setGridColor(int c){
+    public void setGridColor(int c) {
         GRID_COLOR = c;
         invalidate();
     }

@@ -50,7 +50,7 @@ public class FreeCurveLanding extends AppCompatActivity {
             }
         });
 
-        ImageButton back  = findViewById(R.id.editGraphBack);
+        ImageButton back = findViewById(R.id.editGraphBack);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,7 +84,7 @@ public class FreeCurveLanding extends AppCompatActivity {
     }
 
     @Override
-    public void onBackPressed(){
+    public void onBackPressed() {
         finish();
         startActivity(new Intent(this, MainActivity.class));
 

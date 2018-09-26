@@ -24,12 +24,11 @@ public class PieChart extends View {
 
     ArrayList<DataPoint> dataPoints;
     ArrayList<Float> quantityList;
-    float width=0, height=0;
-    private int LABEL_SIZE = 40;
+    float width = 0, height = 0;
     float diameter;
-
     Bitmap mBitmap;
     Canvas mCanvas;
+    private int LABEL_SIZE = 40;
 
     public PieChart(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -93,7 +92,7 @@ public class PieChart extends View {
 
         mBitmapPaint = new Paint(Paint.DITHER_FLAG);
 
-        mBitmap = Bitmap.createBitmap((int)width, (int)height, Bitmap.Config.ARGB_8888);
+        mBitmap = Bitmap.createBitmap((int) width, (int) height, Bitmap.Config.ARGB_8888);
         mCanvas = new Canvas(mBitmap);
         mCanvas.drawColor(Color.WHITE);
         Bitmap bitmap1 = drawPieChart();
@@ -102,34 +101,33 @@ public class PieChart extends View {
 //        canvas.drawBitmap(bitmap2, 0, height / 2, mBitmapPaint);
         mCanvas.drawBitmap(bitmap1, 0, 0, mBitmapPaint);
         mCanvas.drawBitmap(bitmap2, 0, height / 2, mBitmapPaint);
-        canvas.drawBitmap(mBitmap,0,0,mBitmapPaint);
+        canvas.drawBitmap(mBitmap, 0, 0, mBitmapPaint);
     }
 
 
-
     public void setPoints(ArrayList<DataPoint> pointList) {
-        float sum=0;
-        for(int i=0;i<pointList.size();i++){
-            sum+=pointList.get(i).getData();
+        float sum = 0;
+        for (int i = 0; i < pointList.size(); i++) {
+            sum += pointList.get(i).getData();
         }
-        for (int i=0;i<pointList.size();i++){
-            float per = (((pointList.get(i).getData())/sum)*100);
+        for (int i = 0; i < pointList.size(); i++) {
+            float per = (((pointList.get(i).getData()) / sum) * 100);
             DecimalFormat dec = new DecimalFormat("#0.00");
-            this.dataPoints.add(new DataPoint(pointList.get(i).getName(),Float.valueOf(dec.format(per)),pointList.get(i).getColor()));
+            this.dataPoints.add(new DataPoint(pointList.get(i).getName(), Float.valueOf(dec.format(per)), pointList.get(i).getColor()));
             this.quantityList.add(pointList.get(i).getData());
         }
         invalidate();
     }
 
     private Bitmap drawPieChart() {
-        if(height >= (2*width)) diameter = width;
-        else diameter = height/2;
-        Bitmap bitmap = Bitmap.createBitmap((int) width, (int) height/2, Bitmap.Config.ARGB_8888);
+        if (height >= (2 * width)) diameter = width;
+        else diameter = height / 2;
+        Bitmap bitmap = Bitmap.createBitmap((int) width, (int) height / 2, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
         canvas.drawColor(Color.WHITE);
         canvas.translate(canvas.getWidth() / 2, canvas.getHeight() / 2);
         RectF oval = new RectF();
-        oval.set(-28*diameter / 75, -diameter / 3, 22*diameter / 75, diameter / 3);
+        oval.set(-28 * diameter / 75, -diameter / 3, 22 * diameter / 75, diameter / 3);
         float startAngle = 0;
         for (int i = 0; i < dataPoints.size(); i++) {
             mPaint.setColor(dataPoints.get(i).getColor());
@@ -141,11 +139,11 @@ public class PieChart extends View {
     }
 
     private Bitmap drawIndex() {
-        if(height >= (2*width)) diameter = width;
-        else diameter = height/2;
-        Bitmap bitmap = Bitmap.createBitmap((int) width, (int) height/2, Bitmap.Config.ARGB_8888);
+        if (height >= (2 * width)) diameter = width;
+        else diameter = height / 2;
+        Bitmap bitmap = Bitmap.createBitmap((int) width, (int) height / 2, Bitmap.Config.ARGB_8888);
         Canvas index = new Canvas(bitmap);
-        mCanvas.translate(diameter/25,0);
+        mCanvas.translate(diameter / 25, 0);
         index.drawColor(Color.WHITE);
         mPaint.setAntiAlias(true);
         mPaint.setStyle(Paint.Style.FILL);
@@ -156,7 +154,7 @@ public class PieChart extends View {
             mPaint.setColor(dataPoints.get(i).getColor());
             index.drawCircle(diameter / 25, (diameter / 10) + (i * (diameter / 10)), diameter / 25, mPaint);
             mPaint.setColor(Color.BLACK);
-            index.drawText(dataPoints.get(i).getName() + " : "+ quantityList.get(i) + " : " + dataPoints.get(i).getData() + "% ", diameter / 10, (diameter / 8) + (i * (diameter / 10)), mPaint);
+            index.drawText(dataPoints.get(i).getName() + " : " + quantityList.get(i) + " : " + dataPoints.get(i).getData() + "% ", diameter / 10, (diameter / 8) + (i * (diameter / 10)), mPaint);
         }
         return bitmap;
 

@@ -29,7 +29,6 @@
             app:popupTheme="@style/AppTheme.PopupOverlay">
 
 
-
             <ImageButton
                 android:id="@+id/pieChartResultClose"
                 android:layout_width="wrap_content"
@@ -48,14 +47,15 @@
                 android:text="@string/pie_chart"
                 android:textColor="@color/colorAccent"
                 android:textSize="18sp" />
+
             <ImageButton
+                android:id="@+id/saveImage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
-                android:id="@+id/saveImage"
-                android:background="#00000011"
                 android:layout_margin="8dp"
-                android:src="@drawable/ic_save_white_24dp"/>
+                android:background="#00000011"
+                android:src="@drawable/ic_save_white_24dp" />
 
 
         </android.support.v7.widget.Toolbar>
@@ -63,9 +63,9 @@
     </android.support.design.widget.AppBarLayout>
 
     <com.mdgiitr.suyash.graphkit.PieChart
+        android:id="@+id/pie_chart"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/pie_chart"
         custom:label_text_size="40">
 
     </com.mdgiitr.suyash.graphkit.PieChart>

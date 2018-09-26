@@ -183,7 +183,7 @@ public class EditGraphView extends View {
         super.onDraw(canvas);
     }
 
-    public void resetGraph(){
+    public void resetGraph() {
 
 //        first_pt = new PointF();
 //        last_pt = new PointF();
@@ -200,7 +200,7 @@ public class EditGraphView extends View {
         vW = 0;
         flg = 0;
         invalidate();
-        Log.d("TAG","reset called");
+        Log.d("TAG", "reset called");
 
     }
 

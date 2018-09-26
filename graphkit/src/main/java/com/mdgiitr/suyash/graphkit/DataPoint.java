@@ -5,17 +5,17 @@ package com.mdgiitr.suyash.graphkit;
  */
 
 public class DataPoint {
-    float x,y;
+    float x, y;
     String name;
     float data;
     int color;
 
-    public DataPoint(float x, float y){
+    public DataPoint(float x, float y) {
         this.x = x;
         this.y = y;
     }
 
-    public DataPoint(String name, float data, int color){
+    public DataPoint(String name, float data, int color) {
         this.color = color;
         this.data = data;
         this.name = name;

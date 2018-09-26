@@ -256,8 +256,7 @@ public class PieChartAddEntry extends AppCompatActivity implements ColorPickerDi
             finish();
             startActivity(intent);
 
-        }
-        else{
+        } else {
             Intent intent = new Intent(this, PieChartNew.class);
             finish();
             startActivity(intent);

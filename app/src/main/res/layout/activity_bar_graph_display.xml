@@ -29,7 +29,6 @@
             app:popupTheme="@style/AppTheme.PopupOverlay">
 
 
-
             <ImageButton
                 android:id="@+id/barGraphDisplayBack"
                 android:layout_width="wrap_content"
@@ -48,20 +47,20 @@
                 android:text="@string/bar_graph"
                 android:textColor="@color/colorAccent"
                 android:textSize="18sp" />
+
             <ImageButton
+                android:id="@+id/saveImage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
-                android:id="@+id/saveImage"
-                android:background="#00000011"
                 android:layout_margin="8dp"
-                android:src="@drawable/ic_save_white_24dp"/>
+                android:background="#00000011"
+                android:src="@drawable/ic_save_white_24dp" />
 
 
         </android.support.v7.widget.Toolbar>
 
     </android.support.design.widget.AppBarLayout>
-
 
 
     <com.mdgiitr.suyash.graphkit.BarGraph
@@ -72,8 +71,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        app:label_text_size="25"/>
-
+        app:label_text_size="25" />
 
 
 </LinearLayout>

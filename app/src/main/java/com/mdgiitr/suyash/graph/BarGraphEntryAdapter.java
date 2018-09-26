@@ -119,7 +119,7 @@ public class BarGraphEntryAdapter extends RecyclerView.Adapter<BarGraphEntryAdap
                                     intent.putExtra("editColor", list.get(getAdapterPosition()).getColor());
                                     list.remove(getAdapterPosition());
                                     notifyItemRemoved(getAdapterPosition());
-                                    ((Activity)context).finish();
+                                    ((Activity) context).finish();
                                     itemView.getContext().startActivity(intent);
                                     break;
                                 case R.id.delete:

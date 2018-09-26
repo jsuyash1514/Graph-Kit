@@ -34,8 +34,8 @@ public class LineGraphNew extends AppCompatActivity {
         }
 
         Bundle bundle = getIntent().getExtras();
-        if (bundle != null && bundle.getBoolean("edit")){
-            lineGraphPts.add(new LineGraphEntryModel(bundle.getFloat("x"),bundle.getFloat("y")));
+        if (bundle != null && bundle.getBoolean("edit")) {
+            lineGraphPts.add(new LineGraphEntryModel(bundle.getFloat("x"), bundle.getFloat("y")));
         }
 
         lineGraphPtsNumber = lineGraphPts.size();

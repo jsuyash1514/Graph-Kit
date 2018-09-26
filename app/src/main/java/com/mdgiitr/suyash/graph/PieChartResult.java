@@ -69,69 +69,79 @@ public class PieChartResult extends AppCompatActivity {
             public void onClick(View view) {
                 try {
                     saveBitmap = pieChart.getBitmap();
-                    if(saveBitmap != null) {
+                    if (saveBitmap != null) {
                         saveImage();
-                    }else {
-                        Toast.makeText(getApplicationContext(),"Couldn't save image!",Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Couldn't save image!", Toast.LENGTH_SHORT).show();
                     }
-                }catch (Exception e){e.printStackTrace();}
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
 
-    public void saveImage()throws Exception{
+    public void saveImage() throws Exception {
 
         boolean perm = isWriteStoragePermissionGranted();
 
-        if(perm){
+        if (perm) {
             FileOutputStream fOut = null;
             String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-            String imageFileName = "JPEG_"+timeStamp+"_";
+            String imageFileName = "JPEG_" + timeStamp + "_";
             File file2 = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-            File file = File.createTempFile(imageFileName,".jpeg",file2);
+            File file = File.createTempFile(imageFileName, ".jpeg", file2);
 
-            try{
+            try {
                 fOut = new FileOutputStream(file);
-            }catch (Exception e){e.printStackTrace();}
-            (saveBitmap).compress(Bitmap.CompressFormat.JPEG,100,fOut);
-            try{
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            (saveBitmap).compress(Bitmap.CompressFormat.JPEG, 100, fOut);
+            try {
                 fOut.flush();
-            }catch (Exception e){e.printStackTrace();}
-            try{fOut.close();}catch (IOException e){e.printStackTrace();}
-            try{
-                MediaStore.Images.Media.insertImage(getContentResolver(),file.getAbsolutePath(),file.getName(),file.getName());}
-            catch (FileNotFoundException e){e.printStackTrace();}
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            try {
+                fOut.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
+                MediaStore.Images.Media.insertImage(getContentResolver(), file.getAbsolutePath(), file.getName(), file.getName());
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
 
             Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
             Uri cUri = Uri.fromFile(file);
             mediaScanIntent.setData(cUri);
             this.sendBroadcast(mediaScanIntent);
-            Toast.makeText(getApplicationContext(),"Image Saved to Pictures",Toast.LENGTH_SHORT).show();
-        }else {
+            Toast.makeText(getApplicationContext(), "Image Saved to Pictures", Toast.LENGTH_SHORT).show();
+        } else {
 
-            Toast.makeText(getApplicationContext(),"Storage Permission required to save image!",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Storage Permission required to save image!", Toast.LENGTH_SHORT).show();
 
         }
-
 
 
     }
 
-    public  boolean isWriteStoragePermissionGranted() {
+    public boolean isWriteStoragePermissionGranted() {
         if (Build.VERSION.SDK_INT >= 23) {
             if (checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
                     == PackageManager.PERMISSION_GRANTED) {
-                Log.v("Permission: ","Permission is granted2");
+                Log.v("Permission: ", "Permission is granted2");
                 return true;
             } else {
 
-                Log.v("Permission: ","Permission is revoked2");
+                Log.v("Permission: ", "Permission is revoked2");
                 ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 2);
                 return false;
             }
-        }
-        else { //permission is automatically granted on sdk<23 upon installation
-            Log.v("Permission: ","Permission is granted2");
+        } else { //permission is automatically granted on sdk<23 upon installation
+            Log.v("Permission: ", "Permission is granted2");
             return true;
         }
     }
@@ -142,16 +152,16 @@ public class PieChartResult extends AppCompatActivity {
         switch (requestCode) {
             case 2:
                 Log.d("Permission: ", "External storage2");
-                if(grantResults[0]== PackageManager.PERMISSION_GRANTED){
-                    Log.v("Permission: ","Permission: "+permissions[0]+ "was "+grantResults[0]);
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Log.v("Permission: ", "Permission: " + permissions[0] + "was " + grantResults[0]);
                     //resume tasks needing this permission
-                    try{
+                    try {
                         saveImage();
-                    }catch (Exception e){
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
 
-                }else{
+                } else {
 
                 }
                 break;
