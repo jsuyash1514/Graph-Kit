@@ -64,7 +64,7 @@
 
 
 
-    <com.example.suyash.graphlibrary.BarGraph
+    <com.example.suyash.graphkit.BarGraph
         android:id="@+id/barGraph"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

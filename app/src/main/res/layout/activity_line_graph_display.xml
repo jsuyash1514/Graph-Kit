@@ -64,7 +64,7 @@
     </android.support.design.widget.AppBarLayout>
 
 
-    <com.example.suyash.graphlibrary.LineGraph
+    <com.example.suyash.graphkit.LineGraph
         android:id="@+id/lineGraph"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

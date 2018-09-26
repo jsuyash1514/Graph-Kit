@@ -18,8 +18,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.suyash.graphlibrary.DataPoint;
-import com.example.suyash.graphlibrary.LineGraph;
+import com.example.suyash.graphkit.DataPoint;
+import com.example.suyash.graphkit.LineGraph;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;

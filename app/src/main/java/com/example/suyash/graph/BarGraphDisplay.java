@@ -18,8 +18,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.suyash.graphlibrary.BarGraph;
-import com.example.suyash.graphlibrary.DataPoint;
+import com.example.suyash.graphkit.BarGraph;
+import com.example.suyash.graphkit.DataPoint;
 
 import java.io.File;
 import java.io.FileNotFoundException;

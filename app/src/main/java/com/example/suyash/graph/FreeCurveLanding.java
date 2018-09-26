@@ -12,7 +12,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.suyash.graphlibrary.EditGraphView;
+import com.example.suyash.graphkit.EditGraphView;
 
 import java.text.DecimalFormat;
 

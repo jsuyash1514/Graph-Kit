@@ -51,7 +51,7 @@
     </android.support.design.widget.AppBarLayout>
 
 
-    <com.example.suyash.graphlibrary.EditGraphView
+    <com.example.suyash.graphkit.EditGraphView
         android:id="@+id/editgraphview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
