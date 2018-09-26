@@ -159,9 +159,13 @@ public class LinePointNew extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(getApplicationContext(), LineGraphNew.class);
-        intent.putExtra("x",Float.parseFloat(xText.getText().toString()));
-        intent.putExtra("y",Float.parseFloat(yText.getText().toString()));
-        intent.putExtra("edit",true);
+        try{
+            intent.putExtra("x",Float.parseFloat(xText.getText().toString()));
+            intent.putExtra("y",Float.parseFloat(yText.getText().toString()));
+            intent.putExtra("edit",true);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         finish();
         startActivity(intent);
     }
