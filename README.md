@@ -20,7 +20,7 @@ and also get normalized points from the curve.
 
 # Usage
 
----------> Add dependencies in gradle 
+
 
 # Features
 
