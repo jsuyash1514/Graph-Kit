@@ -176,6 +176,7 @@ layout.addView(pieChart);
 | Scroll Y               | false       | .setScrollY(...)         | scrollabley         | Is the graph scrollable alog the y-axis|
 | Trace Color for Line            | Color.BLACK         | .setGraphColor(...)        | graph_color        | Set the color for tracing the line |
 | Label Text Size                    | 20          | .setLabelTextSize(...)       | label_text_size        | Size of text used in the label markings  |
+| Grid Color                    | Color.LTGRAY          | .setGridColor(...)       | grid_color        | Set the color of the grid lines created  |
 
 ## BarGraph
 
