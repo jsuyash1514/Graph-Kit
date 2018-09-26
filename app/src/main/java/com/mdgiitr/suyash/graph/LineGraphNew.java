@@ -87,7 +87,7 @@ public class LineGraphNew extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent showLineGraph = new Intent(getApplicationContext(), LineGraphDisplay.class);
-                if (lineGraphPtsNumber >= 2) {
+                if (lineGraphPts.size() >= 2) {
                     EditText lineGraphNameEditText = findViewById(R.id.lineGraphTitleEditText);
                     line_graph_name = lineGraphNameEditText.getText().toString();
                     if (!line_graph_name.isEmpty() && !line_graph_name.equals("")) {
