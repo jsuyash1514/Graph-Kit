@@ -84,6 +84,14 @@ public class BarGraph extends View {
             mBitmap = Bitmap.createBitmap(vW, vH, Bitmap.Config.ARGB_8888);
             mCanvas = new Canvas(mBitmap);
             mCanvas.translate(0, vH);
+
+            String mark = Float.toString(getMaxY());
+            mPaint.setStrokeWidth(thickness/2);
+            Rect bounds = new Rect();
+            mPaint.getTextBounds(mark, 0, mark.length(), bounds);
+            originShift = 2*bounds.width() + 50;
+            Log.d("TAG",originShift+"");
+
             mCanvas.translate(originShift, -originShift);
             drawGraph();
             initflg = true;

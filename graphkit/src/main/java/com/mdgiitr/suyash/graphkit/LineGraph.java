@@ -32,8 +32,8 @@ public class LineGraph extends View {
     private int color;
     private int GRID_COLOR = Color.LTGRAY;
     private int originShift = 50;
-    private int topScaleMargin = 10;
-    private int rightScaleMargin = 20;
+    private int topScaleMargin = originShift;
+    private int rightScaleMargin = originShift;
     private int LABEL_SIZE = 20;
 
     public LineGraph(Context context, AttributeSet attrs) {
@@ -134,6 +134,15 @@ public class LineGraph extends View {
                 mBitmap = Bitmap.createBitmap((int) sW, (int) sH, Bitmap.Config.ARGB_8888);
                 mCanvas = new Canvas(mBitmap);
                 mCanvas.translate(0, sH);
+
+
+                String mark = Float.toString(getMaxY());
+                mPaint.setStrokeWidth(thickness/2);
+                Rect bounds = new Rect();
+                mPaint.getTextBounds(mark, 0, mark.length(), bounds);
+                originShift = 2*bounds.width() + 50;
+                Log.d("TAG",originShift+"");
+
                 mCanvas.translate(originShift, -originShift);
                 drawGraph();
                 yDraw = vH - sH;
@@ -219,6 +228,7 @@ public class LineGraph extends View {
 
     private void drawAxes() {
 
+        mPaint.setStrokeWidth(thickness);
         mPaint.setColor(Color.BLACK);
         mCanvas.drawLine(0, 0, 0, -(sH - originShift), mPaint);
         mCanvas.drawLine(0, 0, sW - originShift, 0, mPaint);
@@ -246,6 +256,8 @@ public class LineGraph extends View {
 
         float maxX = getMaxX();
         float maxY = getMaxY();
+
+        topScaleMargin = rightScaleMargin = originShift-10;
 
         float scaleX = maxX / (sW - originShift - rightScaleMargin);
         float scaleY = maxY / (sH - originShift - topScaleMargin);
