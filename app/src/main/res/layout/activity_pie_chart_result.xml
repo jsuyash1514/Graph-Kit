@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.suyash.graph.PieChartResult">
+    tools:context="com.mdgiitr.suyash.graph.PieChartResult">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -62,13 +62,13 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <com.example.suyash.graphkit.PieChart
+    <com.mdgiitr.suyash.graphkit.PieChart
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/pie_chart"
         custom:label_text_size="40">
 
-    </com.example.suyash.graphkit.PieChart>
+    </com.mdgiitr.suyash.graphkit.PieChart>
 
 
 </LinearLayout>

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.suyash.graph.FreeCurveLanding">
+    tools:context="com.mdgiitr.suyash.graph.FreeCurveLanding">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appBar"
@@ -50,7 +50,7 @@
     </android.support.design.widget.AppBarLayout>
 
 
-    <com.example.suyash.graphkit.EditGraphView
+    <com.mdgiitr.suyash.graphkit.EditGraphView
         android:id="@+id/editgraphview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

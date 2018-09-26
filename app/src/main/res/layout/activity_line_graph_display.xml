@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.suyash.graph.LineGraphDisplay">
+    tools:context="com.mdgiitr.suyash.graph.LineGraphDisplay">
 
 
 
@@ -64,7 +64,7 @@
     </android.support.design.widget.AppBarLayout>
 
 
-    <com.example.suyash.graphkit.LineGraph
+    <com.mdgiitr.suyash.graphkit.LineGraph
         android:id="@+id/lineGraph"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
