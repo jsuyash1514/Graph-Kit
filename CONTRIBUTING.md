@@ -1,8 +1,8 @@
-Contributing to Graph Library
+Contributing to Graph Kit
 ===============================
 :+1::tada: First off, Thanks for taking the time to contribute! :tada::+1:  
 If you'd like to report a bug or join in the development
-of Graph Library, then here are some notes on how to do that.
+of Graph Kit, then here are some notes on how to do that.
 
 ## Contents
 * [Reporting bugs and opening issues](#reporting-bugs-and-opening-issues)
@@ -26,11 +26,11 @@ If you can include a screenshot for front end issues that is very helpful.
 ### Pull Requests
 We love pull requests, so be bold with them! Don't be afraid of going ahead
 and changing something, or adding a new feature. We're very happy to work with you
-to get your changes merged into Graph Library.
+to get your changes merged into Graph Kit.
 
 If you've got an idea for a change then please discuss it in the open first, by opening an issue.
 
-If you're looking for something to work on, have a look at the open issues in the repository [here](https://github.com/jsuyash1514/GraphLibrary/issues).
+If you're looking for something to work on, have a look at the open issues in the repository [here](https://github.com/jsuyash1514/Graph-Kit/issues).
 
 > We don't have a set format for Pull requests, but we expect you to list changes, bugs generated and other relevant things in PR message.
 
