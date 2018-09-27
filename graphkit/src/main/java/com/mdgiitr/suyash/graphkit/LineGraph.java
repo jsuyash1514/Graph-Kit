@@ -291,7 +291,7 @@ public class LineGraph extends View {
             mPaint.setStrokeWidth(thickness);
             mPaint.setColor(Color.BLACK);
             mCanvas.drawLine(-5, -i, 5, -i, mPaint);
-            String mark = Math.round(scaleY * i) + "";
+            String mark = Float.toString(Math.round(scaleY * i));
             Rect bounds = new Rect();
             mPaint.getTextBounds(mark, 0, mark.length(), bounds);
             mCanvas.drawText(mark, -bounds.width() - 15, -(i + mPaint.ascent() / 2), mPaint);
@@ -315,7 +315,7 @@ public class LineGraph extends View {
             noXD = MAX_DIV;
         }
         boolean sizeChangeText = false;
-        String mark1 = Math.round(scaleX * sW) + "";
+        String mark1 = Float.toString(Math.round(scaleX * sW));
         Rect boundsSizeChange = new Rect();
         mPaint.getTextBounds(mark1, 0, mark1.length(), boundsSizeChange);
         if(boundsSizeChange.width()*noXD + 5 > sW){
@@ -330,7 +330,7 @@ public class LineGraph extends View {
             mPaint.setStrokeWidth(thickness);
             mPaint.setColor(Color.BLACK);
             mCanvas.drawLine(i, -5, i, 5, mPaint);
-            String mark = Math.round(scaleX * i) + "";
+            String mark = Float.toString(Math.round(scaleX * i));
             Rect bounds = new Rect();
             mPaint.getTextBounds(mark, 0, mark.length(), bounds);
             if(sizeChangeText){
