@@ -10,6 +10,7 @@
         <attr name="line_thickness" />
         <attr name="label_text_size" />
         <attr name="grid_color" format="color" />
+        <attr name="max_divisions" format="integer"/>
     </declare-styleable>
     <declare-styleable name="BarGraph">
         <attr name="label_text_size" />

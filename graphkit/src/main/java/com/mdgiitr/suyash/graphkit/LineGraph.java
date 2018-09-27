@@ -35,6 +35,7 @@ public class LineGraph extends View {
     private int topScaleMargin = originShift;
     private int rightScaleMargin = originShift;
     private int LABEL_SIZE = 20;
+    private int MAX_DIV = 50;
 
     public LineGraph(Context context, AttributeSet attrs) {
 
@@ -71,6 +72,7 @@ public class LineGraph extends View {
         Log.d("color", color + "");
         thickness = typedArray.getFloat(R.styleable.LineGraph_line_thickness, 8.0f);
         LABEL_SIZE = typedArray.getInteger(R.styleable.LineGraph_label_text_size, 20);
+        MAX_DIV = typedArray.getInteger(R.styleable.LineGraph_max_divisions,50);
 
     }
 
@@ -276,7 +278,13 @@ public class LineGraph extends View {
             v = (float) Math.pow(10, 0);
         }
 
-        for (float i = v / scaleY; i < sH; i += (v / scaleY)) {
+        float nY = v/scaleY;
+        float inc = nY;
+        if(sH/nY > MAX_DIV){
+            inc = (sH/nY)*inc;
+        }
+
+        for (float i = v / scaleY; i < sH; i += (inc)) {
             mPaint.setColor(GRID_COLOR);
             mPaint.setStrokeWidth(thickness / 2);
             mCanvas.drawLine(0, -i, sW, -i, mPaint);
@@ -299,7 +307,13 @@ public class LineGraph extends View {
             v = (float) Math.pow(10, 0);
         }
 
-        for (float i = v / scaleX; i < sW; i += (v / scaleX)) {
+        float nX = v/scaleX;
+        inc = nX;
+        if(sW/nX > MAX_DIV){
+            inc = (sW/nX)*inc;
+        }
+
+        for (float i = v / scaleX; i < sW; i += (inc)) {
             mPaint.setColor(GRID_COLOR);
             mPaint.setStrokeWidth(thickness / 2);
             mCanvas.drawLine(i, 0, i, -sH, mPaint);
@@ -388,6 +402,10 @@ public class LineGraph extends View {
 
         LABEL_SIZE = size;
 
+    }
+
+    public void setMaxDivisions(int d){
+        MAX_DIV = d;
     }
 
     public Bitmap getBitmap() {
