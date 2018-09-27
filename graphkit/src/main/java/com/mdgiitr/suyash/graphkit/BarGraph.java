@@ -20,6 +20,8 @@ import java.util.ArrayList;
 
 public class BarGraph extends View {
 
+    public int MARKING_COLOR = Color.BLACK;
+    public int thickness = 6;
     ArrayList<DataPoint> pointList;
     boolean pointSetflg = false, initflg = false;
     int numberOfFields = 0;
@@ -27,8 +29,6 @@ public class BarGraph extends View {
     Bitmap mBitmap;
     Paint mPaint;
     Canvas mCanvas;
-    public int MARKING_COLOR = Color.BLACK;
-    public int thickness = 6;
     float maxY;
     private int barWidth = 0;
     private int originShift = 50;
@@ -37,22 +37,26 @@ public class BarGraph extends View {
     private int space = 10;
     private int LABEL_SIZE = 20;
 
-    public BarGraph(Context context, AttributeSet attrs){
-        super(context,attrs);
-        if(!pointSetflg){pointList = new ArrayList<>();}
-        TypedArray typedArray = context.getTheme().obtainStyledAttributes(attrs,R.styleable.BarGraph,0,0);
-        LABEL_SIZE = typedArray.getInteger(R.styleable.BarGraph_label_text_size,20);
+    public BarGraph(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        if (!pointSetflg) {
+            pointList = new ArrayList<>();
+        }
+        TypedArray typedArray = context.getTheme().obtainStyledAttributes(attrs, R.styleable.BarGraph, 0, 0);
+        LABEL_SIZE = typedArray.getInteger(R.styleable.BarGraph_label_text_size, 20);
 
     }
 
-    public BarGraph(Context context, int vW, int vH){
+    public BarGraph(Context context, int vW, int vH) {
         super(context);
-        if(!pointSetflg){pointList = new ArrayList<>();}
+        if (!pointSetflg) {
+            pointList = new ArrayList<>();
+        }
         this.vH = vH;
         this.vW = vW;
     }
 
-    public void setPoints(ArrayList<DataPoint> pointList){
+    public void setPoints(ArrayList<DataPoint> pointList) {
         this.pointList = pointList;
         pointSetflg = true;
         numberOfFields = pointList.size();
@@ -61,42 +65,54 @@ public class BarGraph extends View {
     }
 
     @Override
-    protected void onDraw(Canvas canvas){
+    protected void onDraw(Canvas canvas) {
 
         super.onDraw(canvas);
 
-        if(vH == 0 && vW == 0){
+        if (vH == 0 && vW == 0) {
             vW = this.getMeasuredWidth();
             vH = this.getMeasuredHeight();
-            Log.d("vH = ",vH+"");
-            Log.d("vW = ",vW+"");
-            boolean widthMatchParent = (ViewGroup.LayoutParams.MATCH_PARENT==getLayoutParams().width || ViewGroup.LayoutParams.WRAP_CONTENT==getLayoutParams().width);
-            if(!widthMatchParent){vW = vW/2;}
-            boolean heightMatchParent = (ViewGroup.LayoutParams.MATCH_PARENT==getLayoutParams().height || ViewGroup.LayoutParams.WRAP_CONTENT==getLayoutParams().height);
-            if(!heightMatchParent){vH = vH/2;}
+            Log.d("vH = ", vH + "");
+            Log.d("vW = ", vW + "");
+            boolean widthMatchParent = (ViewGroup.LayoutParams.MATCH_PARENT == getLayoutParams().width || ViewGroup.LayoutParams.WRAP_CONTENT == getLayoutParams().width);
+            if (!widthMatchParent) {
+                vW = vW / 2;
+            }
+            boolean heightMatchParent = (ViewGroup.LayoutParams.MATCH_PARENT == getLayoutParams().height || ViewGroup.LayoutParams.WRAP_CONTENT == getLayoutParams().height);
+            if (!heightMatchParent) {
+                vH = vH / 2;
+            }
         }
-        if(pointSetflg)
-        if(!initflg) {
-            mPaint = new Paint();
-            mPaint.setAntiAlias(true);
-            mPaint.setDither(true);
-            mPaint.setColor(MARKING_COLOR);
-            mBitmap = Bitmap.createBitmap(vW, vH, Bitmap.Config.ARGB_8888);
-            mCanvas = new Canvas(mBitmap);
-            mCanvas.translate(0, vH);
-            mCanvas.translate(originShift, -originShift);
-            drawGraph();
-            initflg = true;
-        }
+        if (pointSetflg)
+            if (!initflg) {
+                mPaint = new Paint();
+                mPaint.setAntiAlias(true);
+                mPaint.setDither(true);
+                mPaint.setColor(MARKING_COLOR);
+                mBitmap = Bitmap.createBitmap(vW, vH, Bitmap.Config.ARGB_8888);
+                mCanvas = new Canvas(mBitmap);
+                mCanvas.translate(0, vH);
 
-        canvas.drawBitmap(mBitmap,0,0,new Paint(Paint.DITHER_FLAG));
+                String mark = Float.toString(getMaxY());
+                mPaint.setTextSize(LABEL_SIZE);
+                Rect bounds = new Rect();
+                mPaint.getTextBounds(mark, 0, mark.length(), bounds);
+                originShift = bounds.width() + 10;
+                Log.d("TAG", originShift + "");
+
+                mCanvas.translate(originShift, -originShift);
+                drawGraph();
+                initflg = true;
+            }
+
+        canvas.drawBitmap(mBitmap, 0, 0, new Paint(Paint.DITHER_FLAG));
 
     }
 
     public void drawGraph() {
 
         mCanvas.drawColor(Color.WHITE);
-        barWidth = (int)Math.round((float)(vW-originShift)/(float) numberOfFields);
+        barWidth = (int) Math.round((float) (vW - originShift) / (float) numberOfFields);
 
         mCanvas.scale(1, -1);
         drawBars();
@@ -116,14 +132,14 @@ public class BarGraph extends View {
 
     }
 
-    private  void drawMarkings(){
+    private void drawMarkings() {
 
         mPaint.setTextSize(LABEL_SIZE);
 
-        for(int i = barWidth,j = 0;j<numberOfFields;i+=barWidth,j++){
+        for (int i = barWidth, j = 0; j < numberOfFields; i += barWidth, j++) {
             Rect bounds = new Rect();
             mPaint.getTextBounds(pointList.get(j).getName(), 0, pointList.get(j).getName().length(), bounds);
-            mCanvas.drawText(pointList.get(j).getName(),i - bounds.width()/2 - barWidth/2,-2*(mPaint.ascent()),mPaint);
+            mCanvas.drawText(pointList.get(j).getName(), i - bounds.width() / 2 - barWidth / 2, -2 * (mPaint.ascent()), mPaint);
         }
 
         int nD = getNumberOfDigits(maxY);
@@ -136,30 +152,30 @@ public class BarGraph extends View {
 
         for (float i = v / scaleY; i < vH; i += (v / scaleY)) {
 
-            mPaint.setStrokeWidth(thickness/2);
+            mPaint.setStrokeWidth(thickness / 2);
             mPaint.setColor(MARKING_COLOR);
             mCanvas.drawLine(-5, -i, 5, -i, mPaint);
             String mark = Math.round(scaleY * i) + "";
             Rect bounds = new Rect();
             mPaint.getTextBounds(mark, 0, mark.length(), bounds);
-            mCanvas.drawText(mark, -bounds.width() - 15 , -(i + mPaint.ascent() / 2), mPaint);
+            mCanvas.drawText(mark, -bounds.width() - 15, -(i + mPaint.ascent() / 2), mPaint);
 
         }
 
     }
 
-    public void drawBars(){
+    public void drawBars() {
 
         scaleY = maxY / (vH - originShift - topScaleMargin);
 
-        for(int i = 0,j=0;j<numberOfFields;i+=barWidth,j++){
-            Log.d("TAG--",j+"");
-            Log.d("TAG",i+"");
-            Rect rect = new Rect(i+space,(int)(pointList.get(j).getData() /scaleY),i+barWidth-space,0);
+        for (int i = 0, j = 0; j < numberOfFields; i += barWidth, j++) {
+            Log.d("TAG--", j + "");
+            Log.d("TAG", i + "");
+            Rect rect = new Rect(i + space, (int) (pointList.get(j).getData() / scaleY), i + barWidth - space, 0);
             Paint rPaint = new Paint();
             rPaint.setColor(pointList.get(j).getColor());
             rPaint.setStyle(Paint.Style.FILL);
-            mCanvas.drawRect(rect,rPaint);
+            mCanvas.drawRect(rect, rPaint);
         }
 
     }
@@ -184,7 +200,7 @@ public class BarGraph extends View {
         return count;
     }
 
-    public void setLabelTextSize(int size){
+    public void setLabelTextSize(int size) {
 
         LABEL_SIZE = size;
 

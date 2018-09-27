@@ -12,7 +12,6 @@ import static com.mdgiitr.suyash.graph.LineGraphNew.lineGraphPtsNumber;
 public class LineGraphLanding extends AppCompatActivity {
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,7 +22,7 @@ public class LineGraphLanding extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), LineGraphNew.class);
-                intent.putExtra("edit",false);
+                intent.putExtra("edit", false);
                 lineGraphPtsNumber = 0;
                 finish();
                 startActivity(intent);
@@ -42,7 +41,7 @@ public class LineGraphLanding extends AppCompatActivity {
     }
 
     @Override
-    public void onBackPressed(){
+    public void onBackPressed() {
         finish();
         startActivity(new Intent(this, MainActivity.class));
 

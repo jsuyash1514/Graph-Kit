@@ -21,7 +21,7 @@ import java.util.Collections;
  * Created by karthik on 9/21/18.
  */
 
-public class LineGraphEntryAdapter extends RecyclerView.Adapter<LineGraphEntryAdapter.LineGraphHolder> implements ItemTouchHelperAdapter{
+public class LineGraphEntryAdapter extends RecyclerView.Adapter<LineGraphEntryAdapter.LineGraphHolder> implements ItemTouchHelperAdapter {
     private Context context;
     private ArrayList<LineGraphEntryModel> list;
 
@@ -109,10 +109,10 @@ public class LineGraphEntryAdapter extends RecyclerView.Adapter<LineGraphEntryAd
                                     Intent intent = new Intent(itemView.getContext(), LinePointNew.class);
                                     intent.putExtra("x", list.get(getAdapterPosition()).getX());
                                     intent.putExtra("y", list.get(getAdapterPosition()).getY());
-                                    intent.putExtra("edit",true);
+                                    intent.putExtra("edit", true);
                                     list.remove(getAdapterPosition());
                                     notifyItemRemoved(getAdapterPosition());
-                                    ((Activity)context).finish();
+                                    ((Activity) context).finish();
                                     itemView.getContext().startActivity(intent);
                                     break;
                                 case R.id.delete:

@@ -14,7 +14,6 @@ import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
-
 import java.util.Collections;
 import java.util.List;
 
@@ -22,7 +21,7 @@ import java.util.List;
  * Created by suyash on 9/20/18.
  */
 
-public class PieChartEntryAdapter extends RecyclerView.Adapter<PieChartEntryAdapter.PieChartHolder> implements ItemTouchHelperAdapter{
+public class PieChartEntryAdapter extends RecyclerView.Adapter<PieChartEntryAdapter.PieChartHolder> implements ItemTouchHelperAdapter {
     private Context context;
     private List<PieChartEntryModel> list;
 

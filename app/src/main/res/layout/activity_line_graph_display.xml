@@ -8,7 +8,6 @@
     tools:context="com.mdgiitr.suyash.graph.LineGraphDisplay">
 
 
-
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -30,7 +29,6 @@
             app:popupTheme="@style/AppTheme.PopupOverlay">
 
 
-
             <ImageButton
                 android:id="@+id/lineGraphDisplayBack"
                 android:layout_width="wrap_content"
@@ -49,14 +47,15 @@
                 android:text="@string/line_graph"
                 android:textColor="@color/colorAccent"
                 android:textSize="18sp" />
+
             <ImageButton
+                android:id="@+id/saveImage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
-                android:id="@+id/saveImage"
-                android:background="#00000011"
                 android:layout_margin="8dp"
-                android:src="@drawable/ic_save_white_24dp"/>
+                android:background="#00000011"
+                android:src="@drawable/ic_save_white_24dp" />
 
 
         </android.support.v7.widget.Toolbar>
@@ -74,7 +73,7 @@
         app:label_text_size="25"
         app:line_thickness="8.0"
         app:scrollablex="false"
-        app:scrollabley="false"/>
+        app:scrollabley="false" />
 
 
 </LinearLayout>
