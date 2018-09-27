@@ -24,7 +24,7 @@ and also get normalized points from the curve.
 There are two ways you can use this Graph: through XML or Java.
 ### XML
 
-<img src="https://github.com/jsuyash1514/Graph-Kit/blob/master/images/line_graph.png" align = "right" height = "300px">
+<img src="https://github.com/mdg-iitr/Graph-Kit/blob/master/images/line_graph.png" align = "right" height = "300px">
 
 ```xml
 <com.mdgiitr.suyash.graphkit.LineGraph
@@ -62,7 +62,7 @@ To add Data Points to your Line Graph create an ArrayList of DataPoints and add 
 There are two ways you can use this Graph: through XML or Java.
 ### XML
 
-<img src="https://github.com/jsuyash1514/Graph-Kit/blob/master/images/bar_graph.png" align = "right" height = "300px">
+<img src="https://github.com/mdg-iitr/Graph-Kit/blob/master/images/bar_graph.png" align = "right" height = "300px">
 
 ```xml
 <com.mdgiitr.suyash.graphkit.BarGraph
@@ -98,7 +98,7 @@ To add Data to your Bar Graph create an ArrayList of DataPoint and add it as sho
  There are two ways you can use this Graph: through XML or Java.
  ### XML
  
- <img src="https://github.com/jsuyash1514/Graph-Kit/blob/master/images/pie_chart.png" align = "right" height = "300px">
+ <img src="https://github.com/mdg-iitr/Graph-Kit/blob/master/images/pie_chart.png" align = "right" height = "300px">
  
  ```xml
  <com.mdgiitr.suyash.graphkit.PieChart
@@ -135,7 +135,7 @@ layout.addView(pieChart);
  There are two ways you can use this Graph: through XML or Java.
  ### XML
  
- <img src="https://github.com/jsuyash1514/Graph-Kit/blob/master/images/edit_graph.gif" align = "right" height = "300px">
+ <img src="https://github.com/mdg-iitr/Graph-Kit/blob/master/images/edit_graph.png" align = "right" height = "300px">
  
  ```xml
  <com.mdgiitr.suyash.graphkit.EditGraphView
