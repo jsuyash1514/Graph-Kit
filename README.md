@@ -170,6 +170,7 @@ layout.addView(pieChart);
 | Trace Color for Line            | Color.BLACK         | .setGraphColor(...)        | graph_color        | Set the color for tracing the line |
 | Label Text Size                    | 20          | .setLabelTextSize(...)       | label_text_size        | Size of text used in the label markings  |
 | Grid Color                    | Color.LTGRAY          | .setGridColor(...)       | grid_color        | Set the color of the grid lines created  |
+| Maximum number of divisions on each axis   | 50          | .setMaxDivisions(...)       | max_divisions        | Set the maximum number of divisions on each axis  |
 
 ## BarGraph
 
