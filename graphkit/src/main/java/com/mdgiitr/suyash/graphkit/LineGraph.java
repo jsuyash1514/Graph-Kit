@@ -137,10 +137,10 @@ public class LineGraph extends View {
 
 
                 String mark = Float.toString(getMaxY());
-                mPaint.setStrokeWidth(thickness / 2);
+                mPaint.setTextSize(LABEL_SIZE);
                 Rect bounds = new Rect();
                 mPaint.getTextBounds(mark, 0, mark.length(), bounds);
-                originShift = 2 * bounds.width() + 50;
+                originShift = bounds.width() + 10;
                 Log.d("TAG", originShift + "");
 
                 mCanvas.translate(originShift, -originShift);
