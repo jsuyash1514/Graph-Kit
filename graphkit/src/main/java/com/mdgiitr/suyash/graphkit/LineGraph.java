@@ -315,7 +315,7 @@ public class LineGraph extends View {
             noXD = MAX_DIV;
         }
         boolean sizeChangeText = false;
-        String mark1 = Math.round(scaleX * v/scaleX) + "";
+        String mark1 = Math.round(scaleX * sW) + "";
         Rect boundsSizeChange = new Rect();
         mPaint.getTextBounds(mark1, 0, mark1.length(), boundsSizeChange);
         if(boundsSizeChange.width()*noXD + 5 > sW){
