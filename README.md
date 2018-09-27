@@ -135,7 +135,7 @@ layout.addView(pieChart);
  There are two ways you can use this Graph: through XML or Java.
  ### XML
  
- <img src="https://github.com/mdg-iitr/Graph-Kit/blob/master/images/edit_graph.png" align = "right" height = "300px">
+ <img src="https://github.com/mdg-iitr/Graph-Kit/blob/master/images/edit_graph.gif" align = "right" height = "300px">
  
  ```xml
  <com.mdgiitr.suyash.graphkit.EditGraphView
