@@ -70,7 +70,7 @@ public class BarGraphNew extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent showBarGraph = new Intent(getApplicationContext(), BarGraphDisplay.class);
-                if (barGraphPtsNumber >= 1) {
+                if (barGraphPts.size() >= 1) {
                     EditText lineGraphNameEditText = findViewById(R.id.lineGraphTitleEditText);
                     bar_graph_name = lineGraphNameEditText.getText().toString();
                     if (!bar_graph_name.isEmpty() && !bar_graph_name.equals("")) {

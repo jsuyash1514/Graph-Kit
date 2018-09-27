@@ -17,6 +17,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import static com.mdgiitr.suyash.graph.BarGraphNew.barGraphPtsNumber;
+
 
 /**
  * Created by karthik on 9/21/18.
@@ -117,11 +119,12 @@ public class BarGraphEntryAdapter extends RecyclerView.Adapter<BarGraphEntryAdap
                                     intent.putExtra("editColor", list.get(getAdapterPosition()).getColor());
                                     list.remove(getAdapterPosition());
                                     notifyItemRemoved(getAdapterPosition());
-                                    ((Activity)context).finish();
+                                    ((Activity) context).finish();
                                     itemView.getContext().startActivity(intent);
                                     break;
                                 case R.id.delete:
                                     list.remove(getAdapterPosition());
+                                    barGraphPtsNumber--;
                                     notifyItemRemoved(getAdapterPosition());
                                     return true;
                             }
