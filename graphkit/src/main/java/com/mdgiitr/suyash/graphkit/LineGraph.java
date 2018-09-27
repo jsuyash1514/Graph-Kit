@@ -334,7 +334,7 @@ public class LineGraph extends View {
             Rect bounds = new Rect();
             mPaint.getTextBounds(mark, 0, mark.length(), bounds);
             if(sizeChangeText){
-                mPaint.setTextSize(LABEL_SIZE - 13);
+                mPaint.setTextSize(LABEL_SIZE - 10);
                 mPaint.getTextBounds(mark, 0, mark.length(), bounds);
                 mCanvas.drawText(mark, i - bounds.width() / 2, -2 * (mPaint.ascent()), mPaint);
             }
