@@ -69,7 +69,7 @@
         android:layout_height="match_parent"
         android:layout_marginBottom="10dp"
         android:layout_marginTop="10dp"
-        app:graph_color="#305c99"
+        app:graph_color="#ff0000"
         app:label_text_size="25"
         app:line_thickness="8.0"
         app:scrollablex="false"
