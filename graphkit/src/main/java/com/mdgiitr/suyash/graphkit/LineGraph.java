@@ -230,7 +230,7 @@ public class LineGraph extends View {
 
     private void drawAxes() {
 
-        mPaint.setStrokeWidth(thickness);
+        mPaint.setStrokeWidth(thickness/2);
         mPaint.setColor(Color.BLACK);
         mCanvas.drawLine(0, 0, 0, -(sH - originShift), mPaint);
         mCanvas.drawLine(0, 0, sW - originShift, 0, mPaint);
@@ -336,11 +336,11 @@ public class LineGraph extends View {
             if(sizeChangeText){
                 mPaint.setTextSize(LABEL_SIZE - 10);
                 mPaint.getTextBounds(mark, 0, mark.length(), bounds);
-                mCanvas.drawText(mark, i - bounds.width() / 2, -2 * (mPaint.ascent()), mPaint);
+                mCanvas.drawText(mark, i - bounds.width() / 2, -2 * (mPaint.ascent())+mPaint.ascent()/2, mPaint);
             }
             else {
                 mPaint.setTextSize(LABEL_SIZE);
-                mCanvas.drawText(mark, i - bounds.width() / 2, -2 * (mPaint.ascent()), mPaint);
+                mCanvas.drawText(mark, i - bounds.width() / 2, -2 * (mPaint.ascent())+mPaint.ascent()/2, mPaint);
             }
         }
 
