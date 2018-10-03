@@ -44,7 +44,7 @@ public class BarGraph extends View {
         }
         TypedArray typedArray = context.getTheme().obtainStyledAttributes(attrs, R.styleable.BarGraph, 0, 0);
         LABEL_SIZE = typedArray.getInteger(R.styleable.BarGraph_label_text_size, 20);
-
+        space = typedArray.getInteger(R.styleable.BarGraph_bar_space,10);
     }
 
     public BarGraph(Context context, int vW, int vH) {
@@ -203,6 +203,12 @@ public class BarGraph extends View {
     public void setLabelTextSize(int size) {
 
         LABEL_SIZE = size;
+
+    }
+
+    public void setSpace(int s){
+
+        space = s;
 
     }
 
