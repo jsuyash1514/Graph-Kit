@@ -213,6 +213,7 @@ If you want to contribute to improve this library, please read [our guidelines](
 * Undo and Redo feature can be added in Edit graph.
 * Polar Coordinate system can be added.
 * Graphs can be plotted from functions and their roots, stationary points, integrals, etc. can be obtained from the graphs.
+* Database can be integrated to store the graphs locally in the app. 
 
 # License
 
