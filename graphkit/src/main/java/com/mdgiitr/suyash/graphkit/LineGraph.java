@@ -142,7 +142,7 @@ public class LineGraph extends View {
                 mPaint.setTextSize(LABEL_SIZE);
                 Rect bounds = new Rect();
                 mPaint.getTextBounds(mark, 0, mark.length(), bounds);
-                originShift = bounds.width() + 10;
+                originShift = bounds.width() + 20;
                 Log.d("TAG", originShift + "");
 
                 mCanvas.translate(originShift, -originShift);
@@ -264,65 +264,77 @@ public class LineGraph extends View {
         float scaleX = maxX / (sW - originShift - rightScaleMargin);
         float scaleY = maxY / (sH - originShift - topScaleMargin);
 
-        for (int i = 0; i < pointList.size(); i++) {
-            pointListScaled.add(new DataPoint(pointList.get(i).x / scaleX, pointList.get(i).y / scaleY));
-        }
 
-        int nD = getNumberOfDigits(maxY);
-        float v;
-        if (nD > 1 && maxY <= Math.pow(10, nD - 1)) {
-            v = (float) Math.pow(10, nD - 2);
-        } else if (nD > 1) {
-            v = (float) Math.pow(10, nD - 1);
+
+
+        int nD1 = getNumberOfDigits(maxY);
+        float v1;
+        if (nD1 > 1 && maxY <= Math.pow(10, nD1 - 1)) {
+            v1 = (float) Math.pow(10, nD1 - 2);
+        } else if (nD1 > 1) {
+            v1 = (float) Math.pow(10, nD1 - 1);
         } else {
-            v = (float) Math.pow(10, 0);
+            v1 = (float) Math.pow(10, 0);
         }
 
-        float nY = v/scaleY;
-        float inc = nY;
+        float nY = v1/scaleY;
+        float inc1 = nY;
         if(sH/nY > MAX_DIV){
-            inc = (sH/nY)*inc/(float)MAX_DIV;
+            inc1 = (sH/nY)*inc1/(float)MAX_DIV;
         }
 
-        for (float i = v / scaleY; i < sH; i += (inc)) {
-            mPaint.setColor(GRID_COLOR);
-            mPaint.setStrokeWidth(thickness / 2);
-            mCanvas.drawLine(0, -i, sW, -i, mPaint);
-            mPaint.setStrokeWidth(thickness);
-            mPaint.setColor(Color.BLACK);
-            mCanvas.drawLine(-5, -i, 5, -i, mPaint);
-            String mark = Float.toString(Math.round(scaleY * i));
-            Rect bounds = new Rect();
-            mPaint.getTextBounds(mark, 0, mark.length(), bounds);
-            mCanvas.drawText(mark, -bounds.width() - 15, -(i + mPaint.ascent() / 2), mPaint);
-
-        }
-
-        nD = getNumberOfDigits(maxX);
-        if (nD > 1 && maxX <= Math.pow(10, nD - 1)) {
-            v = (float) Math.pow(10, nD - 2);
-        } else if (nD > 1) {
-            v = (float) Math.pow(10, nD - 1);
+        float nD2 = getNumberOfDigits(maxX);
+        float v2;
+        if (nD2 > 1 && maxX <= Math.pow(10, nD2 - 1)) {
+            v2 = (float) Math.pow(10, nD2 - 2);
+        } else if (nD2 > 1) {
+            v2 = (float) Math.pow(10, nD2 - 1);
         } else {
-            v = (float) Math.pow(10, 0);
+            v2 = (float) Math.pow(10, 0);
         }
 
-        float nX = v/scaleX;
-        inc = nX;
+        float nX = v2/scaleX;
+        float inc2 = nX;
         float noXD = sW/nX;
         if(noXD > MAX_DIV){
-            inc = (sW/nX)*inc/(float)MAX_DIV;
+            inc2 = (sW/nX)*inc2/(float)MAX_DIV;
             noXD = MAX_DIV;
         }
+
+
+        float id = Math.min(v1/scaleY,v2/scaleX);
+        float inc = Math.min(inc1,inc2);
+        float scale = Math.max(scaleX,scaleY);
+
+        for (int i = 0; i < pointList.size(); i++) {
+            pointListScaled.add(new DataPoint(pointList.get(i).x / scale, pointList.get(i).y / scale));
+        }
+
         boolean sizeChangeText = false;
-        String mark1 = Float.toString(Math.round(scaleX * sW));
+        String mark1 = Float.toString(Math.round(scale * sW));
         Rect boundsSizeChange = new Rect();
         mPaint.getTextBounds(mark1, 0, mark1.length(), boundsSizeChange);
         if(boundsSizeChange.width()*noXD + 5 > sW){
             sizeChangeText = true;
         }
 
-        for (float i = v / scaleX; i < sW; i += (inc)) {
+        for (float i = id; i < sH; i += (inc)) {
+            mPaint.setColor(GRID_COLOR);
+            mPaint.setStrokeWidth(thickness / 2);
+            mCanvas.drawLine(0, -i, sW, -i, mPaint);
+            mPaint.setStrokeWidth(thickness);
+            mPaint.setColor(Color.BLACK);
+            mCanvas.drawLine(-5, -i, 5, -i, mPaint);
+            String mark = Float.toString(Math.round(scale * i));
+            Rect bounds = new Rect();
+            mPaint.getTextBounds(mark, 0, mark.length(), bounds);
+            mCanvas.drawText(mark, -bounds.width() - 15, -(i + mPaint.ascent() / 2), mPaint);
+
+        }
+
+
+
+        for (float i = id; i < sW; i += (inc)) {
             mPaint.setTextSize(LABEL_SIZE);
             mPaint.setColor(GRID_COLOR);
             mPaint.setStrokeWidth(thickness / 2);
@@ -330,7 +342,7 @@ public class LineGraph extends View {
             mPaint.setStrokeWidth(thickness);
             mPaint.setColor(Color.BLACK);
             mCanvas.drawLine(i, -5, i, 5, mPaint);
-            String mark = Float.toString(Math.round(scaleX * i));
+            String mark = Float.toString(Math.round(scale * i));
             Rect bounds = new Rect();
             mPaint.getTextBounds(mark, 0, mark.length(), bounds);
             if(sizeChangeText){
