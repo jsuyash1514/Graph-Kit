@@ -178,6 +178,7 @@ layout.addView(pieChart);
 |-----------------------------|----------------|-------------------------|-----------------|-------------------------------------------------------------------------------------------------------------------------------|
 | Data Points                 | NA             | .setPoints(...)     | NA    | Data Points to plot |                                                                                               
 | Label Text Size                    | 20          | .setLabelTextSize(...)       | label_text_size        | Size of text used in the label markings  |
+| Space between two bars             | 10          | .setSpace(...)       | bar_space        | Set the spacing between two bars  |
 
 ## PieChart
 
