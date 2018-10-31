@@ -307,7 +307,7 @@ public class LineGraph extends View {
         float scale = Math.max(scaleX,scaleY);
 
         for (int i = 0; i < pointList.size(); i++) {
-            pointListScaled.add(new DataPoint(pointList.get(i).x / scale, pointList.get(i).y / scale));
+            pointListScaled.add(new DataPoint(pointList.get(i).x / scaleX, pointList.get(i).y / scaleY));
         }
 
         boolean sizeChangeText = false;
@@ -318,14 +318,14 @@ public class LineGraph extends View {
             sizeChangeText = true;
         }
 
-        for (float i = id; i < sH; i += (inc)) {
+        for (float i = v1/scaleY; i < sH; i += (inc1)) {
             mPaint.setColor(GRID_COLOR);
             mPaint.setStrokeWidth(thickness / 2);
             mCanvas.drawLine(0, -i, sW, -i, mPaint);
             mPaint.setStrokeWidth(thickness);
             mPaint.setColor(Color.BLACK);
             mCanvas.drawLine(-5, -i, 5, -i, mPaint);
-            String mark = Float.toString(Math.round(scale * i));
+            String mark = Float.toString(Math.round(scaleY * i));
             Rect bounds = new Rect();
             mPaint.getTextBounds(mark, 0, mark.length(), bounds);
             mCanvas.drawText(mark, -bounds.width() - 15, -(i + mPaint.ascent() / 2), mPaint);
@@ -334,7 +334,7 @@ public class LineGraph extends View {
 
 
 
-        for (float i = id; i < sW; i += (inc)) {
+        for (float i = v2/scaleX; i < sW; i += (inc2)) {
             mPaint.setTextSize(LABEL_SIZE);
             mPaint.setColor(GRID_COLOR);
             mPaint.setStrokeWidth(thickness / 2);
@@ -342,7 +342,7 @@ public class LineGraph extends View {
             mPaint.setStrokeWidth(thickness);
             mPaint.setColor(Color.BLACK);
             mCanvas.drawLine(i, -5, i, 5, mPaint);
-            String mark = Float.toString(Math.round(scale * i));
+            String mark = Float.toString(Math.round(scaleX * i));
             Rect bounds = new Rect();
             mPaint.getTextBounds(mark, 0, mark.length(), bounds);
             if(sizeChangeText){
