@@ -4,6 +4,7 @@ ext {
     bintrayRepo = 'Graph-Kit'
     bintrayName = 'graphkit'
 
+    
     publishedGroupId = 'com.mdgiitr.suyash'
     libraryName = 'Graph-Kit'
     artifact = 'graphkit'
