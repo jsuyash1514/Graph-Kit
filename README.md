@@ -18,6 +18,15 @@ and also get normalized points from the curve.
 * [Guidelines for Contributors](#guidelines-for-contributors)
 * [License](#license)
 
+# Usage
+
+Just add the following dependency in your app's `build.gradle`
+```java
+dependencies {
+      compile 'com.mdgiitr.suyash:graphkit:0.9.0'
+}
+```
+
 # Features
 
 ## Line Graph Usage
