@@ -23,7 +23,7 @@ and also get normalized points from the curve.
 Just add the following dependency in your app's `build.gradle`
 ```java
 dependencies {
-      compile 'com.mdgiitr.suyash:graphkit:0.9.0'
+      implementation 'com.mdgiitr.suyash:graphkit:0.9.0'
 }
 ```
 
